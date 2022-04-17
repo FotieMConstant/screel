@@ -2,7 +2,7 @@
 
 // Importing express
 const express = require('express');
-const devaround_routes = require('./routes/devaround_routes')
+const screel_routes = require('./routes/v1/screel_routes')
 
 const app = express();
 
@@ -16,11 +16,11 @@ app.all("*", (req, res, next) => {
 // the various endpoints
 // default
 app.get("/", (req, res) => {
-  res.send("devaround api.");
+  res.send("Screel api.");
 });
 // 
-// get all devaround_routes api request
-app.use(devaround_routes);
+// get all screel_routes api request
+app.use(screel_routes);
 
 // setting the port of the process or a default port 
 app.listen(process.env.PORT || 3000, function(){

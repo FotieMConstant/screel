@@ -41,7 +41,7 @@ export default new Vuex.Store({
           try {
             // getting the token from my own custom api returned to me
             const response = await axios.post(
-              `https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token`,
+              `http://localhost:3000/v1/gh_access_token`,
               {
                 client_id: state.githubAuth.client_id,
                 client_secret: state.githubAuth.client_secret,

@@ -8,7 +8,7 @@ const client_secret = process.env.CLIENT_SECRET;
 
 // function to get access_token from github and send to my app
 exports.getAccess_token = (req, res) => {
-   console.log(req.params.code);
+   console.log(req.body);
    console.log("Accessing token from github...");
   //  object to be sent to the gihub api
    const dataObject = {
@@ -16,6 +16,7 @@ exports.getAccess_token = (req, res) => {
       client_secret: client_secret,
       code: req.params.code
     }
+    console.log(dataObject)
     axios.post(`https://github.com/login/oauth/access_token`, 
     dataObject,
     {
