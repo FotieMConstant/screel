@@ -15,7 +15,7 @@ export default new Vuex.Store({
     githubAuth:{
       client_id: process.env.VUE_APP_CLIENT_ID,
       client_secret: process.env.VUE_APP_CLIENT_SECRET,
-      domain: "http://localhost:8080/en", //process.env.VUE_APP_DOMAIN,
+      domain: process.env.VUE_APP_DOMAIN,
       api_domain: process.env.VUE_APP_API_DOMAIN,
     },
     access_token: null
@@ -52,7 +52,7 @@ export default new Vuex.Store({
           try {
             // getting the token from my own custom api returned to me
             const response = await axios.post(
-              `http://localhost:3000/v1/gh_access_token`,
+              `${ state.githubAuth.api_domain}/v1/gh_access_token`,
               {
                 client_id: state.githubAuth.client_id,
                 client_secret: state.githubAuth.client_secret,
