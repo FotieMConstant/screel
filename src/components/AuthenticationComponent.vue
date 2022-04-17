@@ -92,6 +92,7 @@
               duration-100
               ease-in-out
             "
+            @click="loginWithGithub"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -118,3 +119,33 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {};
+  },
+  mounted() {
+    this.getCodeFromUrl();
+  },
+  methods: {
+    loginWithGithub() {
+      console.log("loginWithGithub...");
+      this.$store.dispatch("githubAuthorizeAction"); // calling action in store
+    },
+    // function to get code from url
+    getCodeFromUrl() {
+      console.log("getCodeFromUrl");
+      // if the data in the url is true
+      if (this.$route.query.code) {
+        console.log("auth code => " + this.$route.query.code);
+        this.$store.dispatch("getAccessTokenAction", this.$route.query.code); // calling action in store and pass code gottten from github
+
+        // return this.$route.query.code;
+      } else {
+        console.log("There is no code from github");
+        return null;
+      }
+    },
+  },
+};
+</script>
