@@ -5,6 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    currentUser: null,
+  },
+  getters:{
+    getCurrentUser(state){
+      return state.currentUser;
+    },
   },
   mutations: {
   },
