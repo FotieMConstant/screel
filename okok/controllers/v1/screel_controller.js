@@ -12,9 +12,11 @@ exports.getAccess_token = (req, res) => {
    console.log("Accessing token from github...");
   //  object to be sent to the gihub api
    const dataObject = {
-      client_id: client_id,
-      client_secret: client_secret,
-      code: req.params.code
+      client_id: req.body.client_id,
+      client_secret: req.body.client_secret,
+      code: req.body.code,
+      redirect_uri: req.body.redirect_uri,
+
     }
     console.log(dataObject)
     axios.post(`https://github.com/login/oauth/access_token`, 

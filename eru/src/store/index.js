@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from "vuex-persistedstate"; // for persisting the state
 const axios = require('axios');
+// import router from '../router/index'; // importing router for navigations from within the store
+import i18n from '../i18n'
+
 
 
 Vue.use(Vuex)
@@ -13,14 +17,20 @@ export default new Vuex.Store({
       client_secret: process.env.VUE_APP_CLIENT_SECRET,
       domain: "http://localhost:8080/en", //process.env.VUE_APP_DOMAIN,
       api_domain: process.env.VUE_APP_API_DOMAIN,
-    }
+    },
+    access_token: null
   },
+  // ...
+  plugins: [createPersistedState()],
   getters:{
     getCurrentUser(state){
       return state.currentUser;
     },
   },
   mutations: {
+    setCurrentUser(state, payload){
+      state.currentUser = payload
+    }
   },
   actions: {
         // github function to authorize a user and get code
@@ -36,8 +46,9 @@ export default new Vuex.Store({
             "/auth&scope=read:user";
         },
 
-        // access token method
-        async getAccessTokenAction({state},code) {
+        // access token plus auth user method
+        async getAccessTokenAndAuthUserAction({commit, state}, code) {
+          // first, get acces token
           try {
             // getting the token from my own custom api returned to me
             const response = await axios.post(
@@ -50,12 +61,33 @@ export default new Vuex.Store({
               }
             );
             console.log(response.data);
+
+
+            // second, access token to auth user 
+                console.log("Authenticating user with token...");
+                const token = response.data.access_token;
+                  try {
+                    let responseUser = await axios.get(`https://api.github.com/user`, {
+                      headers: {
+                        Authorization: `Bearer ${token}`, // using the token
+                      },
+                    });
+                    responseUser = responseUser.data;
+                    console.log("Return data => ");
+                    console.log(responseUser);
+                    commit("setCurrentUser", responseUser); // setting logged in user to store
+                    window.location.href = `/${i18n.locale}`; // redirecting to home after auth
+
+                  } catch (error) {
+                    console.log(error.message);
+                  }
           
           } catch (error) {
             console.log(error);
           }
         },
-        // End of access token
+        // End of access token plus auth user
+
   },
   modules: {
   }

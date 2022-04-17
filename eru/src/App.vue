@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <div v-if="currentUser" id="nav">
+    <!-- <div v-if="currentUser" id="nav">
       <router-link :to="`/${$i18n.locale}`">Home</router-link> |
       <router-link :to="`/${$i18n.locale}/about`">About</router-link>
-    </div>
+    </div> -->
     <div><router-view /></div>
-    <div>
+    <div v-if="!currentUser">
       <!-- footer -->
       <FooterComponent />
       <!--/ footer -->
@@ -24,11 +24,12 @@ export default {
       currentUser: null, // the currently logged in user
     };
   },
-  beforeCreate() {
-    console.log(this.$store.getters.getCurrentUser);
+  beforeCreate() {},
+  mounted() {
+    // console.log(this.$store.getters.getCurrentUser);
     this.currentUser = this.$store.getters.getCurrentUser;
+    console.log(this.currentUser);
   },
-  mounted() {},
 };
 </script>
 <style>

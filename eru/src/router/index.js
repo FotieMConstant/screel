@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import i18n from '../i18n'
 import Auth from '../views/Auth.vue'
+// import store from '../store/index'
 
 
 Vue.use(VueRouter)
@@ -21,12 +22,18 @@ const routes = [
         {
           path: '/',
           name: 'Home',
-          component: Home
+          component: Home,
+          meta: {
+            auth: true,
+          },
         },
         {
           path: 'auth',
           name: 'Auth',
-          component: Auth
+          component: Auth,
+          meta: {
+            auth: false,
+          },
         },
         {
           path: 'about',
@@ -60,6 +67,7 @@ router.beforeEach((to, from, next) => {
   i18n.locale = language
   next()
 })
+
 
 
 export default router

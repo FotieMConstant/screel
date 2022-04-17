@@ -138,7 +138,7 @@ export default {
       // if the data in the url is true
       if (this.$route.query.code) {
         console.log("auth code => " + this.$route.query.code);
-        this.$store.dispatch("getAccessTokenAction", this.$route.query.code); // calling action in store and pass code gottten from github
+        this.$store.dispatch("getAccessTokenAndAuthUserAction", this.$route.query.code); // calling action in store and pass code gottten from github
 
         // return this.$route.query.code;
       } else {
