@@ -1,0 +1,39 @@
+{
+  "name": "dev-around-api",
+  "version": "0.0.1",
+  "description": "See developers around you on dev-around. Connect, network and grow with local developers.",
+  "main": "server.js",
+  "scripts": {
+    "serve": "node_modules/.bin/nodemon server.js --exec",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FotieMConstant/dev-around.git"
+  },
+  "keywords": [
+    "developers",
+    "dev-around",
+    "api",
+    "nodejs"
+  ],
+  "author": "fotiecodes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FotieMConstant/dev-around/issues"
+  },
+  "homepage": "https://github.com/FotieMConstant/dev-around#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@vercel/node": "^1.9.1",
+    "body-parser": "^1.19.0",
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "mocha": "^8.3.2",
+    "nodemon": "^2.0.7"
+  }
+}
