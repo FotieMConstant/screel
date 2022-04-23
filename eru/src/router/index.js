@@ -1,24 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import i18n from '../i18n'
 import Auth from '../views/Auth.vue'
-// import store from '../store/index'
+import store from '../store/index'
 
 
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    redirect: `/${i18n.locale}`
-  },
-{ 
-  path: '/:lang',
-  component: {
-    render (c) { return c('router-view') },
-  },
-  children: [
         {
           path: '/',
           name: 'Home',
@@ -28,7 +17,7 @@ const routes = [
           },
         },
         {
-          path: 'auth',
+          path: '/auth',
           name: 'Auth',
           component: Auth,
           meta: {
@@ -43,9 +32,7 @@ const routes = [
           // which is lazy-loaded when the route is visited.
           component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
         }
-  ]
 
-}
 ]
 
 const router = new VueRouter({
@@ -54,20 +41,22 @@ const router = new VueRouter({
   routes
 })
 
-// use beforeEach route guard to set the language
+// navigation guard
 router.beforeEach((to, from, next) => {
-
-  // use the language from the routing param or default language
-  let language = to.params.lang;
-  if (!language) {
-    language = 'en'
+  // route guard. if user is not connected prevent them from going anywhere
+  // console.log(to.meta.auth)
+  if (to.name === 'Auth' && store.state.currentUser) {
+    next({
+      path: '/',
+    });
+  } else if (to.meta.auth && !store.state.currentUser) {
+    next({
+      path: '/auth',
+    });
+  } else {
+    next();
   }
-
-  // set the current language for i18n.
-  i18n.locale = language
-  next()
-})
-
+});
 
 
 export default router

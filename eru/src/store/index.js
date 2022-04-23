@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import createPersistedState from "vuex-persistedstate"; // for persisting the state
 const axios = require('axios');
 // import router from '../router/index'; // importing router for navigations from within the store
-import i18n from '../i18n'
+// import i18n from '../i18n'
 
 
 
@@ -76,7 +76,7 @@ export default new Vuex.Store({
                     console.log("Return data => ");
                     console.log(responseUser);
                     commit("setCurrentUser", responseUser); // setting logged in user to store
-                    window.location.href = `/${i18n.locale}`; // redirecting to home after auth
+                    window.location.href = `/`; // redirecting to home after auth
 
                   } catch (error) {
                     console.log(error.message);
