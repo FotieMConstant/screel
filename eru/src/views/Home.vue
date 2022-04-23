@@ -5,13 +5,23 @@
         min-h-screen
         flex flex-col
         p-9
-        bg-gray-100
+        bg-gray-200
         antialiased
         text-gray-700
       "
     >
       <div class="flex-1 flex flex-col sm:flex-row">
-        <main class="flex-1 bg-white rounded-md">Content here</main>
+        <main class="flex-1 bg-white rounded-md h-screen overflow-y-scroll">
+          <CreatePost />
+          <div class="flex justify-center space-x-2 my-6">
+            <div class="bg-yellow-500 w-1.5 h-1.5 rounded-full my-auto"></div>
+            <div class="bg-yellow-500 w-2 h-2 rounded-full my-auto"></div>
+            <div class="bg-yellow-500 w-1.5 h-1.5 rounded-full my-auto"></div>
+          </div>
+          <div>
+            <PostComponent v-for="item in 10" :key="item" />
+          </div>
+        </main>
 
         <nav class="order-first sm:w-60 bg-white mr-4 rounded-md">
           <div>
@@ -56,7 +66,7 @@
           </div>
         </nav>
 
-        <aside class="sm:w-80 bg-gray-100 ml-4 text-left">
+        <aside class="sm:w-80 bg-gray-200 ml-4 text-left">
           <ProfilePreviewBox />
 
           <!-- trending projects -->
@@ -115,11 +125,15 @@
 <script>
 // @ is an alias to /src
 import ProfilePreviewBox from "@/components/ProfilePreviewBox.vue";
+import PostComponent from "@/components/PostComponent.vue";
+import CreatePost from "@/components/CreatePost.vue";
 
 export default {
   name: "Home",
   components: {
     ProfilePreviewBox,
+    PostComponent,
+    CreatePost,
   },
 };
 </script>
