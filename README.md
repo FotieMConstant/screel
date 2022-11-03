@@ -2,10 +2,10 @@
 
 Note: This boilerplate comes with:
 
-Tailwincss
-Vuex
-Vue-router
-Vue-in18
+    Tailwincss
+    Vuex
+    Vue-router
+    Vue-in18
 
 all the above has already been setup!
 
