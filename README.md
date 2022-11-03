@@ -1,4 +1,13 @@
-# vue3-demo
+# vue3-base
+
+Note: This boilerplate comes with:
+
+Tailwincss
+Vuex
+Vue-router
+Vue-in18
+
+all the above has already been setup!
 
 ## Project setup
 ```

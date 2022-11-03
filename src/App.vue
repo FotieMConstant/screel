@@ -1,11 +1,20 @@
 <template>
   <nav>
+    <LocalLang />
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </nav>
   <router-view />
 </template>
 
+<script>
+import LocalLang from "@/components/LocalLang.vue";
+export default {
+  components: {
+    LocalLang,
+  },
+};
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
