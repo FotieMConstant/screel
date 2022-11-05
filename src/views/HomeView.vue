@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    {{ $t("gettings.morning") }}, Fotie
+    {{ $t("gettings.morning") }}, Fotie...
     <img alt="Vue logo" src="../assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js App" />
   </div>
