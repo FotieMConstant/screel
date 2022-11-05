@@ -12,7 +12,7 @@
 export default {
   name: "SelectLocale",
   data() {
-    return { langs: ["en", "fr"] };
+    return { langs: ["en", "fr", "tr"] };
   },
 };
 </script>
