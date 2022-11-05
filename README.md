@@ -6,6 +6,7 @@ Note: This boilerplate comes with:
     Vuex
     Vue-router
     Vue-in18
+    PWA support
 
 all the above has already been setup!
 

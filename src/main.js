@@ -5,6 +5,7 @@ import store from "./store";
 import "./index.css";
 import { createI18n } from "vue-i18n";
 import loadLocaleMessages from "./i18nHelpers";
+import "./registerServiceWorker";
 
 // i18n configuration
 const i18n = createI18n({
