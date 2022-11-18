@@ -1,123 +1,15 @@
 <template>
-  <nav>
-    <LocalLang />
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <!-- main view -->
-  <div>
-    <router-view />
-  </div>
-  <!--/ main view -->
-  <!-- software update notifications -->
-  <transition name="slide-fade">
-    <div v-show="updateExists" class="absolute bottom-6 right-6 z-10">
-      <div class="bg-white w-80 border rounded-lg shadow-lg">
-        <div class="flex space-x-5 p-5">
-          <div>🚀</div>
-          <div class="text-left">
-            <div class="font-bold text-lg">Update available!</div>
-            <div class="text-sm">
-              A new software version is available for download.
-            </div>
-            <div class="flex pt-4 space-x-2">
-              <button
-                class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 font-medium text-white text-sm hover:bg-blue-700"
-                @click="refreshApp"
-              >
-                Update
-              </button>
-              <button
-                class="w-full inline-flex justify-center rounded-md shadow-sm px-4 py-2 bg-white border text-sm font-medium text-gray-700 hover:bg-gray-100"
-                @click="updateExists = false"
-              >
-                Not now
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </transition>
-  <!-- / software update notifications -->
+	<Button :buttonText="Delete" />
 </template>
 
 <script>
-import LocalLang from "@/components/LocalLang.vue";
+import Button from "@/components/Button.vue";
 export default {
-  components: {
-    LocalLang,
-  },
-  data() {
-    return {
-      registration: null,
-      updateExists: false, //if there is an update or not
-    };
-  },
-  created() {
-    document.addEventListener("swUpdated", this.updateAvailable, {
-      once: true,
-    });
-
-    navigator.serviceWorker.addEventListener("controllerchange", () => {
-      // We'll also need to add 'refreshing' to our data originally set to false.
-      if (this.refreshing) return;
-      this.refreshing = true;
-      // Here the actual reload of the page occurs
-      window.location.reload();
-    });
-  },
-  methods: {
-    //updateAvailable function
-    updateAvailable(event) {
-      this.registration = event.detail;
-      this.updateExists = true;
-      console.log(this.registration);
-    },
-    // function to reset service workers
-    refreshApp() {
-      this.updateExists = false;
-      // Make sure we only send a 'skip waiting' message if the SW is waiting
-      if (!this.registration || !this.registration.waiting) return;
-      // Send message to SW to skip the waiting and activate the new SW
-      this.registration.waiting.postMessage({ type: "SKIP_WAITING" });
-    },
-  },
+	components: {
+		Button,
+	},
+	data() {
+		return {};
+	},
 };
 </script>
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-
-/* Enter and leave animations can use different */
-/* durations and timing functions.              */
-.slide-fade-enter-active {
-  transition: all 0.3s ease;
-}
-.slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active below version 2.1.8 */ {
-  transform: translateX(10px);
-  opacity: 0;
-}
-</style>
