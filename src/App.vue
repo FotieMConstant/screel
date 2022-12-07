@@ -1,52 +1,55 @@
 <template>
-  <nav>
-    <LocalLang />
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <!-- main view -->
-  <div>
-    <router-view />
-  </div>
-  <!--/ main view -->
-  <!-- software update notifications -->
-  <transition name="slide-fade">
-    <div v-show="updateExists" class="absolute bottom-6 right-6 z-10">
-      <div class="bg-white w-80 border rounded-lg shadow-lg">
-        <div class="flex space-x-5 p-5">
-          <div>🚀</div>
-          <div class="text-left">
-            <div class="font-bold text-lg">Update available!</div>
-            <div class="text-sm">
-              A new software version is available for download.
-            </div>
-            <div class="flex pt-4 space-x-2">
-              <button
-                class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 font-medium text-white text-sm hover:bg-blue-700"
-                @click="refreshApp"
-              >
-                Update
-              </button>
-              <button
-                class="w-full inline-flex justify-center rounded-md shadow-sm px-4 py-2 bg-white border text-sm font-medium text-gray-700 hover:bg-gray-100"
-                @click="updateExists = false"
-              >
-                Not now
-              </button>
+  <div class="dark:bg-slate-800 dark:text-white">
+    <nav>
+      <AppBar />
+      <!-- <LocalLang /> -->
+    </nav>
+    <!-- main view -->
+    <div>
+      <router-view />
+    </div>
+    <!--/ main view -->
+    <!-- software update notifications -->
+    <transition name="slide-fade">
+      <div v-show="updateExists" class="absolute bottom-6 right-6 z-10">
+        <div class="bg-white w-80 border rounded-lg shadow-lg">
+          <div class="flex space-x-5 p-5">
+            <div>🚀</div>
+            <div class="text-left">
+              <div class="font-bold text-lg">Update available!</div>
+              <div class="text-sm">
+                A new software version is available for download.
+              </div>
+              <div class="flex pt-4 space-x-2">
+                <button
+                  class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 font-medium text-white text-sm hover:bg-blue-700"
+                  @click="refreshApp"
+                >
+                  Update
+                </button>
+                <button
+                  class="w-full inline-flex justify-center rounded-md shadow-sm px-4 py-2 bg-white border text-sm font-medium text-gray-700 hover:bg-gray-100"
+                  @click="updateExists = false"
+                >
+                  Not now
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </transition>
-  <!-- / software update notifications -->
+    </transition>
+    <!-- / software update notifications -->
+  </div>
 </template>
 
 <script>
-import LocalLang from "@/components/LocalLang.vue";
+// import LocalLang from "@/components/LocalLang.vue";
+import AppBar from "@/components/global/AppBar.vue";
 export default {
   components: {
-    LocalLang,
+    // LocalLang,
+    AppBar,
   },
   data() {
     return {
