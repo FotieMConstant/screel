@@ -1,5 +1,5 @@
 <template>
-  <div class="dark:bg-slate-800 dark:text-white">
+  <div class="dark:bg-slate-800">
     <nav>
       <AppBar />
       <!-- <LocalLang /> -->

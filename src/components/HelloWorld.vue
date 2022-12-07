@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello dark:text-white">
     <h1 class="text-2xl font-bold">{{ msg }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br />

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between">
+  <div class="flex justify-between dark:text-white">
     <div class="flex">
       <div>Logo</div>
       <div>Search bar</div>
