@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     {{ $t("gettings.morning") }}, Fotie!
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <demo />
     <HelloWorld msg="Welcome to Your Vue.js App" />
   </div>
 </template>
@@ -9,11 +9,12 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
-
+import demo from "@/components/modules/card/demo.vue";
 export default {
   name: "HomeView",
   components: {
     HelloWorld,
+    demo,
   },
 };
 </script>
