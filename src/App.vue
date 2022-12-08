@@ -2,6 +2,7 @@
   <div class="dark:bg-slate-800">
     <nav>
       <AppBar />
+      <LightDarkModeSwitcher />
       <!-- <LocalLang /> -->
     </nav>
     <!-- main view -->
@@ -46,10 +47,12 @@
 <script>
 // import LocalLang from "@/components/LocalLang.vue";
 import AppBar from "@/components/global/AppBar.vue";
+import LightDarkModeSwitcher from "@/components/global/LightDarkModeSwitcher.vue";
 export default {
   components: {
     // LocalLang,
     AppBar,
+    LightDarkModeSwitcher,
   },
   data() {
     return {
