@@ -1,5 +1,5 @@
 <template>
-  <div class="dark:bg-slate-800">
+  <div class="dark:bg-gray-900">
     <nav>
       <AppBar />
       <LightDarkModeSwitcher />
@@ -92,6 +92,10 @@ export default {
 };
 </script>
 <style>
+svg path * {
+  fill: currentColor;
+  color: red;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

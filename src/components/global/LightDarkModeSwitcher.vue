@@ -31,21 +31,26 @@
 </template>
 
 <script>
-import { useDark, useToggle } from "@vueuse/core";
+// import { useDark, useToggle } from "@vueuse/core";
 
 export default {
   components: {},
   data() {
     return {
-      isDark: useDark(),
+      isDark: null,
     };
   },
-  created() {},
+  created() {
+    // get the team preference from store when component is created
+    this.isDark = this.$store.getters.getIsDark;
+  },
   methods: {
     toggleDark() {
-      this.isDark = !this.isDark;
-      console.log("isDark on => " + this.isDark);
-      useToggle(this.isDark);
+      this.$store.dispatch("toggleDarkAction"); // calling toggle action from store
+      this.isDark = this.$store.getters.getIsDark; //setting it in local component
+      // this.isDark = !this.isDark;
+      // // console.log("isDark on => " + this.isDark);
+      // useToggle(this.isDark);
     },
   },
 };

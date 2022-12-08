@@ -1,5 +1,5 @@
 <template>
-  <div>Login component</div>
+  <div class="text-blue-accent">Login component</div>
 </template>
 
 <script></script>
