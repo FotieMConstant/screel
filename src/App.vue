@@ -47,7 +47,7 @@
 <script>
 // import LocalLang from "@/components/LocalLang.vue";
 import AppBar from "@/components/global/AppBar.vue";
-import LightDarkModeSwitcher from "@/components/global/LightDarkModeSwitcher.vue";
+import LightDarkModeSwitcher from "@/components/modules/LightDarkModeSwitcher.vue";
 export default {
   components: {
     // LocalLang,

@@ -32,6 +32,13 @@ module.exports = {
           800: "#161B22",
           900: "#0B0E11",
         },
+        grayLightMode: {
+          100: "#F6F8FA",
+          200: "#D0D7DE",
+          300: "#8D959F",
+          400: "#58606A",
+          500: "#24292F",
+        },
       },
       backgroundColor: {
         blue: {

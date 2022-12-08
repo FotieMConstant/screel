@@ -91,9 +91,40 @@
         >
           <path
             d="M13.1332 20.6875C14.2324 20.6875 15.1314 19.8466 15.1314 18.8188H11.1349C11.1349 19.8466 12.034 20.6875 13.1332 20.6875ZM19.6277 15.0813V9.94219C19.6277 7.09234 17.4796 4.66306 14.6319 4.05558V3.40156C14.6319 2.60725 13.9825 2 13.1332 2C12.2838 2 11.6344 2.60725 11.6344 3.40156V4.05558C8.78669 4.66306 6.63865 7.09234 6.63865 9.94219V15.0813L4.64038 16.95V17.8844H21.6259V16.95L19.6277 15.0813Z"
-            fill="#B2BDCD"
+            fill="currentColor"
           />
         </svg>
+      </div>
+      <div class="my-auto">
+        <div
+          class="flex space-x-2 py-1 px-1.5 dark:bg-gray-700 bg-grayLightMode-200 rounded-full cursor-pointer select-none"
+        >
+          <img
+            class="rounded-full h-8 my-auto"
+            src="https://avatars.githubusercontent.com/u/42372656?v=4"
+            alt=""
+          />
+          <div
+            class="font-bold my-auto dark:text-gray-200 text-grayLightMode-400"
+          >
+            Arnau Jiménez
+          </div>
+          <div class="my-auto">
+            <svg
+              class="dark:text-gray-200 text-grayLightMode-300"
+              width="27"
+              height="24"
+              viewBox="0 0 27 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12.871 14.3L10.0782 11.7C9.738 11.3833 9.66209 11.021 9.85043 10.613C10.0381 10.2043 10.3736 10 10.8569 10H16.389C16.8724 10 17.2079 10.2043 17.3955 10.613C17.5839 11.021 17.5079 11.3833 17.1678 11.7L14.3749 14.3C14.2675 14.4 14.1511 14.475 14.0258 14.525C13.9005 14.575 13.7662 14.6 13.623 14.6C13.4798 14.6 13.3455 14.575 13.2202 14.525C13.0948 14.475 12.9785 14.4 12.871 14.3Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    {{ $t("gettings.morning") }}, Fotie!
+    <LocalLang />
+    {{ $t("appBar.morning") }}, Fotie!
     <demo />
     <HelloWorld msg="Welcome to Your Vue.js App" />
   </div>
@@ -10,10 +11,13 @@
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
 import demo from "@/components/modules/card/demo.vue";
+import LocalLang from "@/components/modules/LocalLang.vue";
+
 export default {
   name: "HomeView",
   components: {
     HelloWorld,
+    LocalLang,
     demo,
   },
 };

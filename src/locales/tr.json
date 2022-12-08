@@ -1,11 +1,5 @@
 {
-    "message": "Merhaba i18n !!",
-    "gettings": {
-      "morning": "Merhaba, günaydın",
-      "evning": "Merhaba, iyi akşamlar"
-    }, 
-    "about": {
-      "title": "Bu bir hakkında sayfasıdır",
-      "body": "İçeriğe gitmek için buna tıklayabilirsiniz"
-    }
+  "appBar": {
+    "searchPlaceholder": "Kullanıcı veya etiket arama"
   }
+}
