@@ -4,17 +4,17 @@ When contributing to this repository, please first discuss the change you wish t
 
 Please note we have a code of conduct, please follow it in all your interactions with the project.
 ## Code of Conduct
-The code of conduct is described in [CODE_OF_CONDUCT.md](https://github.com/FotieMConstant/bond/screel/main/CODE_OF_CONDUCT.md)
+The code of conduct is described in [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
 
 
 ## What do I need to know to help?
-If you are looking to help to with a code contribution our project uses **Vue3, HTML/CSS, Javascript and java for the back**. If you don't feel ready to make a code contribution yet, no problem! You can also check out the [documentation issues](https://github.com/FotieMConstant/bond/issues) or the design issues that we have [here](https://github.com/FotieMConstant/bond/issues).
+If you are looking to help to with a code contribution our project uses **Vue3, HTML/CSS, Javascript and java for the back**. If you don't feel ready to make a code contribution yet, no problem! You can also check out the [documentation issues](https://github.com/FotieMConstant/screel/issues) or the design issues that we have [here](https://github.com/FotieMConstant/screel/issues).
 
 ## How do I make a contribution?
 Never made an open source contribution before? Wondering how contributions work in the in our project? Here's a quick rundown!
 
 1. Find an issue that you are interested in addressing or a feature that you would like to add.
-2. Fork the repository associated with the issue to your local GitHub organization or repository. This means that you will have a copy of the repository under **your-GitHub-username/bond**.
+2. Fork the repository associated with the issue to your local GitHub organization or repository. This means that you will have a copy of the repository under **your-GitHub-username/screel**.
 3. Clone the repository to your local machine using git clone https://github.com/github-username/screel.git.
 4. Create a new branch for your fix using **git checkout -b branch-name-here**.
 5. Make the appropriate changes for the issue you are trying to address or the feature that you want to add.
@@ -30,7 +30,7 @@ Never made an open source contribution before? Wondering how contributions work 
 
 ## Where can I go for help?
 
-If you need help, you can ask questions on our mailing list, IRC chat, or simply email us at haibasoft237@gmail.com.
+If you need help, you can ask questions on our mailing list, IRC chat, or simply email us at fotiecodes@gmail.com.
 
 ## What does the Code of Conduct mean for me?
 
