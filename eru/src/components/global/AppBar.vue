@@ -1,10 +1,32 @@
 <template>
-  <div class="flex justify-between dark:text-white p-6">
+  <div
+    class="flex justify-between dark:text-white fixed w-full p-6 __headerBgBlur"
+  >
     <div class="flex space-x-5">
-      <div
+      <svg
         class="w-7 h-7 rounded-full my-auto"
-        style="background-color: #fd5842"
-      ></div>
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="12" cy="12" r="12" fill="url(#paint0_linear_19395_1754)" />
+        <defs>
+          <linearGradient
+            id="paint0_linear_19395_1754"
+            x1="24"
+            y1="5.25"
+            x2="12"
+            y2="24"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0.229167" stop-color="#FD5842" />
+            <stop offset="1" stop-color="#6948D3" stop-opacity="0.78" />
+          </linearGradient>
+        </defs>
+      </svg>
+
       <div>
         <SearchField />
       </div>
@@ -139,7 +161,7 @@
 <script>
 // @ is an alias to /src
 import SearchField from "@/components/global/SearchField.vue";
-import OverlayProfileSettings from "@/components/modules/modal/OverlayProfileSettings.vue";
+import OverlayProfileSettings from "@/components/modules/modals/OverlayProfileSettings.vue";
 
 export default {
   name: "AppBar",
@@ -157,4 +179,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.__headerBgBlur {
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+</style>

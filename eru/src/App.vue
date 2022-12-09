@@ -87,9 +87,8 @@ export default {
 };
 </script>
 <style>
-svg path * {
-  fill: currentColor;
-  color: red;
+body {
+  overflow: hidden;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

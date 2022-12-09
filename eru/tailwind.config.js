@@ -11,12 +11,13 @@ module.exports = {
       lg: ".5rem",
       full: "9999px",
       curl: "17px", // to be used for default rounded borders
+      chip: "5px", // to use on chips and badges
     },
     extend: {
       colors: {
         blue: {
           accent: "#1F6FEB",
-          light: "388BFD",
+          light: "#388BFD",
         },
         sky: {
           white: "#FFFFFF",
@@ -43,7 +44,7 @@ module.exports = {
       backgroundColor: {
         blue: {
           accent: "#1F6FEB",
-          light: "388BFD",
+          light: "#388BFD",
         },
         sky: {
           white: "#FFFFFF",
@@ -70,7 +71,7 @@ module.exports = {
       borderColor: {
         blue: {
           accent: "#1F6FEB",
-          light: "388BFD",
+          light: "#388BFD",
         },
         sky: {
           white: "#FFFFFF",
