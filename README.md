@@ -33,8 +33,8 @@ If that sounds a lot like, you... Welcome **Home** 🏠
 
 | Codebase |      Description      |
 | :------- | :-------------------: |
-| okok     |   Node backend        |
-| eru      |   Vue frontend      |
+| [okok](/okok)    |   Java API        |
+| [eru](/eru)     |   Vue.js frontend      |
 
 Connect with local Designers, geeks, nerds, tech enthusiast just like you💪🏾 ...share your "screels" with your network and people around you! 
 
