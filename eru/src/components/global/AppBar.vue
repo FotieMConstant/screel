@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between dark:text-white">
+  <div class="flex justify-between dark:text-white p-6">
     <div class="flex space-x-5">
       <div
         class="w-7 h-7 rounded-full my-auto"
@@ -10,7 +10,8 @@
       </div>
     </div>
     <div class="flex space-x-4 text-gray-200">
-      <button
+      <router-link
+        to="/"
         class="dark:bg-sky-white my-auto bg-blue-accent h-8 rounded-curl flex space-x-1 px-3"
       >
         <svg
@@ -26,9 +27,10 @@
             fill="currentColor"
           />
         </svg>
-
-        <div class="dark:text-gray-500 text-white my-auto font-bold">Home</div>
-      </button>
+        <div class="dark:text-gray-500 text-white my-auto font-bold">
+          {{ $t("appBar.home") }}
+        </div>
+      </router-link>
       <div class="my-auto">
         <svg
           width="17"
@@ -95,8 +97,9 @@
           />
         </svg>
       </div>
-      <div class="my-auto">
+      <div class="my-auto relative">
         <div
+          @click="toggleOverlayProfileSettings = !toggleOverlayProfileSettings"
           class="flex space-x-2 py-1 px-1.5 dark:bg-gray-700 bg-grayLightMode-200 rounded-full cursor-pointer select-none"
         >
           <img
@@ -105,7 +108,7 @@
             alt=""
           />
           <div
-            class="font-bold my-auto dark:text-gray-200 text-grayLightMode-400"
+            class="font-bold my-auto dark:text-gray-100 text-grayLightMode-400"
           >
             Arnau Jiménez
           </div>
@@ -125,6 +128,9 @@
             </svg>
           </div>
         </div>
+        <!-- Overlay Profile Settings -->
+        <OverlayProfileSettings v-show="toggleOverlayProfileSettings" />
+        <!--/ Overlay Profile Settings -->
       </div>
     </div>
   </div>
@@ -133,22 +139,20 @@
 <script>
 // @ is an alias to /src
 import SearchField from "@/components/global/SearchField.vue";
+import OverlayProfileSettings from "@/components/modules/modal/OverlayProfileSettings.vue";
 
 export default {
   name: "AppBar",
   components: {
     SearchField,
+    OverlayProfileSettings,
   },
   data() {
-    return { isDark: this.$store.getters.getIsDark };
+    return {
+      toggleOverlayProfileSettings: false,
+    };
   },
-  watch: {
-    // whenever isDark changes, this function will run
-    "$store.state.isDark": function () {
-      this.isDark = this.$store.state.isDark;
-      console.log(this.$store.state.isDark);
-    },
-  },
+
   computed() {},
 };
 </script>

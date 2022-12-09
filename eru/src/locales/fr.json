@@ -1,5 +1,16 @@
 {
   "appBar": {
-    "searchPlaceholder": "Recherche d'utilisateurs ou de tags"
+    "searchPlaceholder": "Recherche d'utilisateurs ou de tags",
+    "home": "Accueil",
+    "overlayProfileSettings":{
+      "profile": "Profil",
+      "settings": "Paramètres",
+      "language":"Langue",        
+      "help": "Aide",
+      "reportABug": "Signaler un bug",
+      "switchToDarkMode": "Passez à Dark",
+      "switchToLightMode": "Passer à Light",
+      "logOut": "Déconnexion"
+    }
   }
 }

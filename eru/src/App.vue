@@ -1,10 +1,7 @@
 <template>
   <div class="dark:bg-gray-900">
-    <nav>
-      <AppBar />
-      <LightDarkModeSwitcher />
-      <!-- <LocalLang /> -->
-    </nav>
+    <AppBar />
+    <!-- <LocalLang /> -->
     <!-- main view -->
     <div>
       <router-view />
@@ -47,12 +44,10 @@
 <script>
 // import LocalLang from "@/components/LocalLang.vue";
 import AppBar from "@/components/global/AppBar.vue";
-import LightDarkModeSwitcher from "@/components/modules/LightDarkModeSwitcher.vue";
 export default {
   components: {
     // LocalLang,
     AppBar,
-    LightDarkModeSwitcher,
   },
   data() {
     return {

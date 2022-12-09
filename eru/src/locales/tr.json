@@ -1,5 +1,16 @@
 {
   "appBar": {
-    "searchPlaceholder": "Kullanıcı veya etiket arama"
+    "searchPlaceholder": "Kullanıcı veya etiket arama",
+    "home": "Anasayfa",
+    "overlayProfileSettings":{
+      "profile": "Profil",
+      "settings": "Ayarlar",
+      "language":"Dil",        
+      "help": "Yardım",
+      "reportABug": "Hata bildir",
+      "switchToDarkMode": "karanlığa değiştir",
+      "switchToLightMode": "ışığa değiştir",
+      "logOut": "Çıkış yap"
+    }
   }
 }

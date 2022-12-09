@@ -26,7 +26,7 @@
       </svg>
 
       <input
-        class="dark:bg-gray-700 bg-gray-100 py-1 h-10 px-2 focus:outline-none rounded-curl"
+        class="dark:bg-gray-700 bg-gray-100 dark:text-gray-200 py-1 h-10 px-2 focus:outline-none rounded-curl"
         type="search"
         name=""
         :placeholder="$t('appBar.searchPlaceholder')"
