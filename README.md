@@ -41,7 +41,7 @@ Please read [CONTRIBUTING.md](https://github.com/FotieMConstant/bond/blob/main/C
 ## Code of Conduct
 Please read [CODE_OF_CONDUCT.MD](https://github.com/FotieMConstant/bond/blob/main/CODE_OF_CONDUCT.md) for details on our code of conduct.
 
-## BondReviewers
+## ScreelReviewers
 Contributors helping to review/merge pull requests:
 
 * [@fotiecodes](https://github.com/FotieMConstant)
