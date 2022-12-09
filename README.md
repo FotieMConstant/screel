@@ -2,7 +2,7 @@
   <strong>A space for Developers, Designers, geeks, nerds, tech enthusiast, just like you🚀</strong>
 </p>
 <p align="center">
-  <a href="https://discord.gg/cA8zVJ7wgR">
+  <a href="https://discord.gg/">
     <img src="https://img.shields.io/badge/Discord-Online-green?style=for-the-badge&logo=appveyor" alt="discord - users online" />
   </a>
 </p>
