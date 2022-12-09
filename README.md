@@ -13,7 +13,7 @@
 <h3 align="center">  
   <a href="#">Contribute</a>
   <span> · </span>
-  <a href="https://discord.com/invite/DJHntQ8PQr">Community</a>
+  <a href="https://discord.com">Community</a>
   <span> · </span>
   <a href="#">Documentation</a>
 </h3>
