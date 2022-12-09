@@ -35,6 +35,14 @@
   </div>
 </template>
 
-<script></script>
+<script>
+export default {
+  name: "SearchField",
+  props: {},
+  data() {
+    return {};
+  },
+};
+</script>
 
 <style lang="scss" scoped></style>
