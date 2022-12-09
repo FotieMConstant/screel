@@ -1,6 +1,6 @@
 <template>
   <div
-    class="dark:bg-gray-800 dark:text- bg-sky-white text-grayLightMode-400 shadow-lg rounded-curl dark:text-gray-100 absolute w-full z-50"
+    class="dark:bg-gray-800 bg-sky-white text-grayLightMode-400 shadow-lg rounded-curl dark:text-gray-100 absolute w-full z-50"
   >
     <!-- if toggleLanguagesMenu is false then it hasn't been toggled -->
     <div v-if="!toggleLanguagesMenu" class="p-4 space-y-3">

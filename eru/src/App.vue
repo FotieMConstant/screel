@@ -10,7 +10,9 @@
     <!-- software update notifications -->
     <transition name="slide-fade">
       <div v-show="updateExists" class="absolute bottom-6 right-6 z-10">
-        <div class="bg-white w-80 border rounded-lg shadow-lg">
+        <div
+          class="bg-white dark:bg-gray-800 dark:text-gray-100 w-80 border dark:border-gray-600 rounded-lg shadow-lg"
+        >
           <div class="flex space-x-5 p-5">
             <div>🚀</div>
             <div class="text-left">
@@ -20,13 +22,13 @@
               </div>
               <div class="flex pt-4 space-x-2">
                 <button
-                  class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 font-medium text-white text-sm hover:bg-blue-700"
+                  class="w-full rounded-curl inline-flex font-bold justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-light text-white text-sm hover:bg-blue-accent"
                   @click="refreshApp"
                 >
                   Update
                 </button>
                 <button
-                  class="w-full inline-flex justify-center rounded-md shadow-sm px-4 py-2 bg-white border text-sm font-medium text-gray-700 hover:bg-gray-100"
+                  class="w-full rounded-curl dark:bg-gray-700 dark:text-gray-100 border inline-flex justify-center rounded-md shadow-sm px-4 py-2 bg-grayLightMode-100 hover:bg-grayLightMode-200 dark:border-gray-700 text-sm font-bold text-gray-700"
                   @click="updateExists = false"
                 >
                   Not now
