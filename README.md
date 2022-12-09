@@ -1,5 +1,8 @@
 <p align="center">
-  <strong>A space for Developers, Designers, geeks, nerds, tech enthusiast, just like you🚀</strong>
+    <img src="https://user-images.githubusercontent.com/42372656/206678522-567f7eab-fb18-40b2-9a20-b17a6a292813.png"/>
+</p>
+<p align="center">
+  <strong>A space for Developers, Designers, geeks, nerds, tech enthusiast, just like you 🚀</strong>
 </p>
 <p align="center">
   <a href="https://discord.gg/">
@@ -16,6 +19,13 @@
 </h3>
 
 <p align="center"><b>https://screel.vercel.app/</b></p>
+
+## ⤴️ Motivation
+I just want a safe space/home for developers and tech lovers like me to share and have fun, share the most crazy/exciting projects we are currently  working on, browse and connect with developers locally plus keep in touch with my mates in a tech, geeky, nerdy way✌🏾
+
+See what my friends are up to and working on, from screeling about having a bad day debugging some jsx code in my basement ...to figuring out how to setup a Docker container!
+
+If that sounds a lot like, you... Welcome **Home** 🏠
 
 ---
 
@@ -49,7 +59,7 @@ Contributors helping to review/merge pull requests:
 ## License
 This project is licensed under the MIT License - see the LICENSE.md file for details  
 
-<!-- ## Project setup
+<!-- ## 🛠Project setup
 ```
 npm install
 ```
