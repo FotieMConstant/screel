@@ -1,5 +1,5 @@
 <template>
-  <div class="dark:bg-gray-900">
+  <div class="dark:bg-gray-900 h-screen">
     <AppBar />
     <!-- <LocalLang /> -->
     <!-- main view -->
@@ -100,7 +100,7 @@ body {
   color: #2c3e50;
 }
 
-nav {
+/* nav {
   padding: 30px;
 }
 
@@ -111,7 +111,7 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #42b983;
-}
+} */
 
 /* Enter and leave animations can use different */
 /* durations and timing functions.              */

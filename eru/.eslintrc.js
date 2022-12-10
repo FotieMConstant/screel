@@ -18,5 +18,11 @@ module.exports = {
     // we want to force semicolons
     semi: ["error", "always"],
     indent: ["error", 2],
+    "vue/multi-word-component-names": [
+      "error",
+      {
+        ignores: ["default"],
+      },
+    ],
   },
 };
