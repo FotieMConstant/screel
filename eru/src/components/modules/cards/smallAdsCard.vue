@@ -7,7 +7,7 @@
         bgImage +
         ')',
     }"
-    class="dark:bg-gray-800 dark:text-gray-50 text-sky-white bg-grayLightMode-100 p-5 rounded-curl"
+    class="dark:bg-gray-800 dark:text-gray-50 text-sky-white bg-grayLightMode-100 p-5 rounded-curl cursor-pointer"
   >
     <div class="text-left">
       <div class="font-bold text-lg mb-1 leading-6">
