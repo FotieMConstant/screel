@@ -2,11 +2,11 @@
   <div class="home px-5">
     <div class="min-h-screen flex flex-col h-screen">
       <!-- main container -->
-      <div class="flex-1 flex flex-row overflow-y-hidden">
+      <div class="flex-1 flex flex-row space-x-4 overflow-y-hidden">
         <div class="w-3/12 overflow-y-auto">Sidebar</div>
-        <main class="w-6/12 h-screen py-20 mt-16 overflow-y-scroll">
+        <main class="w-6/12 h-screen pb-16 pt-6 mt-16 overflow-y-scroll">
           <!-- post screel -->
-          <postScreel />
+          <createScreelCard />
           <!--/ post screel -->
           <!-- card post  -->
           <div class="mt-4 space-y-4">
@@ -14,7 +14,14 @@
           </div>
           <!--/ card post  -->
         </main>
-        <aside class="w-3/12 overflow-y-auto">Right Sidebar</aside>
+        <aside class="w-3/12 overflow-y-auto pt-6 mt-16">
+          <div class="mb-4">
+            <smallAdsCard />
+          </div>
+          <div>
+            <peopleAcrossTheGlobe />
+          </div>
+        </aside>
       </div>
       <!-- end main container -->
     </div>
@@ -23,14 +30,18 @@
 
 <script>
 // @ is an alias to /src
-import postScreel from "@/components/modules/cards/createScreel.vue";
+import createScreelCard from "@/components/modules/cards/createScreelCard.vue";
 import cardPost from "@/components/modules/cards/cardPost.vue";
+import peopleAcrossTheGlobe from "@/components/global/peopleAcrossTheGlobe.vue";
+import smallAdsCard from "@/components/modules/cards/smallAdsCard.vue";
 
 export default {
   name: "HomeView",
   components: {
-    postScreel,
+    createScreelCard,
     cardPost,
+    peopleAcrossTheGlobe,
+    smallAdsCard,
   },
 };
 </script>
