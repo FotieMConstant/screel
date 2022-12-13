@@ -49,7 +49,7 @@ To get started! You're going to fork this repository, try creating a branch, mak
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on this project.
 
 ## Code of Conduct
-Please read [CODE_OF_CONDUCT.MD](CODE_OF_CONDUCT.md) for details on our code of conduct.
+Please read [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for details on our code of conduct.
 
 ## ScreelReviewers
 Contributors helping to review/merge pull requests:
@@ -57,7 +57,7 @@ Contributors helping to review/merge pull requests:
 * [@fotiecodes](https://github.com/FotieMConstant)
 
 ## License
-This project is licensed under the MIT License - see the LICENSE.md file for details  
+This project is licensed under the BSD 3-Clause License - see the [LICENSE.md](LICENSE.md) file for details  
 
 <!-- ## 🛠Project setup
 ```
