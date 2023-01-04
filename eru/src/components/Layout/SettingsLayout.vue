@@ -5,7 +5,7 @@
       <!-- main container -->
       <div class="flex-1 flex flex-row space-x-4 overflow-y-hidden">
         <div class="w-3/12 overflow-y-auto pt-6 mt-16">
-          <userProfileCard name="Arnau Jiménez" userName="@ajmnz" isOnline />
+          <UserSettingsMenuLeft />
         </div>
         <main class="w-6/12 h-screen pb-16 pt-6 mt-16 overflow-y-scroll">
           <!-- templete passed as slot  -->
@@ -28,18 +28,18 @@
 
 <script>
 // @ is an alias to /src
-import peopleAcrossTheGlobe from "@/components/global/peopleAcrossTheGlobe.vue";
 import smallAdsCard from "@/components/modules/cards/smallAdsCard.vue";
-import userProfileCard from "@/components/modules/cards/userProfileCard.vue";
 import AppBar from "@/components/global/AppBar.vue";
+import peopleAcrossTheGlobe from "@/components/global/peopleAcrossTheGlobe.vue";
+import UserSettingsMenuLeft from "@/components/global/UserSettingsMenuLeft.vue";
 
 export default {
-  name: "DefaultLayout",
+  name: "SettingsLayout",
   components: {
-    peopleAcrossTheGlobe,
     smallAdsCard,
-    userProfileCard,
     AppBar,
+    peopleAcrossTheGlobe,
+    UserSettingsMenuLeft,
   },
 };
 </script>

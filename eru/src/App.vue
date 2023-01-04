@@ -1,6 +1,6 @@
 <template>
   <div class="dark:bg-gray-900 h-screen">
-    <AppBar />
+    <!-- <AppBar /> -->
     <!-- <LocalLang /> -->
     <!-- main view -->
     <div>
@@ -45,11 +45,11 @@
 
 <script>
 // import LocalLang from "@/components/LocalLang.vue";
-import AppBar from "@/components/global/AppBar.vue";
+// import AppBar from "@/components/global/AppBar.vue";
 export default {
   components: {
     // LocalLang,
-    AppBar,
+    // AppBar,
   },
   data() {
     return {

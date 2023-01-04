@@ -36,9 +36,11 @@
           />
         </svg>
 
-        <div class="font-bold">
-          {{ $t("appBar.overlayProfileSettings.settings") }}
-        </div>
+        <router-link :to="{ name: 'SettingsView' }">
+          <div class="font-bold">
+            {{ $t("appBar.overlayProfileSettings.settings") }}
+          </div>
+        </router-link>
       </div>
       <div
         @click="toggleLanguagesMenu = !toggleLanguagesMenu"

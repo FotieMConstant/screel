@@ -10,7 +10,7 @@
     </div>
     <!--/ card post  -->
   </DefaultLayout>
-  <!-- default layout -->
+  <!-- default layout dashbord-->
 </template>
 
 <script>

@@ -12,6 +12,7 @@ module.exports = {
       full: "9999px",
       curl: "17px", // to be used for default rounded borders
       chip: "5px", // to use on chips and badges
+      norm: "8px",
     },
     extend: {
       colors: {

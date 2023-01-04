@@ -1,6 +1,14 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import LoginView from "../views/LoginView.vue";
+import ProfileSettingsView from "../views/Settings/ProfileSettingsView.vue";
+import AccountSettingsView from "../views/Settings/AccountSettingsView.vue";
+import SettingsView from "../views/Settings/SettingsView.vue";
+import ProfileView from "../views/ProfileView.vue"; // normal user profile view
+import SecurityAndPrivacyView from "../views/Settings/SecurityAndPrivacyView.vue";
+import AppearanceSettingsView from "../views/Settings/AppearanceSettingsView.vue";
+import NotificationsSettingsView from "../views/Settings/NotificationsSettingsView.vue";
+import AdditionalResourcesView from "../views/Settings/AdditionalResourcesView.vue";
 
 const routes = [
   {
@@ -12,6 +20,52 @@ const routes = [
     path: "/login",
     name: "LoginView",
     component: LoginView,
+  },
+  {
+    path: "/user/:id", // we pass in the username here and it returns the usr profile
+    name: "ProfileView",
+    component: ProfileView,
+  },
+  {
+    path: "/settings",
+    redirect: { name: "ProfileSettingsView" }, // redirect to first child
+    name: "SettingsView",
+    component: SettingsView,
+    children: [
+      {
+        // ProfileSettingsView will be rendered inside SettingsView's <router-view>
+        // when /settings/profile is matched
+        // so will be the rest of the this route children
+        path: "profile",
+        name: "ProfileSettingsView",
+        component: ProfileSettingsView,
+      },
+      {
+        path: "account",
+        name: "AccountSettingsView",
+        component: AccountSettingsView,
+      },
+      {
+        path: "privacy_and_safety",
+        name: "SecurityAndPrivacyView",
+        component: SecurityAndPrivacyView,
+      },
+      {
+        path: "accessibility",
+        name: "AppearanceSettingsView",
+        component: AppearanceSettingsView,
+      },
+      {
+        path: "notifications",
+        name: "NotificationsSettingsView",
+        component: NotificationsSettingsView,
+      },
+      {
+        path: "about",
+        name: "AdditionalResourcesView",
+        component: AdditionalResourcesView,
+      },
+    ],
   },
   {
     path: "/about",
