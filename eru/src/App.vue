@@ -99,6 +99,9 @@ body {
   text-align: center;
   color: #2c3e50;
 }
+.__hideScroller::-webkit-scrollbar {
+  display: none;
+}
 
 /* nav {
   padding: 30px;

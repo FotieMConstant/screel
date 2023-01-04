@@ -4,7 +4,8 @@ import LoginView from "../views/LoginView.vue";
 import ProfileSettingsView from "../views/Settings/ProfileSettingsView.vue";
 import AccountSettingsView from "../views/Settings/AccountSettingsView.vue";
 import SettingsView from "../views/Settings/SettingsView.vue";
-import ProfileView from "../views/ProfileView.vue"; // normal user profile view
+import ProfileView from "../views/User/ProfileView.vue"; // normal user profile view
+import UserEventsView from "../views/User/UserEventsView.vue"; // normal user profile view
 import SecurityAndPrivacyView from "../views/Settings/SecurityAndPrivacyView.vue";
 import AppearanceSettingsView from "../views/Settings/AppearanceSettingsView.vue";
 import NotificationsSettingsView from "../views/Settings/NotificationsSettingsView.vue";
@@ -25,6 +26,16 @@ const routes = [
     path: "/user/:id", // we pass in the username here and it returns the usr profile
     name: "ProfileView",
     component: ProfileView,
+    children: [
+      {
+        // UserEventsView will be rendered inside ProfileView's <router-view>
+        // when /user/:id/events is matched
+        // so will be the rest of the this route children
+        path: "events",
+        name: "UserEventsView",
+        component: UserEventsView,
+      },
+    ],
   },
   {
     path: "/settings",

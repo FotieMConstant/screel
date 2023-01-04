@@ -18,9 +18,13 @@
             fill="currentColor"
           />
         </svg>
-        <div class="font-bold my-auto">
-          {{ $t("appBar.overlayProfileSettings.profile") }}
-        </div>
+        <router-link
+          :to="{ name: 'ProfileView', params: { id: 'fotie_codes' } }"
+        >
+          <div class="font-bold my-auto">
+            {{ $t("appBar.overlayProfileSettings.profile") }}
+          </div>
+        </router-link>
       </div>
       <div class="flex space-x-2 cursor-pointer select-none">
         <svg
