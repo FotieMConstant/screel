@@ -1,9 +1,9 @@
 <template>
   <!-- default layout for dashbord -->
   <DefaultLayout>
-    <!-- user profile view -->
+    <!-- user profile banner -->
     <UserBannerProfile />
-    <!--/ user profile view -->
+    <!--/ user profile banner -->
     <!-- switch tab -->
     <div class="flex font-bold mt-6 mb-4 space-x-20">
       <router-link
