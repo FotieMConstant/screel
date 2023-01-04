@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="flex flex-row-reverse">
-      <basicChip class="" text="AD" />
+      <basicChip class="text-xs" text="AD" />
     </div>
   </div>
 </template>
