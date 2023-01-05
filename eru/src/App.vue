@@ -5,6 +5,8 @@
     <!-- main view -->
     <div>
       <router-view />
+      <!-- set progressbar -->
+      <vue-progress-bar></vue-progress-bar>
     </div>
     <!--/ main view -->
     <!-- software update notifications -->
@@ -57,7 +59,15 @@ export default {
       updateExists: false, //if there is an update or not
     };
   },
+  mounted() {
+    // call finish function component has been mounted
+    this.$Progress.finish();
+  },
   created() {
+    // handler for top progress bar
+    this.progressBarHandler();
+
+    // for the service workers
     document.addEventListener("swUpdated", this.updateAvailable, {
       once: true,
     });
@@ -84,6 +94,30 @@ export default {
       if (!this.registration || !this.registration.waiting) return;
       // Send message to SW to skip the waiting and activate the new SW
       this.registration.waiting.postMessage({ type: "SKIP_WAITING" });
+    },
+    // the function that handles the progrss top bar
+    progressBarHandler() {
+      //  [App.vue specific] When App.vue is first loaded start the progress bar
+      this.$Progress.start();
+      //  hook the progress bar to start before we move router-view
+      this.$router.beforeEach((to, from, next) => {
+        //  does the page we want to go to have a meta.progress object
+        if (to.meta.progress !== undefined) {
+          let meta = to.meta.progress;
+          // parse meta tags
+          this.$Progress.parseMeta(meta);
+        }
+        //  start the progress bar
+        this.$Progress.start();
+        //  continue to next page
+        next();
+      });
+      //  hook the progress bar to finish after we've finished moving router-view
+      // eslint-disable-next-line no-unused-vars
+      this.$router.afterEach((to, from) => {
+        //  finish the progress bar
+        this.$Progress.finish();
+      });
     },
   },
 };
