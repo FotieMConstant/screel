@@ -25,12 +25,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21becc39-f323-44ed-b3b9-aecc18acdee7" name="Default Changelist" comment="start init Laravel project">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/screel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/screel.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/okok/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/okok/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/okok/composer.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/okok/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/okok/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/okok/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/okok/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
