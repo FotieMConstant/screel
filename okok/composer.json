@@ -5,25 +5,24 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^7.4|^8.0.2",
-        "guzzlehttp/guzzle": "^7.5",
+        "php": "^7.3|^8.0",
+        "guzzlehttp/guzzle": "^7.0.1",
         "inertiajs/inertia-laravel": "^0.6.3",
-        "jenssegers/mongodb": "^3.9",
-        "laravel/framework": "^9.19",
-        "laravel/jetstream": "^2.12",
-        "laravel/passport": "^11.4",
-        "laravel/sanctum": "^3.0",
-        "laravel/socialite": "^5.5",
-        "laravel/tinker": "^2.7",
-        "mongodb/mongodb": "*",
-        "tightenco/ziggy": "^1.0"
+        "jenssegers/mongodb": "*",
+        "laravel/framework": "^8.65",
+        "laravel/jetstream": "*",
+        "laravel/passport": "*",
+        "laravel/sanctum": "^2.11",
+        "laravel/socialite": "*",
+        "laravel/tinker": "^2.5",
+        "tightenco/ziggy": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^6.1",
+        "nunomaduro/collision": "^5.10",
         "phpunit/phpunit": "^9.5.10"
     },
     "autoload": {
