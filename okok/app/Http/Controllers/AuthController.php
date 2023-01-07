@@ -44,8 +44,9 @@ class AuthController extends Controller
 
         Auth::login($user);
 
+        $user = Auth::user();
         return $this->success([
-            'token' => $user->createToken('api_token')->plainTextToken
+            'token' => $user->createToken('api_token')->accessToken
         ], "User connected!");
     }
 
