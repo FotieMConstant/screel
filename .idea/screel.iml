@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/okok/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
       <sourceFolder url="file://$MODULE_DIR$/okok/app" isTestSource="false" packagePrefix="App\" />
       <sourceFolder url="file://$MODULE_DIR$/okok/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
+      <excludeFolder url="file://$MODULE_DIR$/okok/vendor" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
