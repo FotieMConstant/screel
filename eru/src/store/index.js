@@ -1,14 +1,28 @@
 import { createStore } from "vuex";
+import createPersistedState from "vuex-persistedstate";
 import { useDark, useToggle } from "@vueuse/core";
+import authentication from "./modules/authentication";
 
 export default createStore({
   state: {
-    isDark: useDark(), //
+    API_DOMAIN: process.env.VUE_APP_API_DOMAIN,
+    APP_DOMAIN: process.env.VUE_APP_DOMAIN,
+    isDark: useDark(), // user theme
+    // currentUser: null, // current loggedin user
   },
+  // persis states from store plugin
+  plugins: [createPersistedState()],
+
   getters: {
     // getter for isDark from state
     getIsDark(state) {
       return state.isDark;
+    },
+    getAPI_DOMAIN(state) {
+      return state.API_DOMAIN;
+    },
+    getAPP_DOMAIN(state) {
+      return state.APP_DOMAIN;
     },
   },
   mutations: {
@@ -26,5 +40,7 @@ export default createStore({
       commit("setToggleDark", isDarkTemp);
     },
   },
-  modules: {},
+  modules: {
+    authentication,
+  },
 });

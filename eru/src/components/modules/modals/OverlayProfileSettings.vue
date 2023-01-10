@@ -191,7 +191,10 @@
       </div>
     </div>
     <!--/ if the toggleLanguagesMenu is true -->
-    <div class="dark:bg-gray-700 bg-grayLightMode-100 rounded-b-curl py-2">
+    <div
+      @click="logOutCurrentUser()"
+      class="dark:bg-gray-700 bg-grayLightMode-100 rounded-b-curl py-2"
+    >
       <div class="font-bold text-left px-5 cursor-pointer select-none">
         {{ $t("appBar.overlayProfileSettings.logOut") }}
       </div>
@@ -223,6 +226,11 @@ export default {
     this.isDark = this.$store.getters.getIsDark;
   },
   methods: {
+    // to logout current user
+    logOutCurrentUser() {
+      // passing `this` instance for later use in store
+      this.$store.dispatch("authentication/logMeOut", this);
+    },
     toggleDark() {
       this.$store.dispatch("toggleDarkAction"); // calling toggle action from store
       this.isDark = this.$store.getters.getIsDark; //setting it in local component

@@ -7,6 +7,7 @@ import { createI18n } from "vue-i18n";
 import loadLocaleMessages from "./i18nHelpers";
 import "./registerServiceWorker";
 import VueProgressBar from "@aacassandra/vue3-progressbar"; // vue top bar loader import
+import Toaster from "@meforma/vue-toaster"; // for the toast notification
 
 // consig for the loader
 const options = {
@@ -35,5 +36,6 @@ const app = createApp(App);
 app.use(store);
 app.use(router);
 app.use(i18n);
+app.use(Toaster);
 app.use(VueProgressBar, options);
 app.mount("#app");
