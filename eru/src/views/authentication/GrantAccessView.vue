@@ -1,7 +1,9 @@
 <template>
-  <div class="h-80 w-96 absolute inset-0 m-auto z-0">
+  <div
+    class="h-80 w-96 absolute inset-0 m-auto z-0 dark:text-gray-100 text-grayLightMode-400"
+  >
     <div><span class="loader"></span></div>
-    <div class="font-medium text-gray-100 text-xl">
+    <div class="font-medium text-xl">
       Initializing quantum tunneling protocol, stand by for quantum
       entanglement-based authentication...
     </div>
@@ -43,7 +45,6 @@ export default {
 
 <style scoped>
 .loader {
-  color: #fff;
   font-family: Consolas, Menlo, Monaco, monospace;
   font-weight: bold;
   font-size: 78px;
