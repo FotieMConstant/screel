@@ -21,7 +21,8 @@ export default {
         // passing `this` instance for later use in store
         this.$store.dispatch("authentication/githubAuthMeAction", this);
       } else if (authType == "google") {
-        console.log("authentication/googleAuthMeAction");
+        // passing `this` instance for later use in store
+        this.$store.dispatch("authentication/googleAuthMeAction", this);
       } else if (authType == "twitter") {
         console.log("authentication/twitterAuthMeAction");
       } else {
