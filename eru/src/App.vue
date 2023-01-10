@@ -1,47 +1,49 @@
 <template>
-  <div class="dark:bg-gray-900 h-screen">
-    <!-- <AppBar /> -->
-    <!-- <LocalLang /> -->
-    <!-- main view -->
-    <div>
-      <router-view />
-      <!-- set progressbar -->
-      <vue-progress-bar></vue-progress-bar>
-    </div>
-    <!--/ main view -->
-    <!-- software update notifications -->
-    <transition name="slide-fade">
-      <div v-show="updateExists" class="absolute bottom-6 right-6 z-10">
-        <div
-          class="bg-white dark:bg-gray-800 dark:text-gray-100 w-80 border dark:border-gray-600 rounded-lg shadow-lg"
-        >
-          <div class="flex space-x-5 p-5">
-            <div>🚀</div>
-            <div class="text-left">
-              <div class="font-bold text-lg">Update available!</div>
-              <div class="text-sm">
-                A new software version is available for download.
-              </div>
-              <div class="flex pt-4 space-x-2">
-                <button
-                  class="w-full rounded-curl inline-flex font-bold justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-light text-white text-sm hover:bg-blue-accent"
-                  @click="refreshApp"
-                >
-                  Update
-                </button>
-                <button
-                  class="w-full rounded-curl dark:bg-gray-700 dark:text-gray-100 border inline-flex justify-center rounded-md shadow-sm px-4 py-2 bg-grayLightMode-100 hover:bg-grayLightMode-200 dark:border-gray-700 text-sm font-bold text-gray-700"
-                  @click="updateExists = false"
-                >
-                  Not now
-                </button>
+  <div :class="isDark ? 'dark' : ''">
+    <div class="dark:bg-gray-900 h-screen">
+      <!-- <AppBar /> -->
+      <!-- <LocalLang /> -->
+      <!-- main view -->
+      <div>
+        <router-view />
+        <!-- set progressbar -->
+        <vue-progress-bar></vue-progress-bar>
+      </div>
+      <!--/ main view -->
+      <!-- software update notifications -->
+      <transition name="slide-fade">
+        <div v-show="updateExists" class="absolute bottom-6 right-6 z-10">
+          <div
+            class="bg-white dark:bg-gray-800 dark:text-gray-100 w-80 border dark:border-gray-600 rounded-lg shadow-lg"
+          >
+            <div class="flex space-x-5 p-5">
+              <div>🚀</div>
+              <div class="text-left">
+                <div class="font-bold text-lg">Update available!</div>
+                <div class="text-sm">
+                  A new software version is available for download.
+                </div>
+                <div class="flex pt-4 space-x-2">
+                  <button
+                    class="w-full rounded-curl inline-flex font-bold justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-light text-white text-sm hover:bg-blue-accent"
+                    @click="refreshApp"
+                  >
+                    Update
+                  </button>
+                  <button
+                    class="w-full rounded-curl dark:bg-gray-700 dark:text-gray-100 border inline-flex justify-center rounded-md shadow-sm px-4 py-2 bg-grayLightMode-100 hover:bg-grayLightMode-200 dark:border-gray-700 text-sm font-bold text-gray-700"
+                    @click="updateExists = false"
+                  >
+                    Not now
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </transition>
-    <!-- / software update notifications -->
+      </transition>
+      <!-- / software update notifications -->
+    </div>
   </div>
 </template>
 
@@ -55,9 +57,17 @@ export default {
   },
   data() {
     return {
+      isDark: this.$store.getters.getIsDark,
       registration: null,
       updateExists: false, //if there is an update or not
     };
+  },
+  watch: {
+    // whenever isDark changes, this function will run
+    "$store.state.isDark": function () {
+      this.isDark = this.$store.state.isDark;
+      console.log(this.$store.state.isDark);
+    },
   },
   mounted() {
     // call finish function component has been mounted
@@ -95,7 +105,7 @@ export default {
       // Send message to SW to skip the waiting and activate the new SW
       this.registration.waiting.postMessage({ type: "SKIP_WAITING" });
     },
-    // the function that handles the progrss top bar
+    // the function that handles the progress top bar
     progressBarHandler() {
       //  [App.vue specific] When App.vue is first loaded start the progress bar
       this.$Progress.start();

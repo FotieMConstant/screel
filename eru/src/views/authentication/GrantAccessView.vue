@@ -1,5 +1,11 @@
 <template>
-  <div class="">Granting access, Please wait...</div>
+  <div class="h-80 w-96 absolute inset-0 m-auto z-0">
+    <div><span class="loader"></span></div>
+    <div class="font-medium text-gray-100 text-xl">
+      Initializing quantum tunneling protocol, stand by for quantum
+      entanglement-based authentication...
+    </div>
+  </div>
 </template>
 
 <script>
@@ -35,4 +41,29 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.loader {
+  color: #fff;
+  font-family: Consolas, Menlo, Monaco, monospace;
+  font-weight: bold;
+  font-size: 78px;
+  opacity: 0.8;
+}
+.loader:before {
+  content: "{";
+  display: inline-block;
+  animation: pulse 0.4s alternate infinite ease-in-out;
+}
+.loader:after {
+  content: "}";
+  display: inline-block;
+  animation: pulse 0.4s 0.3s alternate infinite ease-in-out;
+}
+
+@keyframes pulse {
+  to {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+}
+</style>

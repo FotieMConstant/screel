@@ -210,7 +210,7 @@ export default {
   components: { LocalLang },
   data() {
     return {
-      isDark: null,
+      isDark: this.$store.getters.getIsDark,
       toggleLanguagesMenu: false,
     };
   },
@@ -218,13 +218,9 @@ export default {
     // whenever isDark changes, this function will run
     "$store.state.isDark": function () {
       this.isDark = this.$store.state.isDark;
-      console.log(this.$store.state.isDark);
     },
   },
-  created() {
-    // get the team preference from store when component is created
-    this.isDark = this.$store.getters.getIsDark;
-  },
+  created() {},
   methods: {
     // to logout current user
     logOutCurrentUser() {
@@ -233,10 +229,6 @@ export default {
     },
     toggleDark() {
       this.$store.dispatch("toggleDarkAction"); // calling toggle action from store
-      this.isDark = this.$store.getters.getIsDark; //setting it in local component
-      // this.isDark = !this.isDark;
-      // // console.log("isDark on => " + this.isDark);
-      // useToggle(this.isDark);
     },
   },
 };
