@@ -9,7 +9,7 @@
       <div class="absolute -bottom-12 left-7">
         <div class="relative w-20 mx-auto">
           <img
-            class="h-20 rounded-full border-4 border-gray-800"
+            class="h-20 rounded-full border-4 dark:border-gray-800 border-grayLightMode-100"
             :src="profileImage"
             alt=""
           />
