@@ -10,7 +10,7 @@ const instance = axios.create({
     "Content-Type": "application/json",
     "access-control-allow-origin": "*",
     "access-control-allow-credentials": true,
-    "X-Requested-With": "XMLHttpRequest",
+    // "X-Requested-With": "XMLHttpRequest",
   },
   // headers: { Authorization: getToken() ? "Bearer " + getToken() : null }
   // You can add your headers here
@@ -23,7 +23,6 @@ instance.interceptors.request.use(
     const token = store.getters["authentication/getCurrentUser"].token;
     console.log("interceptor token ==>> ", token);
     if (token) {
-      config.headers["X-XSRF-TOKEN"] = token;
       config.headers.Authorization = "Bearer " + token;
     }
     return config;
