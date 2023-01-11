@@ -116,7 +116,7 @@ router.beforeEach((to, from, next) => {
   // route guard. if user is not connected prevent them from going anywhere
 
   if (
-    to.meta.name === "LoginView" &&
+    to.name === "LoginView" &&
     store.getters["authentication/getCurrentUser"]
   ) {
     next({
