@@ -110,19 +110,18 @@ const router = createRouter({
   routes,
 });
 
-console.log(store.getters["authentication/getCurrentUser"]);
+const currentUser = store.getters["authentication/getCurrentUser"]; // getting current user
+console.log(currentUser);
+
 // navigation guard
 router.beforeEach((to, from, next) => {
   // route guard. if user is not connected prevent them from going anywhere
 
-  if (
-    to.name === "LoginView" &&
-    store.getters["authentication/getCurrentUser"]
-  ) {
+  if (to.name === "LoginView" && currentUser) {
     next({
       path: "/",
     });
-  } else if (to.meta.auth && !store.getters["authentication/getCurrentUser"]) {
+  } else if (to.meta.auth && !currentUser) {
     next({
       path: "/login",
     });

@@ -105,19 +105,27 @@
           />
         </svg>
       </div>
-      <div class="my-auto">
-        <svg
-          width="26"
-          height="23"
-          viewBox="0 0 26 23"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+      <div class="my-auto relative">
+        <div
+          class="cursor-pointer"
+          @click="toggleOverlayNotifications = !toggleOverlayNotifications"
         >
-          <path
-            d="M13.1332 20.6875C14.2324 20.6875 15.1314 19.8466 15.1314 18.8188H11.1349C11.1349 19.8466 12.034 20.6875 13.1332 20.6875ZM19.6277 15.0813V9.94219C19.6277 7.09234 17.4796 4.66306 14.6319 4.05558V3.40156C14.6319 2.60725 13.9825 2 13.1332 2C12.2838 2 11.6344 2.60725 11.6344 3.40156V4.05558C8.78669 4.66306 6.63865 7.09234 6.63865 9.94219V15.0813L4.64038 16.95V17.8844H21.6259V16.95L19.6277 15.0813Z"
-            fill="currentColor"
-          />
-        </svg>
+          <svg
+            width="26"
+            height="23"
+            viewBox="0 0 26 23"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.1332 20.6875C14.2324 20.6875 15.1314 19.8466 15.1314 18.8188H11.1349C11.1349 19.8466 12.034 20.6875 13.1332 20.6875ZM19.6277 15.0813V9.94219C19.6277 7.09234 17.4796 4.66306 14.6319 4.05558V3.40156C14.6319 2.60725 13.9825 2 13.1332 2C12.2838 2 11.6344 2.60725 11.6344 3.40156V4.05558C8.78669 4.66306 6.63865 7.09234 6.63865 9.94219V15.0813L4.64038 16.95V17.8844H21.6259V16.95L19.6277 15.0813Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+        <!-- OverlayNotifications -->
+        <OverlayNotifications v-show="toggleOverlayNotifications" />
+        <!--/ OverlayNotifications -->
       </div>
       <div class="my-auto relative">
         <div
@@ -162,20 +170,25 @@
 // @ is an alias to /src
 import SearchField from "@/components/global/SearchField.vue";
 import OverlayProfileSettings from "@/components/modules/modals/OverlayProfileSettings.vue";
+import OverlayNotifications from "@/components/modules/modals/OverlayNotifications.vue";
+// import { mapState } from "vuex";
 
 export default {
   name: "AppBar",
   components: {
     SearchField,
     OverlayProfileSettings,
+    OverlayNotifications,
   },
   data() {
     return {
       toggleOverlayProfileSettings: false,
+      toggleOverlayNotifications: false,
     };
   },
-
-  computed() {},
+  // computed: {
+  //   ...mapState("comments", ["commentsData"]),
+  // },
 };
 </script>
 

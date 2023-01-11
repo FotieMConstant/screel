@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "@/axios"; //imported the custom axios
 
 export default {
   // _vm is my view instance i am passing as arg to get the current route with
@@ -29,7 +29,7 @@ export default {
       .catch(function (error) {
         // handle error
         console.log(error);
-        _vm.$toast.error("There was an error!", {
+        _vm.$toast.error("Oh no, an error has occurred", {
           position: "bottom",
         });
       })
@@ -69,7 +69,7 @@ export default {
       .catch(function (error) {
         // handle error
         console.log(error);
-        _vm.$toast.error("There was an error!", {
+        _vm.$toast.error("Aw snap, there's an error!", {
           position: "bottom",
         });
       })
@@ -83,8 +83,31 @@ export default {
 
   async logMeOut({ commit }, _vm) {
     console.log("logging user out");
-    commit("SET_CURRENT_USER", null); // setting user to null in user to store
-    // redirect user to login after cleaning store
-    _vm.$router.push("/login");
+
+    axios
+      .post(this.getters.getAPI_DOMAIN + "/api/auth/logout")
+      .then(function (response) {
+        // handle success
+        console.log(response);
+
+        commit("SET_CURRENT_USER", null); // setting user to null in user to store
+        // redirect user to login after cleaning store
+        // window.location.href = "/login";
+
+        console.log(
+          "in state",
+          _vm.$store.getters["authentication/getCurrentUser"]
+        );
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+        _vm.$toast.error("Whoopsie, something went haywire.", {
+          position: "bottom",
+        });
+      })
+      .finally(function () {
+        // always executed
+      });
   },
 };
