@@ -1,6 +1,6 @@
 <template>
   <div
-    class="my-auto dark:text-gray-200 dark:bg-gray-800 px-6 py-4 h-80 w-96 rounded-curl shadow-lg"
+    class="my-auto dark:text-gray-200 dark:bg-gray-800 px-6 py-4 h-72 w-96 rounded-curl shadow-lg"
   >
     <div class="text-left space-y-2">
       <div class="text-3xl font-bold dark:text-gray-100">Welcome</div>
@@ -57,7 +57,7 @@
 
       <button
         @click="withTwitter()"
-        class="flex justify-center space-x-3.5 bg-grayLightMode-100 border border-grayLightMode-200 hover:bg-grayLightMode-200 dark:border-gray-700 font-bold rounded-curl dark:bg-gray-700 dark:hover:bg-gray-600 w-full px-6 py-2"
+        class="hidden justify-center space-x-3.5 bg-grayLightMode-100 border border-grayLightMode-200 hover:bg-grayLightMode-200 dark:border-gray-700 font-bold rounded-curl dark:bg-gray-700 dark:hover:bg-gray-600 w-full px-6 py-2"
       >
         <!-- twitter icon -->
         <svg
