@@ -1,4 +1,5 @@
 import axios from "@/axios"; //imported the custom axios
+import $axios from "axios"; // `$axios` is the default importation of the native axios
 
 export default {
   // _vm is my view instance i am passing as arg to get the current route with
@@ -7,7 +8,7 @@ export default {
     console.log("github auth code seen from action => " + code);
     // once i got the code
     // Make a request for a user with a given code on the fallback link api
-    axios
+    $axios
       .get(
         this.getters.getAPI_DOMAIN + "/api/auth/github-callback?code=" + code
       )
@@ -47,7 +48,7 @@ export default {
     console.log("google auth code seen from action=> " + code);
     // once i got the code
     // Make a request for a user with a given code on the fallback link api
-    axios
+    $axios
       .get(
         this.getters.getAPI_DOMAIN + "/api/auth/google-callback?code=" + code
       )
