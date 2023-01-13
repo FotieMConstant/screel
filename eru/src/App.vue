@@ -108,8 +108,10 @@ export default {
       // Send message to SW to skip the waiting and activate the new SW
       this.registration.waiting.postMessage({ type: "SKIP_WAITING" });
 
-      // logout user after updating app
-      this.$store.dispatch("authentication/logMeOut", this);
+      // logout user after updating app if user is logged in
+      if (this.$store.getters["authentication/getCurrentUser"]) {
+        this.$store.dispatch("authentication/logMeOut", this);
+      }
     },
     // the function that handles the progress top bar
     progressBarHandler() {
