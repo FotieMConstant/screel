@@ -25,7 +25,7 @@ export default {
           _vm.$store.getters["authentication/getCurrentUser"]
         );
         // redirect user to home page
-        _vm.$router.push("/");
+        window.location.href = "/";
       })
       .catch(function (error) {
         // handle error
@@ -65,7 +65,7 @@ export default {
           _vm.$store.getters["authentication/getCurrentUser"]
         );
         // redirect user to home page
-        _vm.$router.push("/");
+        window.location.href = "/";
       })
       .catch(function (error) {
         // handle error
@@ -93,7 +93,7 @@ export default {
 
         commit("SET_CURRENT_USER", null); // setting user to null in user to store
         // redirect user to login after cleaning store
-        // window.location.href = "/login";
+        window.location.href = "/login";
 
         console.log(
           "in state",
