@@ -20,9 +20,9 @@ export default {
       let userData = await axios.get(
         this.getters.getAPI_DOMAIN + "/api/auth/me"
       );
-      console.log("userData gotten=>", userData);
+      console.log("userData gotten=>", userData.data.data);
 
-      commit("SET_CURRENT_USER", userData); // setting logged in user to store
+      commit("SET_CURRENT_USER", userData.data.data); // setting logged in user to store
 
       console.log(
         "in state",
@@ -66,9 +66,9 @@ export default {
       let userData = await axios.get(
         this.getters.getAPI_DOMAIN + "/api/auth/me"
       );
-      console.log("userData gotten=>", userData);
+      console.log("userData gotten=>", userData.data.data);
 
-      commit("SET_CURRENT_USER", userData); // setting logged in user to store
+      commit("SET_CURRENT_USER", userData.data.data); // setting logged in user to store
 
       console.log(
         "in state",
