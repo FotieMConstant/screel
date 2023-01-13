@@ -21,7 +21,10 @@
               <div class="text-left">
                 <div class="font-bold text-lg">Update available!</div>
                 <div class="text-sm">
-                  A new software version is available for download.
+                  A new software version is available for download. ―
+                  <span class="text-xs font-medium text-blue-light"
+                    >You will be signed out!</span
+                  >
                 </div>
                 <div class="flex pt-4 space-x-2">
                   <button
