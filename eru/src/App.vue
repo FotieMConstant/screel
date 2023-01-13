@@ -108,7 +108,7 @@ export default {
       // Send message to SW to skip the waiting and activate the new SW
       this.registration.waiting.postMessage({ type: "SKIP_WAITING" });
 
-      // logout user after updating app if user is logged in
+      // logout user after updating app `if and only if user is logged in already`
       if (this.$store.getters["authentication/getCurrentUser"]) {
         this.$store.dispatch("authentication/logMeOut", this);
       }
