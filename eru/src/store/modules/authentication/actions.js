@@ -28,8 +28,16 @@ export default {
         "in state",
         _vm.$store.getters["authentication/getCurrentUser"]
       );
-      // redirect user to home page
-      window.location.href = "/";
+
+      const redirect = sessionStorage.getItem("redirect"); // getting redirect url from sessionStorage
+      console.log("redirect URL=> ", redirect);
+      // if the user was going somewhere redirect them there
+      if (redirect) {
+        window.location.href = redirect;
+      } else {
+        window.location.href = "/";
+      }
+      sessionStorage.clear(); //clear sessionStorage after redirecting
     } catch (error) {
       // handle error
       console.log(error);
@@ -66,8 +74,16 @@ export default {
         "in state",
         _vm.$store.getters["authentication/getCurrentUser"]
       );
-      // redirect user to home page
-      window.location.href = "/";
+
+      const redirect = sessionStorage.getItem("redirect"); // getting redirect url from sessionStorage
+      console.log("redirect URL=> ", redirect);
+      // if the user was going somewhere redirect them there
+      if (redirect) {
+        window.location.href = redirect;
+      } else {
+        window.location.href = "/";
+      }
+      sessionStorage.clear(); //clear sessionStorage after redirecting
     } catch (error) {
       // handle error
       console.log(error);

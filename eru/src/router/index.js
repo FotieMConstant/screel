@@ -122,8 +122,11 @@ router.beforeEach((to, from, next) => {
       path: "/",
     });
   } else if (to.meta.auth && !currentUser) {
+    // keeping the redirect to local sessionStorage
+    sessionStorage.setItem("redirect", to.fullPath); //mainly doing this because after user auths with social account the redirect url is lost
     next({
       path: "/login",
+      query: { redirect: to.fullPath },
     });
   } else {
     next();
