@@ -154,7 +154,35 @@ body {
 .__hideScroller::-webkit-scrollbar {
   display: none;
 }
-
+.__moon {
+  width: 180px;
+  height: 180px;
+  border-radius: 100px;
+  background-image: -ms-radial-gradient(
+    10px 95px,
+    10px 9px,
+    transparent 110px,
+    rgb(150, 150, 150) 112px
+  );
+  background-image: -webkit-radial-gradient(
+    10px 95px,
+    10px 9px,
+    transparent 110px,
+    rgb(150, 150, 150) 112px
+  );
+  background-image: -moz-radial-gradient(
+    10px 95px,
+    10px 9px,
+    transparent 110px,
+    rgb(150, 150, 150) 112px
+  );
+  background-image: -o-radial-gradient(
+    10px 95px,
+    10px 9px,
+    transparent 110px,
+    rgb(150, 150, 150) 112px
+  );
+}
 /* nav {
   padding: 30px;
 }

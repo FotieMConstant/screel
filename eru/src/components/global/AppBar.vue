@@ -130,17 +130,19 @@
       <div class="my-auto relative">
         <div
           @click="toggleOverlayProfileSettings = !toggleOverlayProfileSettings"
-          class="flex space-x-2 py-1 px-1.5 dark:bg-gray-700 bg-grayLightMode-200 rounded-full cursor-pointer select-none"
+          class="flex justify-between py-1 px-1.5 dark:bg-gray-700 bg-grayLightMode-200 rounded-full cursor-pointer select-none w-52"
         >
-          <img
-            class="rounded-full h-8 my-auto"
-            src="https://avatars.githubusercontent.com/u/42372656?v=4"
-            alt=""
-          />
-          <div
-            class="font-bold my-auto dark:text-gray-100 text-grayLightMode-400"
-          >
-            Arnau Jiménez
+          <div class="flex space-x-2">
+            <img
+              class="rounded-full h-8 my-auto"
+              :src="currentUser.avatar"
+              alt=""
+            />
+            <div
+              class="font-bold my-auto dark:text-gray-100 text-grayLightMode-400"
+            >
+              {{ truncateText(currentUser.name, 15) }}
+            </div>
           </div>
           <div class="my-auto">
             <svg
@@ -168,10 +170,11 @@
 
 <script>
 // @ is an alias to /src
+import { truncateText } from "@/utils";
 import SearchField from "@/components/global/SearchField.vue";
 import OverlayProfileSettings from "@/components/modules/modals/OverlayProfileSettings.vue";
 import OverlayNotifications from "@/components/modules/modals/OverlayNotifications.vue";
-// import { mapState } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "AppBar",
@@ -186,9 +189,13 @@ export default {
       toggleOverlayNotifications: false,
     };
   },
-  // computed: {
-  //   ...mapState("comments", ["commentsData"]),
-  // },
+  computed: {
+    // mapping to get current logged in user from store auth module
+    ...mapGetters({ currentUser: ["authentication/getCurrentUser"] }),
+  },
+  methods: {
+    truncateText, // registering method `truncateText` from the utils
+  },
 };
 </script>
 
