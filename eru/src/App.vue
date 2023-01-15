@@ -141,6 +141,10 @@ export default {
 };
 </script>
 <style>
+@font-face {
+  font-family: "Amin";
+  src: local("Amin"), url(./fonts/Amin-Regular.ttf) format("truetype");
+}
 body {
   overflow: hidden;
 }
@@ -182,6 +186,9 @@ body {
     transparent 110px,
     rgb(150, 150, 150) 112px
   );
+}
+.__logo {
+  font-family: "Amin", Helvetica, Arial;
 }
 /* nav {
   padding: 30px;
