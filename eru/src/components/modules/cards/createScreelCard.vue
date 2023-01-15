@@ -12,7 +12,7 @@
         placeholder="What’s screeling?"
         type="text"
         name=""
-        id=""
+        id="__inputScreelPost"
         style="resize: none"
       />
     </div>
@@ -77,10 +77,35 @@ export default {
   },
   data() {
     return {
+      phrases: [
+        "What's the nerdy news?",
+        "What's the geeky gossip?",
+        "What's the science scoop?",
+        "What's the tech talk?",
+        "What's the nerd nugget?",
+        "What's the gaming update?",
+        "What's the nerd-o-rama?",
+        "What's the geek-a-licious scoop?",
+        "What's the nerd-tastic news?",
+        "What's the latest in the land of geeks?",
+        "What's the nerdy scoop?",
+        "What's the geeky update?",
+        "What's the science status?",
+        "What's the tech tidbit?",
+        "What's the nerd knowledge?",
+        "What's the gaming gossip?",
+        "What's the nerd-o-licious news?",
+        "What's the geek-tastic update?",
+        "What's the nerd-approved scoop?",
+        "What's the latest in the realm of geeks?",
+      ],
       tagMessageStatus: "add a tag",
       maxAcceptedTags: 4, //maximum tags allowed
       post: { message: null, tags: [] }, //the post to be sent to the backedn
     };
+  },
+  mounted: function () {
+    this.typingPlaceholder();
   },
   methods: {
     createScreelPost() {
@@ -138,6 +163,30 @@ export default {
       } else if (this.post.tags.length == 0) {
         this.tagMessageStatus = "add a tag";
       }
+    },
+    // function to get radom phrase from array
+    getRandomPhrase() {
+      let phrases = this.phrases;
+      let randomIndex = Math.floor(Math.random() * phrases.length);
+      return phrases[randomIndex];
+    },
+
+    // for applying a typing animation to the placeholder
+    typingPlaceholder() {
+      let text = this.getRandomPhrase();
+      console.log(text);
+      var i = 0;
+      var placeholderText = "";
+      var input = document.getElementById("__inputScreelPost");
+      var typingInterval = setInterval(function () {
+        if (i < text.length) {
+          placeholderText += text.charAt(i);
+          input.placeholder = placeholderText;
+          i++;
+        } else {
+          clearInterval(typingInterval);
+        }
+      }, 100);
     },
   },
 };
