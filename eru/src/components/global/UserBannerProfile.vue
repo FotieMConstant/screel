@@ -60,7 +60,7 @@
             >
               <div>
                 <div class="flex space-x-2">
-                  <div class="text-xl font-bold">fotiecodes</div>
+                  <div class="text-xl font-bold">{{ name }}</div>
                   <!-- javascript icon -->
                   <svg
                     class="my-auto"
@@ -106,7 +106,7 @@
                 </div>
                 <div class="flex space-x-2">
                   <div class="mt-1 text-sm text-left text-gray-300">
-                    @fotie_codes
+                    @{{ userName }}
                   </div>
                   <div
                     class="mt-1 dark:bg-gray-700 bg-grayLightMode-200 dark:text-gray-300 text-grayLightMode-400 px-2 py-0.5 rounded-full font-bold select-none cursor-pointer text-xs"
@@ -318,6 +318,14 @@ export default {
     profileImage: {
       type: String,
       default: "https://avatars.githubusercontent.com/u/42372656?v=4",
+    },
+    name: {
+      type: String,
+      default: "user",
+    },
+    userName: {
+      type: String,
+      default: "username",
     },
     isOnline: {
       type: String,

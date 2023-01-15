@@ -33,7 +33,7 @@ const routes = [
     component: GrantAccessView,
   },
   {
-    path: "/user/:id", // we pass in the username here and it returns the usr profile
+    path: "/user/:username", // we pass in the username here and it returns the user profile
     name: "ProfileView",
     component: ProfileView,
     meta: {

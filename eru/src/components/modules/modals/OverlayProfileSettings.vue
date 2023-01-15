@@ -19,7 +19,7 @@
           />
         </svg>
         <router-link
-          :to="{ name: 'ProfileView', params: { id: 'fotie_codes' } }"
+          :to="{ name: 'ProfileView', params: { username: 'FotieMConstant' } }"
         >
           <div class="font-bold my-auto">
             {{ $t("appBar.overlayProfileSettings.profile") }}

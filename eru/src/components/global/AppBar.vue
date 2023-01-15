@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex justify-between dark:text-white fixed w-full p-6 __headerBgBlur"
+    class="flex justify-between dark:text-white fixed w-full p-6 z-10 __headerBgBlur"
   >
     <div class="flex space-x-5">
       <svg
@@ -134,7 +134,9 @@
           <!--/ notification pulse -->
         </div>
         <!-- OverlayNotifications -->
-        <OverlayNotifications v-show="toggleOverlayNotifications" />
+        <div class="absolute top-8 right-0">
+          <OverlayNotifications v-show="toggleOverlayNotifications" />
+        </div>
         <!--/ OverlayNotifications -->
       </div>
       <div class="my-auto relative">

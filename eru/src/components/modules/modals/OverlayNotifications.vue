@@ -1,6 +1,6 @@
 <template>
   <div
-    class="dark:bg-gray-800 text-left pt-4 bg-sky-white text-grayLightMode-400 shadow-lg rounded-curl dark:text-gray-100 absolute top-8 right-0 w-96 z-100"
+    class="dark:bg-gray-800 text-left pt-4 bg-sky-white text-grayLightMode-400 shadow-lg rounded-curl dark:text-gray-100 relative w-96 z-100"
   >
     <div class="px-4 pb-4 font-bold text-lg">Notifications</div>
     <div
