@@ -1,5 +1,6 @@
 import axios from "@/axios"; //imported the custom axios `for request requiring access_token`
 import $axios from "axios"; // `$axios` is the default importation of the native axios
+import store from "@/store";
 
 export default {
   // _vm is my view instance i am passing as arg to get the current route with
@@ -10,7 +11,7 @@ export default {
     // Make a request for a user with a given code on the fallback link api
     try {
       let access_token = await $axios.get(
-        this.getters.getAPI_DOMAIN + "/api/auth/github-callback?code=" + code
+        this.getters.getAPI_DOMAIN + "/api/v1/auth/github-callback?code=" + code
       );
       access_token = access_token.data.data.token;
       console.log("access_token gotten=>", access_token);
@@ -18,16 +19,13 @@ export default {
 
       // second request to get the actual user data using the costum axios
       let userData = await axios.get(
-        this.getters.getAPI_DOMAIN + "/api/auth/me"
+        this.getters.getAPI_DOMAIN + "/api/v1/auth/me"
       );
       console.log("userData gotten=>", userData.data.data);
 
       commit("SET_CURRENT_USER", userData.data.data); // setting logged in user to store
 
-      console.log(
-        "in state",
-        _vm.$store.getters["authentication/getCurrentUser"]
-      );
+      console.log("in state", store.getters["authentication/getCurrentUser"]);
 
       const redirect = sessionStorage.getItem("redirect"); // getting redirect url from sessionStorage
       console.log("redirect URL=> ", redirect);
@@ -56,7 +54,7 @@ export default {
 
     try {
       let access_token = await $axios.get(
-        this.getters.getAPI_DOMAIN + "/api/auth/google-callback?code=" + code
+        this.getters.getAPI_DOMAIN + "/api/v1/auth/google-callback?code=" + code
       );
       access_token = access_token.data.data.token;
       console.log("access_token gotten=>", access_token);
@@ -64,7 +62,7 @@ export default {
 
       // second request to get the actual user data using the costum axios
       let userData = await axios.get(
-        this.getters.getAPI_DOMAIN + "/api/auth/me"
+        this.getters.getAPI_DOMAIN + "/api/v1/auth/me"
       );
       console.log("userData gotten=>", userData.data.data);
 
@@ -99,7 +97,7 @@ export default {
     console.log("logging user out");
 
     axios
-      .post(this.getters.getAPI_DOMAIN + "/api/auth/logout")
+      .post(this.getters.getAPI_DOMAIN + "/api/v1/auth/logout")
       .then(function (response) {
         // handle success
         console.log(response);

@@ -129,21 +129,21 @@ export default {
   methods: {
     // auth with github
     withGithub() {
-      window.location.href = `${this.$store.getters.getAPI_DOMAIN}/api/auth/social-login/github`;
+      window.location.href = `${this.$store.getters.getAPI_DOMAIN}/api/v1/auth/social-login/github`;
       // Set auth type to localStorage
       localStorage.setItem("authType", "github");
     },
 
     // auth with twitter
     withTwitter() {
-      window.location.href = `${this.$store.getters.getAPI_DOMAIN}/api/auth/social-login/twitter`;
+      window.location.href = `${this.$store.getters.getAPI_DOMAIN}/api/v1/auth/social-login/twitter`;
       // Set auth type to localStorage
       localStorage.setItem("authType", "twitter");
     },
 
     // auth with google
     withGoogle() {
-      window.location.href = `${this.$store.getters.getAPI_DOMAIN}/api/auth/social-login/google`;
+      window.location.href = `${this.$store.getters.getAPI_DOMAIN}/api/v1/auth/social-login/google`;
       // Set auth type to localStorage
       localStorage.setItem("authType", "google");
     },

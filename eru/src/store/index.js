@@ -1,7 +1,8 @@
 import { createStore } from "vuex";
 import createPersistedState from "vuex-persistedstate";
 // import { useDark, useToggle } from "@vueuse/core";
-import authentication from "./modules/authentication";
+import authentication from "./modules/authentication"; // for everything auth
+import screel from "./modules/screel"; // for everything screel
 
 export default createStore({
   state: {
@@ -39,5 +40,6 @@ export default createStore({
   },
   modules: {
     authentication,
+    screel,
   },
 });
