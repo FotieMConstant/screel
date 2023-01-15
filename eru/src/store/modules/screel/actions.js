@@ -14,9 +14,16 @@ export default {
     try {
       let response = await axios.post(
         this.getters.getAPI_DOMAIN + "/api/v1/screel/store",
-        { user_id: currentUser._id, content: payload.data }
+        {
+          user_id: currentUser._id,
+          content: payload.data.message,
+          tags: payload.data.tags,
+        }
       );
       payload._vm.post.message = null; //setting the message field to null after posting
+      payload._vm.post.tags = []; //setting the tags array to null after posting
+      payload._vm.checkTagsStatus(); //for checking the TagStatus and reseting the message
+
       payload._vm.$Progress.finish(); //finish the loader
       // displaying toast of success
       payload._vm.$toast.success("Screen posted, nerd-style!😎", {

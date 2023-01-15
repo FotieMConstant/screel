@@ -114,10 +114,10 @@ export default {
         // calling action in screel store module
         this.$store.dispatch("screel/postScreelAction", {
           _vm: this,
-          data: this.post.message,
+          data: this.post,
         });
       } else {
-        this.$toast.error("Post can't be empty", {
+        this.$toast.error("Screel field can't be left empty!", {
           position: "bottom",
         });
       }
