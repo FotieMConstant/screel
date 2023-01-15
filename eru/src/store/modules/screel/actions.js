@@ -19,7 +19,7 @@ export default {
       payload._vm.post.message = null; //setting the message field to null after posting
       payload._vm.$Progress.finish(); //finish the loader
       // displaying toast of success
-      payload._vm.$toast.success("Screen posted, nerd-style!", {
+      payload._vm.$toast.success("Screen posted, nerd-style!😎", {
         position: "bottom",
       });
       console.log("response from backend=> ", response);

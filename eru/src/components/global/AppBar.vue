@@ -107,7 +107,7 @@
       </div>
       <div class="my-auto relative">
         <div
-          class="cursor-pointer"
+          class="cursor-pointer relative"
           @click="toggleOverlayNotifications = !toggleOverlayNotifications"
         >
           <svg
@@ -122,6 +122,16 @@
               fill="currentColor"
             />
           </svg>
+          <!-- notification pulse -->
+          <span class="flex absolute top-0 right-0 h-2 w-2">
+            <span
+              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-300 opacity-75"
+            ></span>
+            <span
+              class="relative inline-flex rounded-full h-2 w-2 bg-red-500"
+            ></span>
+          </span>
+          <!--/ notification pulse -->
         </div>
         <!-- OverlayNotifications -->
         <OverlayNotifications v-show="toggleOverlayNotifications" />

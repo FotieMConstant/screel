@@ -19,7 +19,7 @@
     <div class="flex justify-between mt-3">
       <!-- for adding tags to post -->
       <div
-        class="flex flex-wrap space-x-1 ml-14 pl-1 py-1 w-full rounded-chip dark:bg-gray-700 bg-sky-white dark:text-gray-300 text-grayLightMode-400 font-bold text-sm"
+        class="flex flex-wrap space-x-1 ml-14 pl-1 py-1 w-full rounded-chip dark:bg-gray-800 bg-grayLightMode-100 dark:text-gray-300 text-grayLightMode-400 font-bold text-sm"
       >
         <div
           v-for="(tag, index) in post.tags"
@@ -45,7 +45,12 @@
         <input
           type="text"
           :placeholder="tagMessageStatus"
-          class="dark:bg-gray-700 rounded-chip p-1 px-2.5 focus:outline-none dark:text-gray-200"
+          :class="
+            post.tags.length == maxAcceptedTags
+              ? 'placeholder-red-600'
+              : 'false'
+          "
+          class="dark:bg-gray-800 bg-grayLightMode-100 rounded-chip p-1 px-2.5 focus:outline-none dark:text-gray-200"
           @keydown.enter="addTag"
           @keydown.delete="removeLastTag"
           :disabled="post.tags.length == maxAcceptedTags ? true : false"
@@ -73,8 +78,8 @@ export default {
   data() {
     return {
       tagMessageStatus: "add a tag",
-      maxAcceptedTags: 4,
-      post: { message: null, tags: [] },
+      maxAcceptedTags: 4, //maximum tags allowed
+      post: { message: null, tags: [] }, //the post to be sent to the backedn
     };
   },
   methods: {

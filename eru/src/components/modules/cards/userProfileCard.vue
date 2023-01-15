@@ -117,7 +117,7 @@ export default {
     },
     userName: {
       type: String,
-      default: "@null",
+      default: "null",
     },
     isOnline: {
       type: String,
