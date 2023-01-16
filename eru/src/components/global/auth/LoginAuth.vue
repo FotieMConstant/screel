@@ -1,6 +1,6 @@
 <template>
   <div
-    class="my-auto dark:text-gray-200 dark:bg-gray-800 px-6 py-4 h-80 w-96 rounded-curl shadow-lg"
+    class="my-auto dark:text-gray-200 dark:bg-gray-800 px-6 py-4 h-72 w-96 rounded-curl shadow-lg"
   >
     <div class="text-left space-y-2">
       <div class="text-3xl font-bold dark:text-gray-100">Welcome</div>
@@ -25,6 +25,7 @@
     </div>
     <div class="space-y-3 mt-7">
       <button
+        @click="withGithub()"
         class="flex justify-center space-x-3.5 bg-grayLightMode-100 border border-grayLightMode-200 hover:bg-grayLightMode-200 dark:border-gray-700 font-bold rounded-curl dark:bg-gray-700 dark:hover:bg-gray-600 w-full px-6 py-2"
       >
         <!-- github icon -->
@@ -53,8 +54,10 @@
         <!--/ github icon -->
         <div>Login with GitHub</div>
       </button>
+
       <button
-        class="flex justify-center space-x-3.5 bg-grayLightMode-100 border border-grayLightMode-200 hover:bg-grayLightMode-200 dark:border-gray-700 font-bold rounded-curl dark:bg-gray-700 dark:hover:bg-gray-600 w-full px-6 py-2"
+        @click="withTwitter()"
+        class="hidden justify-center space-x-3.5 bg-grayLightMode-100 border border-grayLightMode-200 hover:bg-grayLightMode-200 dark:border-gray-700 font-bold rounded-curl dark:bg-gray-700 dark:hover:bg-gray-600 w-full px-6 py-2"
       >
         <!-- twitter icon -->
         <svg
@@ -75,7 +78,9 @@
         <!--/ twitter icon -->
         <div>Login with Twitter</div>
       </button>
+
       <button
+        @click="withGoogle()"
         class="flex justify-center space-x-3.5 bg-grayLightMode-100 border border-grayLightMode-200 hover:bg-grayLightMode-200 dark:border-gray-700 font-bold rounded-curl dark:bg-gray-700 dark:hover:bg-gray-600 w-full px-6 py-2"
       >
         <!-- google icon -->
@@ -114,6 +119,36 @@
   </div>
 </template>
 
-<script></script>
+<script>
+export default {
+  name: "LoginAuth",
+  data() {
+    return {};
+  },
+  mounted: function () {},
+  methods: {
+    // auth with github
+    withGithub() {
+      window.location.href = `${this.$store.getters.getAPI_DOMAIN}/api/v1/auth/social-login/github`;
+      // Set auth type to localStorage
+      localStorage.setItem("authType", "github");
+    },
+
+    // auth with twitter
+    withTwitter() {
+      window.location.href = `${this.$store.getters.getAPI_DOMAIN}/api/v1/auth/social-login/twitter`;
+      // Set auth type to localStorage
+      localStorage.setItem("authType", "twitter");
+    },
+
+    // auth with google
+    withGoogle() {
+      window.location.href = `${this.$store.getters.getAPI_DOMAIN}/api/v1/auth/social-login/google`;
+      // Set auth type to localStorage
+      localStorage.setItem("authType", "google");
+    },
+  },
+};
+</script>
 
 <style lang="scss" scoped></style>

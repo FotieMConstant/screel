@@ -5,7 +5,11 @@
       <!-- main container -->
       <div class="flex-1 flex flex-row space-x-4 overflow-y-hidden">
         <div class="w-3/12 overflow-y-auto pt-6 mt-16">
-          <userProfileCard name="Arnau Jiménez" userName="@ajmnz" isOnline />
+          <userProfileCard
+            :name="currentUser.name"
+            :userName="currentUser.nickname"
+            :profileImage="currentUser.avatar"
+          />
         </div>
         <main
           class="w-6/12 h-screen pb-16 pt-6 mt-16 overflow-y-scroll __hideScroller"
@@ -34,6 +38,7 @@ import peopleAcrossTheGlobe from "@/components/global/peopleAcrossTheGlobe.vue";
 import smallAdsCard from "@/components/modules/cards/smallAdsCard.vue";
 import userProfileCard from "@/components/modules/cards/userProfileCard.vue";
 import AppBar from "@/components/global/AppBar.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "DefaultLayout",
@@ -42,6 +47,10 @@ export default {
     smallAdsCard,
     userProfileCard,
     AppBar,
+  },
+  computed: {
+    // mapping to get current logged in user from store auth module
+    ...mapGetters({ currentUser: ["authentication/getCurrentUser"] }),
   },
 };
 </script>

@@ -9,14 +9,44 @@
       <div class="absolute -bottom-12 left-7">
         <div class="relative w-20 mx-auto">
           <img
-            class="h-20 rounded-full border-4 border-gray-800"
+            class="h-20 rounded-full border-4 dark:border-gray-800 border-grayLightMode-100"
             :src="profileImage"
             alt=""
           />
+          <!-- user is online -->
           <div
-            v-show="isOnline"
+            v-if="isOnline === 'online'"
             class="w-4 h-4 bg-blue-accent rounded-full my-auto border-2 absolute right-2 bottom-1 dark:border-gray-800 border-grayLightMode-100"
           ></div>
+          <!-- offline mode -->
+          <div
+            v-else-if="isOnline === 'offline'"
+            class="w-4 h-4 bg-gray-300 rounded-full my-auto border-2 absolute right-2 bottom-1 dark:border-gray-800 border-grayLightMode-100"
+          ></div>
+          <!-- DND mode -->
+          <div
+            v-else-if="isOnline === 'dnd'"
+            class="w-4 h-4 dark:bg-gray-800 bg-grayLightMode-100 rounded-full my-auto border-2 absolute right-2 bottom-1 dark:border-gray-800 border-grayLightMode-100"
+          >
+            <svg
+              viewBox="0 0 10 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clip-path="url(#clip0_19358_3571)">
+                <path
+                  d="M3.51309 1.80689C3.51309 1.16571 3.64231 0.55622 3.87635 0.000366211C1.65294 0.539154 0.00244141 2.54071 0.00244141 4.92747C0.00244141 7.72624 2.27461 9.99841 5.07338 9.99841C7.46014 9.99841 9.4617 8.34792 10.0005 6.12451C9.44463 6.35855 8.83271 6.48776 8.19396 6.48776C5.60973 6.48776 3.51309 4.39112 3.51309 1.80689Z"
+                  class="dark:border-gray-800 border-grayLightMode-100"
+                  fill="#FFA928"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_19358_3571">
+                  <rect width="10" height="10" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
@@ -30,7 +60,7 @@
             >
               <div>
                 <div class="flex space-x-2">
-                  <div class="text-xl font-bold">fotiecodes</div>
+                  <div class="text-xl font-bold">{{ name }}</div>
                   <!-- javascript icon -->
                   <svg
                     class="my-auto"
@@ -76,7 +106,7 @@
                 </div>
                 <div class="flex space-x-2">
                   <div class="mt-1 text-sm text-left text-gray-300">
-                    @fotie_codes
+                    @{{ userName }}
                   </div>
                   <div
                     class="mt-1 dark:bg-gray-700 bg-grayLightMode-200 dark:text-gray-300 text-grayLightMode-400 px-2 py-0.5 rounded-full font-bold select-none cursor-pointer text-xs"
@@ -289,9 +319,17 @@ export default {
       type: String,
       default: "https://avatars.githubusercontent.com/u/42372656?v=4",
     },
+    name: {
+      type: String,
+      default: "user",
+    },
+    userName: {
+      type: String,
+      default: "username",
+    },
     isOnline: {
-      type: Boolean,
-      default: true,
+      type: String,
+      default: "dnd",
     },
     alreadyFollow: {
       type: Boolean,

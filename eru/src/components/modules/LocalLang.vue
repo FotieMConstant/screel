@@ -21,5 +21,12 @@ export default {
       ],
     };
   },
+  // watcher on the language changes
+  watch: {
+    "$i18n.locale": function (newLang) {
+      localStorage.setItem("last-locale", newLang);
+      console.log("new local => ", newLang);
+    },
+  },
 };
 </script>

@@ -3,12 +3,12 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "./index.css";
-import { createI18n } from "vue-i18n";
-import loadLocaleMessages from "./i18nHelpers";
+import { i18n } from "./i18n";
 import "./registerServiceWorker";
 import VueProgressBar from "@aacassandra/vue3-progressbar"; // vue top bar loader import
+import Toaster from "@meforma/vue-toaster"; // for the toast notification
 
-// consig for the loader
+// config for the loader
 const options = {
   color: "#388BFD",
   failedColor: "#874b4b",
@@ -23,17 +23,10 @@ const options = {
   inverse: false,
 };
 
-// i18n configuration
-const i18n = createI18n({
-  // something vue-i18n options here ...
-  locale: process.env.VUE_APP_I18N_LOCALE || "en",
-  fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || "en",
-  messages: loadLocaleMessages(),
-});
-
 const app = createApp(App);
 app.use(store);
 app.use(router);
 app.use(i18n);
+app.use(Toaster);
 app.use(VueProgressBar, options);
 app.mount("#app");

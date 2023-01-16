@@ -7,7 +7,7 @@
     <!-- switch tab -->
     <div class="flex font-bold mt-6 mb-4 space-x-20">
       <router-link
-        :to="{ name: 'ProfileView', params: { id: 'fotie_codes' } }"
+        :to="{ name: 'ProfileView', params: { username: 'FotieMConstant' } }"
         class="relative"
       >
         <div
@@ -22,7 +22,7 @@
         </div>
       </router-link>
       <router-link
-        :to="{ name: 'UserEventsView', params: { id: 'fotie_codes' } }"
+        :to="{ name: 'UserEventsView', params: { username: 'FotieMConstant' } }"
         class="relative"
       >
         <div
@@ -63,6 +63,14 @@ export default {
     DefaultLayout,
     UserBannerProfile,
     cardPost,
+  },
+  mounted() {
+    console.log(this.$route.params);
+
+    this.$store.dispatch("user/getSpecificUserAction", {
+      _vm: this,
+      data: this.$route.params.username,
+    });
   },
   methods: {
     // returns information about the route

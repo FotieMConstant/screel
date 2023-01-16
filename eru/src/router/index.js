@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
+import store from "@/store";
 import HomeView from "../views/HomeView.vue";
-import LoginView from "../views/LoginView.vue";
+import LoginView from "../views/authentication/LoginView.vue";
+import GrantAccessView from "../views/authentication/GrantAccessView.vue";
 import ProfileSettingsView from "../views/Settings/ProfileSettingsView.vue";
 import AccountSettingsView from "../views/Settings/AccountSettingsView.vue";
 import SettingsView from "../views/Settings/SettingsView.vue";
@@ -16,6 +18,9 @@ const routes = [
     path: "/",
     name: "home",
     component: HomeView,
+    meta: {
+      auth: true,
+    },
   },
   {
     path: "/login",
@@ -23,9 +28,17 @@ const routes = [
     component: LoginView,
   },
   {
-    path: "/user/:id", // we pass in the username here and it returns the usr profile
+    path: "/access",
+    name: "GrantAccessView",
+    component: GrantAccessView,
+  },
+  {
+    path: "/user/:username", // we pass in the username here and it returns the user profile
     name: "ProfileView",
     component: ProfileView,
+    meta: {
+      auth: true,
+    },
     children: [
       {
         // UserEventsView will be rendered inside ProfileView's <router-view>
@@ -42,6 +55,9 @@ const routes = [
     redirect: { name: "ProfileSettingsView" }, // redirect to first child
     name: "SettingsView",
     component: SettingsView,
+    meta: {
+      auth: true,
+    },
     children: [
       {
         // ProfileSettingsView will be rendered inside SettingsView's <router-view>
@@ -92,6 +108,29 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+const currentUser = store.getters["authentication/getCurrentUser"]; // getting current user
+console.log(currentUser);
+
+// navigation guard
+router.beforeEach((to, from, next) => {
+  // route guard. if user is not connected prevent them from going anywhere
+
+  if (to.name === "LoginView" && currentUser) {
+    next({
+      path: "/",
+    });
+  } else if (to.meta.auth && !currentUser) {
+    // keeping the redirect to local sessionStorage
+    sessionStorage.setItem("redirect", to.fullPath); //mainly doing this because after user auths with social account the redirect url is lost
+    next({
+      path: "/login",
+      query: { redirect: to.fullPath },
+    });
+  } else {
+    next();
+  }
 });
 
 export default router;

@@ -19,6 +19,7 @@ module.exports = {
         blue: {
           accent: "#1F6FEB",
           light: "#388BFD",
+          lightish: "#BFDAFF",
         },
         sky: {
           white: "#FFFFFF",
@@ -46,6 +47,7 @@ module.exports = {
         blue: {
           accent: "#1F6FEB",
           light: "#388BFD",
+          lightish: "#BFDAFF",
         },
         sky: {
           white: "#FFFFFF",
@@ -73,6 +75,7 @@ module.exports = {
         blue: {
           accent: "#1F6FEB",
           light: "#388BFD",
+          lightish: "#BFDAFF",
         },
         sky: {
           white: "#FFFFFF",

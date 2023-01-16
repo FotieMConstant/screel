@@ -19,7 +19,7 @@
           />
         </svg>
         <router-link
-          :to="{ name: 'ProfileView', params: { id: 'fotie_codes' } }"
+          :to="{ name: 'ProfileView', params: { username: 'FotieMConstant' } }"
         >
           <div class="font-bold my-auto">
             {{ $t("appBar.overlayProfileSettings.profile") }}
@@ -191,7 +191,10 @@
       </div>
     </div>
     <!--/ if the toggleLanguagesMenu is true -->
-    <div class="dark:bg-gray-700 bg-grayLightMode-100 rounded-b-curl py-2">
+    <div
+      @click="logOutCurrentUser()"
+      class="dark:bg-gray-700 bg-grayLightMode-100 rounded-b-curl py-2"
+    >
       <div class="font-bold text-left px-5 cursor-pointer select-none">
         {{ $t("appBar.overlayProfileSettings.logOut") }}
       </div>
@@ -207,7 +210,7 @@ export default {
   components: { LocalLang },
   data() {
     return {
-      isDark: null,
+      isDark: this.$store.getters.getIsDark,
       toggleLanguagesMenu: false,
     };
   },
@@ -215,20 +218,17 @@ export default {
     // whenever isDark changes, this function will run
     "$store.state.isDark": function () {
       this.isDark = this.$store.state.isDark;
-      console.log(this.$store.state.isDark);
     },
   },
-  created() {
-    // get the team preference from store when component is created
-    this.isDark = this.$store.getters.getIsDark;
-  },
+  created() {},
   methods: {
+    // to logout current user
+    logOutCurrentUser() {
+      // passing `this` instance for later use in store
+      this.$store.dispatch("authentication/logMeOut", this);
+    },
     toggleDark() {
       this.$store.dispatch("toggleDarkAction"); // calling toggle action from store
-      this.isDark = this.$store.getters.getIsDark; //setting it in local component
-      // this.isDark = !this.isDark;
-      // // console.log("isDark on => " + this.isDark);
-      // useToggle(this.isDark);
     },
   },
 };

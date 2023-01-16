@@ -1,31 +1,40 @@
 <template>
   <div
-    class="flex justify-between dark:text-white fixed w-full p-6 __headerBgBlur"
+    class="flex justify-between dark:text-white fixed w-full p-6 z-10 __headerBgBlur"
   >
     <div class="flex space-x-5">
-      <svg
-        class="w-7 h-7 rounded-full my-auto"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <circle cx="12" cy="12" r="12" fill="url(#paint0_linear_19395_1754)" />
-        <defs>
-          <linearGradient
-            id="paint0_linear_19395_1754"
-            x1="24"
-            y1="5.25"
-            x2="12"
-            y2="24"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop offset="0.229167" stop-color="#FD5842" />
-            <stop offset="1" stop-color="#6948D3" stop-opacity="0.78" />
-          </linearGradient>
-        </defs>
-      </svg>
+      <router-link to="/">
+        <!-- logo -->
+        <svg
+          class="h-8 my-auto dark:text-gray-900 text-grayLightMode-100"
+          viewBox="0 0 67 68"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M33.5011 67.0239C52.0032 67.0239 67.0021 52.0201 67.0021 33.5119C67.0021 15.0038 52.0032 0 33.5011 0C14.9989 0 0 15.0038 0 33.5119C0 52.0201 14.9989 67.0239 33.5011 67.0239Z"
+            fill="url(#paint0_linear_19762_2058)"
+          />
+          <path
+            d="M32.3041 66.7345C30.5821 66.5431 21.9634 64.4419 19.4293 58.5809C17.8645 54.9613 17.2863 51.1694 17.4096 47.267C17.4436 46.2016 17.1332 45.6912 16.1 45.3722C13.889 44.6916 11.8757 43.6198 10.3067 41.8589C10.5831 41.9185 10.8084 42.0631 11.0317 42.2077C14.5459 44.4939 18.3705 45.4594 22.5714 45.1723C28.3945 44.7724 32.8335 41.3889 38.0315 38.2245C37.4192 37.8502 36.9515 37.6269 36.5603 37.3079C36.133 36.957 35.7014 36.5678 35.4059 36.1106C31.1667 29.5583 25.0354 25.4134 17.9857 22.468C16.9185 22.0214 16.4019 21.4727 16.1914 20.3158C15.8066 18.1828 14.9966 16.1795 13.8103 14.2612C7.84909 17.9127 3.65455 22.8912 0.550627 28.8778C0.191337 30.8322 0 32.8483 0 34.9069C0 53.1834 14.8116 67.9998 33.0822 67.9998C36.9898 67.9998 40.5508 67.4193 44.031 66.1752C44.031 66.1752 37.3299 67.2917 32.3063 66.7345H32.3041ZM17.8837 29.0118C19.4271 29.7646 20.8941 30.4813 22.361 31.1958C22.2951 31.3532 22.2313 31.5106 22.1654 31.668C19.7567 32.5867 17.2034 31.685 17.8837 29.0118Z"
+            fill="currentColor"
+          />
+          <defs>
+            <linearGradient
+              id="paint0_linear_19762_2058"
+              x1="0"
+              y1="33.5119"
+              x2="67"
+              y2="33.5119"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#6948D3" stop-opacity="0.78" />
+              <stop offset="1" stop-color="#FD5842" stop-opacity="0.78" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <!--/ logo -->
+      </router-link>
 
       <div>
         <SearchField />
@@ -105,34 +114,56 @@
           />
         </svg>
       </div>
-      <div class="my-auto">
-        <svg
-          width="26"
-          height="23"
-          viewBox="0 0 26 23"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+      <div class="my-auto relative">
+        <div
+          class="cursor-pointer relative"
+          @click="toggleOverlayNotifications = !toggleOverlayNotifications"
         >
-          <path
-            d="M13.1332 20.6875C14.2324 20.6875 15.1314 19.8466 15.1314 18.8188H11.1349C11.1349 19.8466 12.034 20.6875 13.1332 20.6875ZM19.6277 15.0813V9.94219C19.6277 7.09234 17.4796 4.66306 14.6319 4.05558V3.40156C14.6319 2.60725 13.9825 2 13.1332 2C12.2838 2 11.6344 2.60725 11.6344 3.40156V4.05558C8.78669 4.66306 6.63865 7.09234 6.63865 9.94219V15.0813L4.64038 16.95V17.8844H21.6259V16.95L19.6277 15.0813Z"
-            fill="currentColor"
-          />
-        </svg>
+          <svg
+            width="26"
+            height="23"
+            viewBox="0 0 26 23"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.1332 20.6875C14.2324 20.6875 15.1314 19.8466 15.1314 18.8188H11.1349C11.1349 19.8466 12.034 20.6875 13.1332 20.6875ZM19.6277 15.0813V9.94219C19.6277 7.09234 17.4796 4.66306 14.6319 4.05558V3.40156C14.6319 2.60725 13.9825 2 13.1332 2C12.2838 2 11.6344 2.60725 11.6344 3.40156V4.05558C8.78669 4.66306 6.63865 7.09234 6.63865 9.94219V15.0813L4.64038 16.95V17.8844H21.6259V16.95L19.6277 15.0813Z"
+              fill="currentColor"
+            />
+          </svg>
+          <!-- notification pulse -->
+          <span class="flex absolute top-0 right-0 h-2 w-2">
+            <span
+              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-300 opacity-75"
+            ></span>
+            <span
+              class="relative inline-flex rounded-full h-2 w-2 bg-red-500"
+            ></span>
+          </span>
+          <!--/ notification pulse -->
+        </div>
+        <!-- OverlayNotifications -->
+        <div class="absolute top-8 right-0">
+          <OverlayNotifications v-show="toggleOverlayNotifications" />
+        </div>
+        <!--/ OverlayNotifications -->
       </div>
       <div class="my-auto relative">
         <div
           @click="toggleOverlayProfileSettings = !toggleOverlayProfileSettings"
-          class="flex space-x-2 py-1 px-1.5 dark:bg-gray-700 bg-grayLightMode-200 rounded-full cursor-pointer select-none"
+          class="flex justify-between py-1 px-1.5 dark:bg-gray-700 bg-grayLightMode-200 rounded-full cursor-pointer select-none w-52"
         >
-          <img
-            class="rounded-full h-8 my-auto"
-            src="https://avatars.githubusercontent.com/u/42372656?v=4"
-            alt=""
-          />
-          <div
-            class="font-bold my-auto dark:text-gray-100 text-grayLightMode-400"
-          >
-            Arnau Jiménez
+          <div class="flex space-x-2">
+            <img
+              class="rounded-full h-8 my-auto"
+              :src="currentUser.avatar"
+              alt=""
+            />
+            <div
+              class="font-bold my-auto dark:text-gray-100 text-grayLightMode-400"
+            >
+              {{ truncateText(currentUser.name, 15) }}
+            </div>
           </div>
           <div class="my-auto">
             <svg
@@ -160,22 +191,32 @@
 
 <script>
 // @ is an alias to /src
+import { truncateText } from "@/utils";
 import SearchField from "@/components/global/SearchField.vue";
 import OverlayProfileSettings from "@/components/modules/modals/OverlayProfileSettings.vue";
+import OverlayNotifications from "@/components/modules/modals/OverlayNotifications.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "AppBar",
   components: {
     SearchField,
     OverlayProfileSettings,
+    OverlayNotifications,
   },
   data() {
     return {
       toggleOverlayProfileSettings: false,
+      toggleOverlayNotifications: false,
     };
   },
-
-  computed() {},
+  computed: {
+    // mapping to get current logged in user from store auth module
+    ...mapGetters({ currentUser: ["authentication/getCurrentUser"] }),
+  },
+  methods: {
+    truncateText, // registering method `truncateText` from the utils
+  },
 };
 </script>
 
