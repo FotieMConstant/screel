@@ -11,10 +11,9 @@
             :profileImage="currentUser.avatar"
           />
         </div>
-        <main
-          class="w-6/12 h-screen pb-16 pt-6 mt-16 overflow-y-scroll __hideScroller"
-        >
+        <main class="w-6/12 pb-16 pt-6 mt-16">
           <!-- templete passed as slot  -->
+          <!-- must spacify `h-screen overflow-y-scroll __hideScroller` in the root component when calling this layout -->
           <slot />
           <!--/ templete passed as slot  -->
         </main>

@@ -1,19 +1,22 @@
 <template>
+  <!-- if the is loading -->
+  <carPostLoading v-if="loading" />
   <div
+    v-else
     class="dark:bg-gray-800 dark:text-gray-100 text-grayLightMode-400 bg-grayLightMode-100 p-5 rounded-curl"
   >
     <div class="flex justify-between">
       <div class="flex space-x-2.5">
-        <img
-          class="h-8 rounded-full"
-          src="https://avatars.githubusercontent.com/u/42372656?v=4"
-          alt=""
-        />
-        <div class="flex space-x-1 my-auto">
-          <div class="font-bold my-auto">fotiecode</div>
-          <div class="font-bold my-auto">·</div>
-          <div class="text-sm my-auto">@fotie_codes</div>
-        </div>
+        <router-link :to="`/user/` + userName">
+          <img class="h-8 rounded-full" :src="profileImage" alt="" />
+        </router-link>
+        <router-link :to="`/user/` + userName">
+          <div class="flex space-x-1 my-auto">
+            <div class="font-bold my-auto">{{ name }}</div>
+            <div class="font-bold my-auto">·</div>
+            <div class="text-sm my-auto">@{{ userName }}</div>
+          </div>
+        </router-link>
       </div>
       <div class="flex space-x-2">
         <svg
@@ -65,14 +68,11 @@
     </div>
     <div class="text-left dark:text-gray-300 px-10">
       <div>
-        Good morning. It’s 06:40 in the Turkey. Just getting light outside and
-        I’m gonna soon be eating my breakfast. Hi to
-        <router-link to="/" class="font-bold"> @yan_codes</router-link>
-        👋🏼
+        {{ content }}
       </div>
       <div class="mt-2 text-left space-x-2">
-        <basicChip text="1k 😎" enableDropdownShadow />
-        <basicChip text="#reacjs" />
+        <!-- <basicChip text="1k 😎" enableDropdownShadow /> -->
+        <basicChip v-for="tag in tags" :key="tag" :text="tag.title" />
         <!-- the dropdownShadowColor should be a valide tailwind color palette -->
       </div>
     </div>
@@ -81,9 +81,44 @@
 
 <script>
 import basicChip from "@/components/modules/chips/basicChip.vue";
+import carPostLoading from "@/components/modules/cards/carPostLoading.vue";
+
 export default {
   name: "cardPost",
-  components: { basicChip },
+  components: { basicChip, carPostLoading },
+  props: {
+    screelId: {
+      type: Boolean,
+      default: true,
+    },
+    profileImage: {
+      type: String,
+      default: "https://i.pravatar.cc/300",
+    },
+    name: {
+      type: String,
+      default: "name",
+    },
+    userName: {
+      type: String,
+      default: "username",
+    },
+    content: {
+      type: String,
+      default: "Null",
+    },
+    tags: {
+      type: Array,
+      default() {
+        return ["#null"];
+      },
+    },
+    // if the component is loading or not
+    loading: {
+      type: Boolean,
+      default: true,
+    },
+  },
 };
 </script>
 <style lang="scss" scoped></style>

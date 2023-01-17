@@ -1,5 +1,5 @@
 export default {
-  getCurrentUser(state) {
-    return state.currentUser;
+  getDefaultNumbOfScreelsToFetch(state) {
+    return state.defaultNumbOfScreelsToFetch;
   },
 };

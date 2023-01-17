@@ -135,14 +135,24 @@ export default {
     ...mapGetters({ currentUser: ["authentication/getCurrentUser"] }),
   },
   methods: {
-    createScreelPost() {
+    async createScreelPost() {
       console.log("creating post", this.post.message, this.post.tags);
       if (this.post.message) {
-        // calling action in screel store module
-        this.$store.dispatch("screel/postScreelAction", {
-          _vm: this,
-          data: this.post,
-        });
+        // calling action in screel store module and wait for response
+        let responsePost = await this.$store.dispatch(
+          "screel/postScreelAction",
+          {
+            _vm: this,
+            data: this.post,
+          }
+        );
+        console.log("post of screel successful? => ", responsePost);
+        // if user posted a screel successfully emit an event to parent component
+        if (responsePost) {
+          this.$emit("userPosted");
+        } else {
+          console.log("posted was not successfully made");
+        }
       } else {
         this.$toast.error("Screel field can't be left empty!", {
           position: "bottom",
@@ -201,7 +211,7 @@ export default {
     // for applying a typing animation to the placeholder
     typingPlaceholder() {
       let text = this.getRandomPhrase();
-      console.log(text);
+      // console.log(text);
       var i = 0;
       var placeholderText = "";
       var input = document.getElementById("__inputScreelPost");
