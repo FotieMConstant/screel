@@ -30,6 +30,9 @@
       <!--/colourful divider -->
       <!-- user feed view post  -->
       <div>
+        <!-- welcome to screel message -->
+        <welcomeToScreelBanner class="mt-4" />
+        <!-- welcome to screel message -->
         <div v-if="allFeed" class="mt-4 space-y-4">
           <!-- allFeed contains data -->
           <cardPost
@@ -84,6 +87,7 @@
 import DefaultLayout from "@/components/Layout/DefaultLayout";
 import createScreelCard from "@/components/modules/cards/createScreelCard.vue";
 import cardPost from "@/components/modules/cards/cardPost.vue";
+import welcomeToScreelBanner from "@/components/modules/cards/welcomeToScreelBanner.vue";
 
 export default {
   name: "HomeView",
@@ -91,6 +95,7 @@ export default {
     DefaultLayout,
     createScreelCard,
     cardPost,
+    welcomeToScreelBanner,
   },
   data() {
     return {
