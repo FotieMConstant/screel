@@ -63,7 +63,7 @@
           </defs>
         </svg>
 
-        <div class="my-auto font-bold">just now</div>
+        <div class="my-auto font-bold text-sm">{{ timeAgo }}</div>
       </div>
     </div>
     <div class="text-left dark:text-gray-300 px-10">
@@ -82,6 +82,8 @@
 <script>
 import basicChip from "@/components/modules/chips/basicChip.vue";
 import carPostLoading from "@/components/modules/cards/carPostLoading.vue";
+import moment from "moment";
+import { formatDate } from "@/utils";
 
 export default {
   name: "cardPost",
@@ -113,11 +115,27 @@ export default {
         return ["#null"];
       },
     },
+    postedDate: {
+      type: String,
+      default: "Null",
+    },
     // if the component is loading or not
     loading: {
       type: Boolean,
       default: true,
     },
+  },
+  data() {
+    return {
+      timeAgo: null,
+    };
+  },
+  mounted() {
+    this.timeAgo = moment(this.formatDate(this.postedDate)).fromNow();
+    // console.log(this.formatDate(this.postedDate));
+  },
+  methods: {
+    formatDate,
   },
 };
 </script>

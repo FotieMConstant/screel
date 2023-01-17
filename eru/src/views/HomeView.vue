@@ -39,6 +39,7 @@
             :name="feed.owner.name"
             :userName="feed.owner.nickname"
             :content="feed.content"
+            :postedDate="feed.created_at"
             :tags="feed.tags"
             :loading="false"
           />
