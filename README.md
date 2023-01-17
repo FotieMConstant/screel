@@ -1,5 +1,6 @@
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/42372656/206678522-567f7eab-fb18-40b2-9a20-b17a6a292813.png"/>
+    <img height="70" src="https://user-images.githubusercontent.com/42372656/212937297-f6d86dc6-c716-430d-92eb-f770960e93c9.png"/>
+    <h1 align="center">Screel</h1>
 </p>
 <p align="center">
   <strong>A space for Developers, Designers, geeks, nerds, tech enthusiast, just like you 🚀</strong>
