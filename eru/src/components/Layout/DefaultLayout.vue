@@ -7,7 +7,7 @@
         <div class="w-3/12 overflow-y-auto pt-6 mt-16">
           <userProfileCard
             :name="currentUser.name"
-            :userName="currentUser.nickname"
+            :userName="currentUser.username"
             :profileImage="currentUser.avatar"
           />
         </div>

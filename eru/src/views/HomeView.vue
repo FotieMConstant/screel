@@ -40,7 +40,7 @@
             :key="feed._id"
             :profileImage="feed.owner.avatar"
             :name="feed.owner.name"
-            :userName="feed.owner.nickname"
+            :userName="feed.owner.username"
             :content="feed.content"
             :postedDate="feed.created_at"
             :tags="feed.tags"

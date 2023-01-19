@@ -11,7 +11,7 @@ export default {
     console.log("posting this to the backend", payload);
     try {
       let response = await axios.get(
-        this.getters.getAPI_DOMAIN + "/api/v1/screel/user/" + payload.username
+        this.getters.getAPI_DOMAIN + "/api/v1/auth/" + payload.data
       );
       console.log("response user data from backend=> ", response);
       payload._vm.$Progress.finish(); //finish the loader
