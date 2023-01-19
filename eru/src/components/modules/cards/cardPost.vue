@@ -81,7 +81,7 @@
 
 <script>
 import basicChip from "@/components/modules/chips/basicChip.vue";
-import carPostLoading from "@/components/modules/cards/carPostLoading.vue";
+import carPostLoading from "@/components/modules/skeleton-loaders/carPostLoading.vue";
 import moment from "moment";
 import { formatDate } from "@/utils";
 
@@ -103,7 +103,7 @@ export default {
     },
     userName: {
       type: String,
-      default: "username",
+      default: "",
     },
     content: {
       type: String,

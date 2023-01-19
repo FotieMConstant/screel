@@ -1,7 +1,9 @@
 <template>
-  <div class="rounded-curl dark:bg-gray-800 bg-grayLightMode-100">
+  <!-- if the banner is let to loading 'if loading is set to true' -->
+  <userBannerProfileLoader v-if="loading" />
+  <div v-else class="rounded-curl dark:bg-gray-800 bg-grayLightMode-100">
     <div
-      class="bg-cover bg-center w-full h-44 rounded-t-curl relative"
+      class="bg-cover bg-center w-full h-40 rounded-t-curl relative"
       :style="{
         'background-image': 'url(' + coverImage + ')',
       }"
@@ -53,14 +55,16 @@
 
     <div class="relative h-28 w-full">
       <div class="absolute inset-x-28 top-3 right-0">
-        <div class="flex justify-between px-6">
+        <div class="flex justify-between pr-6 pl-2">
           <div>
             <div
               class="flex space-x-3 dark:text-grayLightMode-100 text-grayLightMode-400"
             >
               <div>
                 <div class="flex space-x-2">
-                  <div class="text-xl font-bold">{{ name }}</div>
+                  <div class="text-xl font-bold">
+                    {{ truncateText(name, 12) }}
+                  </div>
                   <!-- javascript icon -->
                   <svg
                     class="my-auto"
@@ -123,7 +127,7 @@
                 <div
                   class="dark:text-gray-100 font-bold text-grayLightMode-400"
                 >
-                  3.4k
+                  0
                 </div>
                 <div
                   class="dark:text-gray-300 font-medium text-grayLightMode-300"
@@ -135,7 +139,7 @@
                 <div
                   class="dark:text-gray-100 font-bold text-grayLightMode-400"
                 >
-                  3.4k
+                  0
                 </div>
                 <div
                   class="dark:text-gray-300 font-medium text-grayLightMode-300"
@@ -297,7 +301,7 @@
         </svg>
 
         <div class="dark:text-gray-400 text-grayLightMode-300 text-sm">
-          Member since 13 March 2022
+          Member since {{ memeberSince }}.
         </div>
       </div>
     </div>
@@ -307,6 +311,10 @@
 
 <script>
 import basicChip from "@/components/modules/chips/basicChip.vue";
+import userBannerProfileLoader from "@/components/modules/skeleton-loaders/userBannerProfileLoader.vue";
+import moment from "moment";
+import { formatDate } from "@/utils";
+import { truncateText } from "@/utils";
 
 export default {
   name: "UserBannerProfile",
@@ -317,7 +325,7 @@ export default {
     },
     profileImage: {
       type: String,
-      default: "https://avatars.githubusercontent.com/u/42372656?v=4",
+      default: "https://i.pravatar.cc/300",
     },
     name: {
       type: String,
@@ -327,6 +335,10 @@ export default {
       type: String,
       default: "username",
     },
+    joinedDate: {
+      type: String,
+      default: null,
+    }, //date account was created
     isOnline: {
       type: String,
       default: "dnd",
@@ -335,16 +347,44 @@ export default {
       type: Boolean,
       default: true,
     },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   },
   components: {
     basicChip,
+    userBannerProfileLoader,
   },
   data() {
     return {
+      memeberSince: null,
       hoveredOnFollowing: false,
     };
   },
-  methods: {},
+  // each time the `joinedDate` changes re-run the function to makeJoinedDateReadable
+  watch: {
+    // eslint-disable-next-line no-unused-vars
+    joinedDate: function (newVal, oldVal) {
+      // console.log("Prop changed: ", newVal, " | was: ", oldVal);
+      this.makeJoinedDateReadable();
+    },
+  },
+  mounted() {
+    // run function on mounted
+    this.makeJoinedDateReadable();
+  },
+  methods: {
+    formatDate,
+    truncateText,
+    // function to make the date readable
+    makeJoinedDateReadable() {
+      this.memeberSince = moment(this.formatDate(this.joinedDate)).format(
+        "MMMM Do YYYY"
+      );
+      // console.log(this.formatDate(this.joinedDate));
+    },
+  },
 };
 </script>
 
