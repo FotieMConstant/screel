@@ -63,16 +63,23 @@
           </defs>
         </svg>
 
-        <div class="my-auto font-bold text-sm">{{ timeAgo }}</div>
+        <div class="my-auto font-bold text-sm">
+          Fades {{ timeLeft(postedDate) }}
+        </div>
       </div>
     </div>
     <div class="text-left dark:text-gray-300 px-10">
       <div>
         {{ content }}
       </div>
-      <div class="mt-2 text-left space-x-2">
+      <div class="mt-2 text-left flex flex-wrap">
         <!-- <basicChip text="1k 😎" enableDropdownShadow /> -->
-        <basicChip v-for="tag in tags" :key="tag" :text="tag.title" />
+        <basicChip
+          class="text-sm m-1"
+          v-for="tag in tags"
+          :key="tag"
+          :text="tag.title"
+        />
         <!-- the dropdownShadowColor should be a valide tailwind color palette -->
       </div>
     </div>
@@ -83,7 +90,7 @@
 import basicChip from "@/components/modules/chips/basicChip.vue";
 import carPostLoading from "@/components/modules/skeleton-loaders/carPostLoading.vue";
 import moment from "moment";
-import { formatDate } from "@/utils";
+import { formatDate, timeLeft } from "@/utils";
 
 export default {
   name: "cardPost",
@@ -136,6 +143,7 @@ export default {
   },
   methods: {
     formatDate,
+    timeLeft,
   },
 };
 </script>
