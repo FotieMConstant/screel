@@ -68,10 +68,7 @@ export default {
 
       commit("SET_CURRENT_USER", userData.data.data); // setting logged in user to store
 
-      console.log(
-        "in state",
-        _vm.$store.getters["authentication/getCurrentUser"]
-      );
+      console.log("in state", store.getters["authentication/getCurrentUser"]);
 
       const redirect = sessionStorage.getItem("redirect"); // getting redirect url from sessionStorage
       console.log("redirect URL=> ", redirect);
@@ -106,10 +103,7 @@ export default {
         // redirect user to login after cleaning store
         window.location.href = "/login";
 
-        console.log(
-          "in state",
-          _vm.$store.getters["authentication/getCurrentUser"]
-        );
+        console.log("in state", store.getters["authentication/getCurrentUser"]);
       })
       .catch(function (error) {
         // handle error

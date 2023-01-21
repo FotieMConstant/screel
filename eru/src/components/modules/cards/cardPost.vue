@@ -69,9 +69,7 @@
       </div>
     </div>
     <div class="text-left dark:text-gray-300 px-10">
-      <div>
-        {{ content }}
-      </div>
+      <div v-html="addLinksToText(content)"></div>
       <div class="mt-2 text-left flex flex-wrap">
         <!-- <basicChip text="1k 😎" enableDropdownShadow /> -->
         <basicChip
@@ -144,6 +142,24 @@ export default {
   methods: {
     formatDate,
     timeLeft,
+    // make any word that starts with `@` redirect to the user's profile
+    addLinksToText(str) {
+      var words = str.split(" ");
+      var output = "";
+      for (var i = 0; i < words.length; i++) {
+        if (words[i].startsWith("@")) {
+          output +=
+            '<a class="text-blue-light font-bold" href="/user/' +
+            words[i].substring(1) +
+            '">' +
+            words[i] +
+            "</a> ";
+        } else {
+          output += words[i] + " ";
+        }
+      }
+      return output;
+    },
   },
 };
 </script>
