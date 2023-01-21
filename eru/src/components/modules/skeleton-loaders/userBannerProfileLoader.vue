@@ -30,7 +30,7 @@
             </div>
             <div class="space-x-4 flex">
               <div
-                class="h-7 w-20 dark:bg-gray-600 bg-grayLightMode-200 rounded-curl"
+                class="h-7 w-10 dark:bg-gray-600 bg-grayLightMode-200 rounded-curl"
               ></div>
               <div
                 class="h-7 w-20 dark:bg-gray-600 bg-grayLightMode-200 rounded-curl"

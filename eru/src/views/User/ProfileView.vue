@@ -62,9 +62,26 @@
       <!-- body of tabs -->
       <!-- only how this tab if the user is on the ProfileView route -->
       <div v-if="whichRouteWeOn() === 'ProfileView'" class="pb-36">
+        <!-- no screels found -->
         <div v-if="theUser" class="mt-4 space-y-4">
+          <div
+            v-if="theUser.screels.data.length == 0"
+            class="text-center py-3 px-20"
+          >
+            <div
+              class="text-lg font-bold dark:text-grayLightMode-300 text-grayLightMode-400"
+            >
+              Nada, zip, zilch. No posts here!
+            </div>
+            <div class="text-sm text-gray-300">
+              @{{ theUser.user.username }}'s been too busy coding to post, it's
+              eerily quiet here!
+            </div>
+          </div>
+          <!--/ no screels found -->
           <!-- all theUser's screels -->
           <cardPost
+            v-else
             v-for="screel in theUser.screels.data"
             :key="screel._id"
             :profileImage="theUser.user.avatar"
