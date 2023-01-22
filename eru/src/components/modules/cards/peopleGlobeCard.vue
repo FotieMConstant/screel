@@ -56,7 +56,9 @@
             >
           </div>
           <div class="text-gray-300 text-sm">
-            @{{ userName ? truncateText(userName, 12) : null }}
+            <router-link :to="`/user/` + userName">
+              @{{ userName ? truncateText(userName, 12) : null }}
+            </router-link>
           </div>
         </div>
       </div>
