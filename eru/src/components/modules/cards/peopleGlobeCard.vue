@@ -117,7 +117,7 @@ export default {
     return {};
   },
   mounted() {
-    console.log(this.isWithinTenMinutes(this.lastPostTimeStamp));
+    // console.log(this.isWithinTenMinutes(this.lastPostTimeStamp));
   },
   methods: {
     // what to do `follow` or `unfollow`
