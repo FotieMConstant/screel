@@ -47,6 +47,9 @@ export default {
     userProfileCard,
     AppBar,
   },
+  data() {
+    return {};
+  },
   computed: {
     // mapping to get current logged in user from store auth module
     ...mapGetters({ currentUser: ["authentication/getCurrentUser"] }),

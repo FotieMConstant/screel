@@ -190,6 +190,11 @@ body {
 .__logo {
   font-family: "Amin", Helvetica, Arial;
 }
+/* for bg bluring */
+.__headerBgBlur {
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
 /* nav {
   padding: 30px;
 }

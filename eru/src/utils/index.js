@@ -9,7 +9,7 @@ export const formatDate = (date) => {
   return new Date(Date.parse(date));
 };
 
-// functiont o calculate the time left till a post disappears
+// function to calculate the time left till a post disappears from screel
 export const timeLeft = (timestamp) => {
   var postDate = new Date(timestamp);
   var futureDate = new Date(postDate.getTime() + 86400000); // Adding 24 hours in milliseconds
@@ -30,4 +30,14 @@ export const timeLeft = (timestamp) => {
   } else {
     return "24 hours has passed";
   }
+};
+
+// function to know if user post is within 10 minutes
+export const isWithinTenMinutes = (dbTimestamp) => {
+  const currentTime = new Date().getTime();
+  const dbDate = new Date(dbTimestamp);
+  const timestamp = dbDate.getTime();
+  const difference = currentTime - timestamp;
+  const tenMinutesInMilliseconds = 10 * 60 * 1000; //the 10 is ten minutes
+  return difference <= tenMinutesInMilliseconds;
 };

@@ -144,7 +144,7 @@
                 <div
                   class="dark:text-gray-300 font-medium text-grayLightMode-300"
                 >
-                  followers
+                  following
                 </div>
               </div>
             </div>

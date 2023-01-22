@@ -1,6 +1,6 @@
 <template>
   <!-- if the is loading -->
-  <carPostLoading v-if="loading" />
+  <cardPostLoading v-if="loading" />
   <div
     v-else
     class="dark:bg-gray-800 dark:text-gray-100 text-grayLightMode-400 bg-grayLightMode-100 p-5 rounded-curl"
@@ -86,17 +86,17 @@
 
 <script>
 import basicChip from "@/components/modules/chips/basicChip.vue";
-import carPostLoading from "@/components/modules/skeleton-loaders/carPostLoading.vue";
+import cardPostLoading from "@/components/modules/skeleton-loaders/cardPostLoading.vue";
 import moment from "moment";
 import { formatDate, timeLeft } from "@/utils";
 
 export default {
   name: "cardPost",
-  components: { basicChip, carPostLoading },
+  components: { basicChip, cardPostLoading },
   props: {
     screelId: {
-      type: Boolean,
-      default: true,
+      type: String,
+      default: null,
     },
     profileImage: {
       type: String,
