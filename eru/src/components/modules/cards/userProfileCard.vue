@@ -71,7 +71,7 @@
       >
         <div class="">
           <div class="dark:text-gray-100 font-bold text-grayLightMode-400">
-            1.4k
+            0
           </div>
           <div class="dark:text-gray-300 font-medium text-grayLightMode-300">
             followers
@@ -82,7 +82,7 @@
         ></div>
         <div class="">
           <div class="dark:text-gray-100 font-bold text-grayLightMode-400">
-            3.4k
+            0
           </div>
           <div class="dark:text-gray-300 font-medium text-grayLightMode-300">
             following
@@ -90,7 +90,7 @@
         </div>
       </div>
       <div class="text-center font-bold text-blue-accent mt-4 cursor-pointer">
-        My Profile
+        <router-link :to="`/user/` + userName"> My Profile</router-link>
       </div>
     </div>
   </div>

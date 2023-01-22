@@ -1,5 +1,6 @@
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/42372656/206678522-567f7eab-fb18-40b2-9a20-b17a6a292813.png"/>
+    <img height="70" src="https://user-images.githubusercontent.com/42372656/212937297-f6d86dc6-c716-430d-92eb-f770960e93c9.png"/>
+    <h1 align="center">Screel</h1>
 </p>
 <p align="center">
   <strong>A space for Developers, Designers, geeks, nerds, tech enthusiast, just like you 🚀</strong>
@@ -21,11 +22,12 @@
 <p align="center"><b>https://screel.vercel.app/</b></p>
 
 ## ⤴️ Motivation
-I just want a safe space/home for developers and tech lovers like me to share and have fun, share the most crazy/exciting projects we are currently  working on, browse and connect with local developers plus keep in touch with my mates in a tech, geeky, nerdy way✌🏾
 
-See what my friends are up to and working on, from screeling about having a bad day debugging some jsx code in my basement ...to figuring out how to setup a Docker container!
+As a developer and tech enthusiast, I have always yearned for a safe space where I can connect with others like myself and share our passions. I have often found myself feeling isolated in my love for all things tech and have often struggled to find a community that truly understands and shares my interests. from sharing tech memes to doing something fun, in a geeky way!!!
 
-If that sounds a lot like, you... Welcome **Home** 🏠
+That's why I created Screel, a platform for tech enthusiasts and developers to come together and connect. Here, we can share our wildest and most exciting tech projects, bond over our shared love of all things nerdy and geeky, and connect with local developers. Screel is not just a platform, it's a home, a sanctuary for tech enthusiasts and developers like myself. One unique aspect of Screel is that it focuses more on the moment, your posts disappear 24 hours after you've posted them, encouraging you to share and engage with others in the moment, making the experience more fun and dynamic.
+
+So far i've had devs who have joined me in this exiting journey. We are building Screel in public, so you can be a part of the journey and check back often for updates and exciting new releases. I invite you to join us in this journey, and let's build something amazing together! 🚀
 
 ---
 

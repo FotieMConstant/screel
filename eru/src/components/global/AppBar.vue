@@ -220,9 +220,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.__headerBgBlur {
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-}
-</style>
+<style scoped></style>

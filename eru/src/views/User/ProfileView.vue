@@ -1,52 +1,114 @@
 <template>
   <!-- default layout for dashbord -->
   <DefaultLayout>
-    <!-- user profile banner -->
-    <UserBannerProfile />
-    <!--/ user profile banner -->
-    <!-- switch tab -->
-    <div class="flex font-bold mt-6 mb-4 space-x-20">
-      <router-link
-        :to="{ name: 'ProfileView', params: { username: 'FotieMConstant' } }"
-        class="relative"
-      >
-        <div
-          :class="
-            whichRouteWeOn() === 'ProfileView'
-              ? `__activeTab text-blue-accent`
-              : `dark:text-gray-100 text-gray-400`
-          "
-          class="cursor-pointer select-none"
-        >
-          Screels
-        </div>
-      </router-link>
-      <router-link
-        :to="{ name: 'UserEventsView', params: { username: 'FotieMConstant' } }"
-        class="relative"
-      >
-        <div
-          :class="
-            whichRouteWeOn() === 'UserEventsView'
-              ? `__activeTab text-blue-accent`
-              : `dark:text-gray-100 text-gray-400`
-          "
-          class="cursor-pointer select-none"
-        >
-          Events
-        </div>
-      </router-link>
-    </div>
-    <!--/ switch tab -->
+    <div class="h-screen overflow-y-scroll __hideScroller pt-6">
+      <!-- user profile banner -->
+      <!-- if theUser object contain data -->
+      <UserBannerProfile
+        v-if="theUser"
+        :name="theUser.user.name"
+        :userName="theUser.user.username"
+        :profileImage="theUser.user.avatar"
+        :joinedDate="theUser.user.created_at"
+      />
+      <!--/ if theUser object contain data -->
+      <!-- else display loader -->
+      <UserBannerProfile v-else :loading="true" />
+      <!--/ else display loader -->
 
-    <!-- body of tabs -->
-    <!-- only how this tab if the user is on the ProfileView route -->
-    <div v-if="whichRouteWeOn() === 'ProfileView'" class="mt-4 space-y-4">
-      <cardPost v-for="n in 20" :key="n" />
+      <!--/ user profile banner -->
+      <!-- switch tab -->
+      <!-- only show tab if there's theUser's data -->
+      <div v-if="theUser" class="flex font-bold mt-6 mb-4 space-x-20">
+        <router-link
+          :to="{
+            name: 'ProfileView',
+            params: { username: theUser.user.username },
+          }"
+          class="relative"
+        >
+          <div
+            :class="
+              whichRouteWeOn() === 'ProfileView'
+                ? `__activeTab text-blue-accent`
+                : `dark:text-gray-100 text-gray-400`
+            "
+            class="cursor-pointer select-none"
+          >
+            Screels
+          </div>
+        </router-link>
+        <router-link
+          :to="{
+            name: 'UserEventsView',
+            params: { username: theUser.user.username },
+          }"
+          class="relative"
+        >
+          <div
+            :class="
+              whichRouteWeOn() === 'UserEventsView'
+                ? `__activeTab text-blue-accent`
+                : `dark:text-gray-100 text-gray-400`
+            "
+            class="cursor-pointer select-none"
+          >
+            Events
+          </div>
+        </router-link>
+      </div>
+      <!--/ switch tab -->
+
+      <!-- body of tabs -->
+      <!-- only how this tab if the user is on the ProfileView route -->
+      <div v-if="whichRouteWeOn() === 'ProfileView'" class="pb-36">
+        <!-- no screels found -->
+        <div v-if="theUser" class="mt-4 space-y-4">
+          <div
+            v-if="theUser.screels.data.length == 0"
+            class="text-center py-3 px-20"
+          >
+            <div
+              class="text-lg font-bold dark:text-grayLightMode-300 text-grayLightMode-400"
+            >
+              Nada, zip, zilch. No posts here!
+            </div>
+            <div class="text-sm text-gray-300">
+              @{{ theUser.user.username }}'s been too busy coding to post, it's
+              eerily quiet here!
+            </div>
+          </div>
+          <!--/ no screels found -->
+          <!-- all theUser's screels -->
+          <cardPost
+            v-else
+            v-for="screel in theUser.screels.data"
+            :key="screel._id"
+            :profileImage="theUser.user.avatar"
+            :name="theUser.user.name"
+            :userName="theUser.user.username"
+            :content="screel.content"
+            :postedDate="screel.created_at"
+            :tags="screel.tags"
+            :loading="false"
+          />
+          <!--/ all theUser's screels -->
+        </div>
+        <div
+          v-else
+          v-for="n in defaultNumberToFetch"
+          :key="n"
+          class="mt-4 space-y-4"
+        >
+          <!-- allFeed contains no data -->
+          <cardPost :loading="true" />
+          <!--/ allFeed contains no data -->
+        </div>
+      </div>
+      <!-- where we will plot our views -->
+      <router-view />
+      <!--/ body of tabs -->
     </div>
-    <!-- where we will plot our views -->
-    <router-view />
-    <!--/ body of tabs -->
   </DefaultLayout>
   <!--/ default layout dashbord-->
 </template>
@@ -64,15 +126,39 @@ export default {
     UserBannerProfile,
     cardPost,
   },
+  data() {
+    return {
+      theUser: null, //the user we wanna view their profile `the entire object with screel and other`
+      defaultNumberToFetch:
+        this.$store.getters["screel/getDefaultNumbOfScreelsToFetch"], //default number of post to be loaded on first page load
+    };
+  },
   mounted() {
     console.log(this.$route.params);
-
-    this.$store.dispatch("user/getSpecificUserAction", {
-      _vm: this,
-      data: this.$route.params.username,
-    });
+    this.getUserProfileToView(this.$route.params.username); //getting the username from the param url
+  },
+  computed() {
+    this.getUserProfileToView(this.$route.params.username); //getting the username from the param url
+  },
+  // catching the route param changes and fetching the user data again
+  beforeRouteUpdate(to, from, next) {
+    console.log(to.params);
+    next();
+    this.getUserProfileToView(to.params.username);
   },
   methods: {
+    // function to get current user we wanna view their profile
+    async getUserProfileToView(userName) {
+      let responseProfileData = await this.$store.dispatch(
+        "user/getSpecificUserAction",
+        {
+          _vm: this,
+          data: userName,
+        }
+      );
+      console.log("responseProfileData => ", responseProfileData);
+      this.theUser = responseProfileData; //setting `theUser` we wanna view their profile
+    },
     // returns information about the route
     whichRouteWeOn() {
       return this.$route.name;

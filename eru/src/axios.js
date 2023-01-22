@@ -21,7 +21,7 @@ instance.defaults.timeout = 20000;
 instance.interceptors.request.use(
   (config) => {
     const token = store.getters["authentication/getAccessToken"];
-    console.log("interceptor token ==>> ", token);
+    // console.log("interceptor token ==>> ", token);
     if (token) {
       config.headers.Authorization = "Bearer " + token;
     }

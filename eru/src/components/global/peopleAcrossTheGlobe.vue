@@ -1,15 +1,40 @@
 <template>
   <div
-    class="dark:bg-gray-800 bg-grayLightMode-100 dark:text-sky-white text-grayLightMode-400 p-5 rounded-curl"
+    class="dark:bg-gray-800 bg-grayLightMode-100 dark:text-sky-white text-grayLightMode-400 py-5 rounded-curl"
   >
-    <div class="text-left">
+    <div class="text-left px-5 __headerBgBlur">
       <div class="font-bold text-xl">Across the glob 🌍</div>
       <div class="font-bold text-sm text-gray-300">
-        ONLINE ({{ people.length }})
+        ONLINE ({{ people ? people.length : 0 }})
       </div>
     </div>
-    <div class="mt-2 space-y-2">
-      <peopleGlobeCard
+    <div class="mt-2">
+      <!-- if people contain data -->
+      <div
+        v-if="people"
+        class="space-y-2 h-72 overflow-y-auto __hideScroller px-5 pt-2"
+      >
+        <peopleGlobeCard
+          v-for="person in people"
+          :key="person._id"
+          :id="person._id"
+          :name="person.name"
+          :userName="person.username"
+          :profileImage="person.avatar"
+          :lastPostTimeStamp="
+            person.latest_screel ? person.latest_screel.created_at : null
+          "
+          :loading="false"
+        />
+      </div>
+      <!--  else show loading -->
+      <div
+        v-else
+        class="space-y-2 h-72 overflow-y-auto __hideScroller px-5 pt-2"
+      >
+        <peopleGlobeCard v-for="n in 6" :key="n" :loading="true" />
+      </div>
+      <!-- <peopleGlobeCard
         v-for="person in people"
         :key="person.id"
         :id="person.id"
@@ -18,10 +43,10 @@
         :profileImage="person.profileImage"
         :isOnline="person.isOnline"
         :alreadyFollow="person.alreadyFollow"
-      />
+      /> -->
     </div>
     <div
-      class="text-blue-light mt-4 text-left text-sm font-bold cursor-pointer select-none"
+      class="text-blue-light mt-4 text-left text-sm font-bold cursor-pointer select-none px-5"
     >
       Show More
     </div>
@@ -35,49 +60,27 @@ export default {
   components: { peopleGlobeCard },
   data() {
     return {
-      people: [
-        {
-          id: 0,
-          name: "Lauren Miller",
-          userName: "@lauren_miller",
-          profileImage: "https://i.pravatar.cc/300",
-          isOnline: true,
-          alreadyFollow: false,
-        },
-        {
-          id: 2,
-          name: "fotiecodes",
-          userName: "@fotie_codes",
-          profileImage: "https://avatars.githubusercontent.com/u/42372656?v=4",
-          isOnline: false,
-          alreadyFollow: false,
-        },
-        {
-          id: 3,
-          name: "yancodes",
-          userName: "@yan_codes",
-          profileImage: "https://avatars.githubusercontent.com/u/44243880?v=4",
-          isOnline: true,
-          alreadyFollow: false,
-        },
-        {
-          id: 4,
-          name: "longla afru",
-          userName: "@longla_dilan",
-          profileImage: "https://avatars.githubusercontent.com/u/44490676?v=4",
-          isOnline: false,
-          alreadyFollow: true,
-        },
-        {
-          id: 5,
-          name: "Jullie Brek",
-          userName: "@julliebrek",
-          profileImage: "https://i.pravatar.cc/300",
-          isOnline: true,
-          alreadyFollow: false,
-        },
-      ],
+      people: null,
     };
+  },
+  mounted() {
+    this.getUsersAcrossTheGlobe();
+  },
+  methods: {
+    // function to call for users across the globe action from store
+    async getUsersAcrossTheGlobe() {
+      // get screelers from backend
+      let responseScreelers = await this.$store.dispatch(
+        "user/getUsersAcrossTheGlobeAction",
+        {
+          _vm: this,
+          pageNumber: 20, // page number to fetch
+        }
+      ); //
+      this.people = responseScreelers.data; // setting the screelers to people
+
+      // console.log("responseScreelers across the globe => ", this.people);
+    },
   },
 };
 </script>

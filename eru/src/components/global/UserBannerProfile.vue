@@ -1,7 +1,9 @@
 <template>
-  <div class="rounded-curl dark:bg-gray-800 bg-grayLightMode-100">
+  <!-- if the banner is let to loading 'if loading is set to true' -->
+  <userBannerProfileLoader v-if="loading" />
+  <div v-else class="rounded-curl dark:bg-gray-800 bg-grayLightMode-100">
     <div
-      class="bg-cover bg-center w-full h-44 rounded-t-curl relative"
+      class="bg-cover bg-center w-full h-40 rounded-t-curl relative"
       :style="{
         'background-image': 'url(' + coverImage + ')',
       }"
@@ -53,14 +55,16 @@
 
     <div class="relative h-28 w-full">
       <div class="absolute inset-x-28 top-3 right-0">
-        <div class="flex justify-between px-6">
+        <div class="flex justify-between pr-6 pl-2">
           <div>
             <div
               class="flex space-x-3 dark:text-grayLightMode-100 text-grayLightMode-400"
             >
               <div>
                 <div class="flex space-x-2">
-                  <div class="text-xl font-bold">{{ name }}</div>
+                  <div class="text-xl font-bold">
+                    {{ name ? truncateText(name, 18) : null }}
+                  </div>
                   <!-- javascript icon -->
                   <svg
                     class="my-auto"
@@ -123,7 +127,7 @@
                 <div
                   class="dark:text-gray-100 font-bold text-grayLightMode-400"
                 >
-                  3.4k
+                  0
                 </div>
                 <div
                   class="dark:text-gray-300 font-medium text-grayLightMode-300"
@@ -135,66 +139,18 @@
                 <div
                   class="dark:text-gray-100 font-bold text-grayLightMode-400"
                 >
-                  3.4k
+                  0
                 </div>
                 <div
                   class="dark:text-gray-300 font-medium text-grayLightMode-300"
                 >
-                  followers
+                  following
                 </div>
               </div>
             </div>
             <!--/ followers counts -->
           </div>
           <div class="flex space-x-3">
-            <div>
-              <!-- if current user logged in alreadyFollow this user-->
-              <button
-                @mouseover="hoveredOnFollowing = true"
-                @mouseleave="hoveredOnFollowing = false"
-                v-if="alreadyFollow"
-                class="flex space-x-1 dark:bg-blue-light dark:hover:bg-blue-accent bg-blue-light hover:bg-blue-accent text-sky-white rounded-curl px-2.5 py-1 h-8"
-              >
-                <svg
-                  class="my-auto"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9.6 8.4C11.3602 8.4 12.8 6.95997 12.8 5.2C12.8 3.44003 11.3602 2 9.6 2C7.83983 2 6.4 3.44003 6.4 5.2C6.4 6.95997 7.83983 8.4 9.6 8.4ZM9.6 10C7.48007 10 3.2 11.0801 3.2 13.2V14.8H16V13.2C16 11.0801 11.7199 10 9.6 10ZM3.2 7.33333V5.2H2.13333V7.33333H0V8.4H2.13333V10.5333H3.2V8.4H5.33333V7.33333H3.2Z"
-                    fill="currentColor"
-                  />
-                </svg>
-
-                <div class="my-auto font-bold text-sm">
-                  {{ hoveredOnFollowing ? "Unfollow" : "Following" }}
-                </div>
-              </button>
-              <!-- else -->
-              <button
-                v-else
-                class="flex space-x-1 dark:bg-blue-light dark:hover:bg-blue-accent bg-blue-light hover:bg-blue-accent text-sky-white rounded-curl px-2.5 py-1 h-8"
-              >
-                <svg
-                  class="my-auto"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9.6 8.4C11.3602 8.4 12.8 6.95997 12.8 5.2C12.8 3.44003 11.3602 2 9.6 2C7.83983 2 6.4 3.44003 6.4 5.2C6.4 6.95997 7.83983 8.4 9.6 8.4ZM9.6 10C7.48007 10 3.2 11.0801 3.2 13.2V14.8H16V13.2C16 11.0801 11.7199 10 9.6 10ZM3.2 7.33333V5.2H2.13333V7.33333H0V8.4H2.13333V10.5333H3.2V8.4H5.33333V7.33333H3.2Z"
-                    fill="currentColor"
-                  />
-                </svg>
-
-                <div class="my-auto font-bold text-sm">Follow</div>
-              </button>
-            </div>
             <div>
               <!-- DM button -->
               <button
@@ -214,11 +170,16 @@
                     fill="white"
                   />
                 </svg>
-
                 <!--/ message icon -->
-                <div class="my-auto font-bold text-sm">Send DM</div>
+                <!-- <div class="my-auto font-bold text-sm">Send DM</div> -->
               </button>
               <!--/ DM button -->
+            </div>
+            <div>
+              <!-- follow or unfollow button -->
+              <!-- if user is already following it will display accordingly-->
+              <followButton :alreadyFollow="alreadyFollow" />
+              <!--/ follow or unfollow button -->
             </div>
           </div>
         </div>
@@ -297,7 +258,7 @@
         </svg>
 
         <div class="dark:text-gray-400 text-grayLightMode-300 text-sm">
-          Member since 13 March 2022
+          Member since {{ memeberSince }}.
         </div>
       </div>
     </div>
@@ -307,6 +268,11 @@
 
 <script>
 import basicChip from "@/components/modules/chips/basicChip.vue";
+import userBannerProfileLoader from "@/components/modules/skeleton-loaders/userBannerProfileLoader.vue";
+import followButton from "@/components/modules/buttons/followButton.vue";
+import moment from "moment";
+import { formatDate } from "@/utils";
+import { truncateText } from "@/utils";
 
 export default {
   name: "UserBannerProfile",
@@ -317,7 +283,7 @@ export default {
     },
     profileImage: {
       type: String,
-      default: "https://avatars.githubusercontent.com/u/42372656?v=4",
+      default: "https://i.pravatar.cc/300",
     },
     name: {
       type: String,
@@ -327,24 +293,56 @@ export default {
       type: String,
       default: "username",
     },
+    joinedDate: {
+      type: String,
+      default: null,
+    }, //date account was created
     isOnline: {
       type: String,
       default: "dnd",
     },
     alreadyFollow: {
       type: Boolean,
-      default: true,
+      default: false,
+    },
+    loading: {
+      type: Boolean,
+      default: false,
     },
   },
   components: {
     basicChip,
+    userBannerProfileLoader,
+    followButton,
   },
   data() {
     return {
-      hoveredOnFollowing: false,
+      memeberSince: null,
     };
   },
-  methods: {},
+  // each time the `joinedDate` changes re-run the function to makeJoinedDateReadable
+  watch: {
+    // eslint-disable-next-line no-unused-vars
+    joinedDate: function (newVal, oldVal) {
+      // console.log("Prop changed: ", newVal, " | was: ", oldVal);
+      this.makeJoinedDateReadable();
+    },
+  },
+  mounted() {
+    // run function on mounted
+    this.makeJoinedDateReadable();
+  },
+  methods: {
+    formatDate,
+    truncateText,
+    // function to make the date readable
+    makeJoinedDateReadable() {
+      this.memeberSince = moment(this.formatDate(this.joinedDate)).format(
+        "MMMM Do YYYY"
+      );
+      // console.log(this.formatDate(this.joinedDate));
+    },
+  },
 };
 </script>
 

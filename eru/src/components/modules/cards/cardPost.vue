@@ -1,19 +1,22 @@
 <template>
+  <!-- if the is loading -->
+  <cardPostLoading v-if="loading" />
   <div
+    v-else
     class="dark:bg-gray-800 dark:text-gray-100 text-grayLightMode-400 bg-grayLightMode-100 p-5 rounded-curl"
   >
     <div class="flex justify-between">
       <div class="flex space-x-2.5">
-        <img
-          class="h-8 rounded-full"
-          src="https://avatars.githubusercontent.com/u/42372656?v=4"
-          alt=""
-        />
-        <div class="flex space-x-1 my-auto">
-          <div class="font-bold my-auto">fotiecode</div>
-          <div class="font-bold my-auto">·</div>
-          <div class="text-sm my-auto">@fotie_codes</div>
-        </div>
+        <router-link :to="`/user/` + userName">
+          <img class="h-8 rounded-full" :src="profileImage" alt="" />
+        </router-link>
+        <router-link :to="`/user/` + userName">
+          <div class="flex space-x-1 my-auto">
+            <div class="font-bold my-auto">{{ name }}</div>
+            <div class="font-bold my-auto">·</div>
+            <div class="text-sm my-auto">@{{ userName }}</div>
+          </div>
+        </router-link>
       </div>
       <div class="flex space-x-2">
         <svg
@@ -60,19 +63,21 @@
           </defs>
         </svg>
 
-        <div class="my-auto font-bold">just now</div>
+        <div class="my-auto font-bold text-sm">
+          Fades {{ timeLeft(postedDate) }}
+        </div>
       </div>
     </div>
     <div class="text-left dark:text-gray-300 px-10">
-      <div>
-        Good morning. It’s 06:40 in the Turkey. Just getting light outside and
-        I’m gonna soon be eating my breakfast. Hi to
-        <router-link to="/" class="font-bold"> @yan_codes</router-link>
-        👋🏼
-      </div>
-      <div class="mt-2 text-left space-x-2">
-        <basicChip text="1k 😎" enableDropdownShadow />
-        <basicChip text="#reacjs" />
+      <div v-html="addLinksToText(content)"></div>
+      <div class="mt-2 text-left flex flex-wrap">
+        <!-- <basicChip text="1k 😎" enableDropdownShadow /> -->
+        <basicChip
+          class="text-sm m-1"
+          v-for="tag in tags"
+          :key="tag"
+          :text="tag.title"
+        />
         <!-- the dropdownShadowColor should be a valide tailwind color palette -->
       </div>
     </div>
@@ -81,9 +86,81 @@
 
 <script>
 import basicChip from "@/components/modules/chips/basicChip.vue";
+import cardPostLoading from "@/components/modules/skeleton-loaders/cardPostLoading.vue";
+import moment from "moment";
+import { formatDate, timeLeft } from "@/utils";
+
 export default {
   name: "cardPost",
-  components: { basicChip },
+  components: { basicChip, cardPostLoading },
+  props: {
+    screelId: {
+      type: String,
+      default: null,
+    },
+    profileImage: {
+      type: String,
+      default: "https://i.pravatar.cc/300",
+    },
+    name: {
+      type: String,
+      default: "name",
+    },
+    userName: {
+      type: String,
+      default: "",
+    },
+    content: {
+      type: String,
+      default: "Null",
+    },
+    tags: {
+      type: Array,
+      default() {
+        return ["#null"];
+      },
+    },
+    postedDate: {
+      type: String,
+      default: "Null",
+    },
+    // if the component is loading or not
+    loading: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  data() {
+    return {
+      timeAgo: null,
+    };
+  },
+  mounted() {
+    this.timeAgo = moment(this.formatDate(this.postedDate)).fromNow();
+    // console.log(this.formatDate(this.postedDate));
+  },
+  methods: {
+    formatDate,
+    timeLeft,
+    // make any word that starts with `@` redirect to the user's profile
+    addLinksToText(str) {
+      var words = str.split(" ");
+      var output = "";
+      for (var i = 0; i < words.length; i++) {
+        if (words[i].startsWith("@")) {
+          output +=
+            '<a class="text-blue-light font-bold" href="/user/' +
+            words[i].substring(1) +
+            '">' +
+            words[i] +
+            "</a> ";
+        } else {
+          output += words[i] + " ";
+        }
+      }
+      return output;
+    },
+  },
 };
 </script>
 <style lang="scss" scoped></style>

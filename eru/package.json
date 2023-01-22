@@ -13,6 +13,7 @@
     "@vueuse/core": "^9.6.0",
     "axios": "^1.2.2",
     "core-js": "^3.8.3",
+    "moment": "^2.29.4",
     "register-service-worker": "^1.7.2",
     "stylus": "^0.59.0",
     "stylus-loader": "^3.0.2",

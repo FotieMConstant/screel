@@ -30,6 +30,39 @@ export default {
         position: "bottom",
       });
       console.log("response from backend=> ", response);
+      return true; //if the post was successful
+    } catch (error) {
+      // handle error
+      console.log(error);
+      payload._vm.$Progress.fail(); //fail the loader
+      payload._vm.$toast.error(
+        "Oh no, an error has occurred: " + error.message,
+        {
+          position: "bottom",
+        }
+      );
+      return false; //if the post was unsuccessful
+    }
+  },
+  // eslint-disable-next-line no-unused-vars
+  async getUserFeedsAction({ commit }, payload) {
+    payload._vm.$Progress.start(); //start loader
+
+    console.log("getting feeds from backend $this object=> ", payload);
+    const currentUser = store.getters["authentication/getCurrentUser"];
+    console.log("user_id", currentUser._id);
+    console.log("page number to fetch is=> ", payload.pageNumber);
+
+    try {
+      let response = await axios.get(
+        this.getters.getAPI_DOMAIN +
+          "/api/v1/feeds?per_page=" +
+          payload.pageNumber
+      );
+      payload._vm.$Progress.finish(); //finish the loader
+      // displaying toast of success
+      console.log("response from backend=> ", response.data.data);
+      return response.data.data; // returning response
     } catch (error) {
       // handle error
       console.log(error);

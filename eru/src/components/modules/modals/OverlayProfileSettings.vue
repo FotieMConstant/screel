@@ -19,7 +19,10 @@
           />
         </svg>
         <router-link
-          :to="{ name: 'ProfileView', params: { username: 'FotieMConstant' } }"
+          :to="{
+            name: 'ProfileView',
+            params: { username: currentUser.username },
+          }"
         >
           <div class="font-bold my-auto">
             {{ $t("appBar.overlayProfileSettings.profile") }}
@@ -204,6 +207,7 @@
 
 <script>
 import LocalLang from "@/components/modules/LocalLang.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "OverlayProfileSettings",
@@ -220,7 +224,10 @@ export default {
       this.isDark = this.$store.state.isDark;
     },
   },
-  created() {},
+  computed: {
+    // mapping to get current logged in user from store auth module
+    ...mapGetters({ currentUser: ["authentication/getCurrentUser"] }),
+  },
   methods: {
     // to logout current user
     logOutCurrentUser() {
