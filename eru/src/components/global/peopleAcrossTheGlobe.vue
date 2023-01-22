@@ -46,7 +46,7 @@
       /> -->
     </div>
     <div
-      class="text-blue-light mt-4 text-left text-sm font-bold cursor-pointer select-none"
+      class="text-blue-light mt-4 text-left text-sm font-bold cursor-pointer select-none px-5"
     >
       Show More
     </div>
