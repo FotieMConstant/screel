@@ -41,7 +41,10 @@ export default {
           "/api/v1/screelers?per_page=" +
           payload.pageNumber
       );
-      // console.log("response Screelers across the globe data from backend=> ", response.data);
+      console.log(
+        "response Screelers across the globe data from backend=> ",
+        response.data
+      );
       payload._vm.$Progress.finish(); //finish the loader
 
       return response.data.data; // returning what we got from the backend
