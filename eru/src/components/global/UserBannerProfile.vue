@@ -150,7 +150,8 @@
             </div>
             <!--/ followers counts -->
           </div>
-          <div class="flex space-x-3">
+          <!-- only show `message` and `follow` buttons if the current loggedin user  is not the user they are viewing their profile -->
+          <div v-if="currentUser._id !== userId" class="flex space-x-3">
             <div>
               <!-- DM button -->
               <button
@@ -178,8 +179,38 @@
             <div>
               <!-- follow or unfollow button -->
               <!-- if user is already following it will display accordingly-->
-              <followButton :alreadyFollow="alreadyFollow" />
+              <followButton
+                @clicked="followThisUser($event)"
+                :alreadyFollow="alreadyFollow"
+              />
               <!--/ follow or unfollow button -->
+            </div>
+          </div>
+          <!-- the user is viewing their own profile, show them an edit button -->
+          <div v-else class="flex space-x-3">
+            <div>
+              <router-link to="/settings">
+                <!-- DM button -->
+                <button
+                  class="flex space-x-1 dark:bg-gray-700 dark:hover:bg-gray-600 bg-blue-light hover:bg-blue-accent text-sky-white rounded-curl px-2.5 py-1 h-8"
+                >
+                  <!-- edit icon -->
+                  <svg
+                    class="my-auto h-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M19.3 8.925L15.05 4.725L16.45 3.325C16.8333 2.94167 17.3043 2.75 17.863 2.75C18.421 2.75 18.8917 2.94167 19.275 3.325L20.675 4.725C21.0583 5.10833 21.2583 5.571 21.275 6.113C21.2917 6.65433 21.1083 7.11667 20.725 7.5L19.3 8.925ZM4 21C3.71667 21 3.47933 20.904 3.288 20.712C3.096 20.5207 3 20.2833 3 20V17.175C3 17.0417 3.025 16.9127 3.075 16.788C3.125 16.6627 3.2 16.55 3.3 16.45L13.6 6.15L17.85 10.4L7.55 20.7C7.45 20.8 7.33767 20.875 7.213 20.925C7.08767 20.975 6.95833 21 6.825 21H4Z"
+                      fill="white"
+                    />
+                  </svg>
+                  <!--/ edit icon -->
+                  <!-- <div class="my-auto font-bold text-sm">Send DM</div> -->
+                </button>
+                <!--/ DM button -->
+              </router-link>
             </div>
           </div>
         </div>
@@ -271,12 +302,16 @@ import basicChip from "@/components/modules/chips/basicChip.vue";
 import userBannerProfileLoader from "@/components/modules/skeleton-loaders/userBannerProfileLoader.vue";
 import followButton from "@/components/modules/buttons/followButton.vue";
 import moment from "moment";
-import { formatDate } from "@/utils";
-import { truncateText } from "@/utils";
+import { formatDate, truncateText } from "@/utils";
+import { mapGetters } from "vuex";
 
 export default {
   name: "UserBannerProfile",
   props: {
+    userId: {
+      type: String,
+      default: null,
+    },
     coverImage: {
       type: String,
       default: "https://images.unsplash.com/photo-1506765515384-028b60a970df",
@@ -328,11 +363,23 @@ export default {
       this.makeJoinedDateReadable();
     },
   },
+  computed: {
+    // mapping to get current logged in user from store auth module
+    ...mapGetters({ currentUser: ["authentication/getCurrentUser"] }),
+  },
   mounted() {
     // run function on mounted
     this.makeJoinedDateReadable();
   },
   methods: {
+    followThisUser(action) {
+      console.log("action=> ", action);
+      if (action == "follow") {
+        console.log("you wanna follow user", this.userId, this.userName);
+      } else if (action == "unfollow") {
+        console.log("you wanna unfollow user", this.userId, this.userName);
+      }
+    },
     formatDate,
     truncateText,
     // function to make the date readable

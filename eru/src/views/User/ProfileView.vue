@@ -6,6 +6,7 @@
       <!-- if theUser object contain data -->
       <UserBannerProfile
         v-if="theUser"
+        :userId="theUser.user._id"
         :name="theUser.user.name"
         :userName="theUser.user.username"
         :profileImage="theUser.user.avatar"
