@@ -112,7 +112,9 @@
                   <div class="mt-1 text-sm text-left text-gray-300">
                     @{{ userName }}
                   </div>
+                  <!-- if the user you view their profile already follows the current user -->
                   <div
+                    v-if="alreadyFollowedByThatUser"
                     class="mt-1 dark:bg-gray-700 bg-grayLightMode-200 dark:text-gray-300 text-grayLightMode-400 px-2 py-0.5 rounded-full font-bold select-none cursor-pointer text-xs"
                   >
                     Follows you
@@ -123,23 +125,23 @@
 
             <!-- followers counts -->
             <div class="flex space-x-3 mt-3">
-              <div class="flex space-x-1.5">
+              <div class="flex space-x-1.5 cursor-pointer">
                 <div
                   class="dark:text-gray-100 font-bold text-grayLightMode-400"
                 >
-                  0
+                  {{ totalFollowersCount }}
                 </div>
                 <div
                   class="dark:text-gray-300 font-medium text-grayLightMode-300"
                 >
-                  followers
+                  {{ totalFollowersCount == 1 ? "follower" : "followers" }}
                 </div>
               </div>
-              <div class="flex space-x-1.5">
+              <div class="flex space-x-1.5 cursor-pointer">
                 <div
                   class="dark:text-gray-100 font-bold text-grayLightMode-400"
                 >
-                  0
+                  {{ followingsCount }}
                 </div>
                 <div
                   class="dark:text-gray-300 font-medium text-grayLightMode-300"
@@ -178,11 +180,11 @@
             </div>
             <div>
               <!-- follow or unfollow button -->
-              <!-- if user is already following it will display accordingly-->
-              <followButton
-                @clicked="followThisUser($event)"
-                :alreadyFollow="alreadyFollow"
+              <unFollowButton
+                v-if="alreadyFollowUser"
+                @clicked="unFollowThisUser()"
               />
+              <followButton v-else @clicked="followThisUser()" />
               <!--/ follow or unfollow button -->
             </div>
           </div>
@@ -301,6 +303,8 @@
 import basicChip from "@/components/modules/chips/basicChip.vue";
 import userBannerProfileLoader from "@/components/modules/skeleton-loaders/userBannerProfileLoader.vue";
 import followButton from "@/components/modules/buttons/followButton.vue";
+import unFollowButton from "@/components/modules/buttons/unFollowButton.vue";
+
 import moment from "moment";
 import { formatDate, truncateText } from "@/utils";
 import { mapGetters } from "vuex";
@@ -336,7 +340,21 @@ export default {
       type: String,
       default: "dnd",
     },
+    followingsCount: {
+      type: Number,
+      default: 0,
+    },
+    followersCount: {
+      type: Number,
+      default: 0,
+    },
+    // already following the user
     alreadyFollow: {
+      type: Boolean,
+      default: false,
+    },
+    // already followed by the user you are viewing their profile
+    alreadyFollowedByThatUser: {
       type: Boolean,
       default: false,
     },
@@ -349,10 +367,13 @@ export default {
     basicChip,
     userBannerProfileLoader,
     followButton,
+    unFollowButton,
   },
   data() {
     return {
       memeberSince: null,
+      alreadyFollowUser: this.alreadyFollow,
+      totalFollowersCount: this.followersCount,
     };
   },
   // each time the `joinedDate` changes re-run the function to makeJoinedDateReadable
@@ -372,12 +393,49 @@ export default {
     this.makeJoinedDateReadable();
   },
   methods: {
-    followThisUser(action) {
-      console.log("action=> ", action);
-      if (action == "follow") {
-        console.log("you wanna follow user", this.userId, this.userName);
-      } else if (action == "unfollow") {
-        console.log("you wanna unfollow user", this.userId, this.userName);
+    // function to follow user
+    async followThisUser() {
+      console.log("you wanna follow user", this.userId, this.userName);
+      // calling the follow function in module store
+      let response = await this.$store.dispatch("user/followUserAction", {
+        _vm: this,
+        follower_id: this.currentUser._id, // page number to fetch
+        following_id: this.userId,
+      });
+      console.log("follow response", response);
+      if (response.status == "Success") {
+        this.alreadyFollowUser = !this.alreadyFollowUser;
+        this.totalFollowersCount = this.totalFollowersCount + 1; //increment by 1 if the user is follwing
+        // notification
+        this.$toast.success(
+          "You followed @" + this.userName + " successfully",
+          {
+            position: "bottom",
+          }
+        );
+      } else {
+        console.log("was unable to follow user");
+      }
+    },
+    // function to unfollow user
+    async unFollowThisUser() {
+      console.log("you wanna unfollow user", this.userId, this.userName);
+      // calling the unfollow function in module store
+      let response = await this.$store.dispatch("user/unFollowUserAction", {
+        _vm: this,
+        follower_id: this.currentUser._id, // page number to fetch
+        following_id: this.userId,
+      });
+      console.log("unfollow response", response);
+      if (response.status == "Success") {
+        this.alreadyFollowUser = !this.alreadyFollowUser;
+        this.totalFollowersCount = this.totalFollowersCount - 1; //decrement by 1 if the user is unfollowing
+        // notification
+        this.$toast.info("You just unfollowed @" + this.userName, {
+          position: "bottom",
+        });
+      } else {
+        console.log("was unable to follow user");
       }
     },
     formatDate,

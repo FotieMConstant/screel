@@ -60,4 +60,64 @@ export default {
       );
     }
   },
+  // follow user
+  // eslint-disable-next-line no-unused-vars
+  async followUserAction({ commit }, payload) {
+    payload._vm.$Progress.start(); //start loader
+
+    console.log("following user", payload);
+    try {
+      let response = await axios.post(
+        this.getters.getAPI_DOMAIN + "/api/v1/screelers/follow",
+        {
+          follower_id: payload.follower_id,
+          following_id: payload.following_id,
+        }
+      );
+      // console.log("follow response => ", response.data);
+      payload._vm.$Progress.finish(); //finish the loader
+
+      return response.data; // returning what we got from the backend
+    } catch (error) {
+      // handle error
+      console.log(error);
+      payload._vm.$Progress.fail(); //fail the loader
+      payload._vm.$toast.error(
+        "Oh no, couldn't follow user: " + error.message,
+        {
+          position: "bottom",
+        }
+      );
+    }
+  },
+  // unfollow user
+  // eslint-disable-next-line no-unused-vars
+  async unFollowUserAction({ commit }, payload) {
+    payload._vm.$Progress.start(); //start loader
+
+    console.log("following user", payload);
+    try {
+      let response = await axios.post(
+        this.getters.getAPI_DOMAIN + "/api/v1/screelers/unfollow",
+        {
+          follower_id: payload.follower_id,
+          following_id: payload.following_id,
+        }
+      );
+      // console.log("unfolllow response => ", response.data);
+      payload._vm.$Progress.finish(); //finish the loader
+
+      return response.data; // returning what we got from the backend
+    } catch (error) {
+      // handle error
+      console.log(error);
+      payload._vm.$Progress.fail(); //fail the loader
+      payload._vm.$toast.error(
+        "Oh no, couldn't unfollow user: " + error.message,
+        {
+          position: "bottom",
+        }
+      );
+    }
+  },
 };

@@ -63,25 +63,29 @@
         </div>
       </div>
       <!-- follow or unfollow button -->
-      <!-- if user is already following it will display accordingly-->
-      <followButton
-        @clicked="followActionDeterminer($event)"
-        :alreadyFollow="alreadyFollow"
-      />
+      <unFollowButton v-if="alreadyFollowUser" @clicked="unFollowThisUser()" />
+      <followButton v-else @clicked="followThisUser()" />
       <!--/ follow or unfollow button -->
     </div>
   </div>
 </template>
 
 <script>
-import followButton from "@/components/modules/buttons/followButton.vue";
 import peopleGlobeCardLoading from "@/components/modules/skeleton-loaders/peopleGlobeCardLoading.vue";
 import { isWithinTenMinutes, truncateText } from "@/utils";
+import followButton from "@/components/modules/buttons/followButton.vue";
+import unFollowButton from "@/components/modules/buttons/unFollowButton.vue";
+import { mapGetters } from "vuex";
+
 export default {
   name: "peopleGlobeCard",
-  components: { followButton, peopleGlobeCardLoading },
+  components: {
+    followButton,
+    peopleGlobeCardLoading,
+    unFollowButton,
+  },
   props: {
-    id: {
+    userId: {
       type: String,
       default: null,
     },
@@ -116,15 +120,60 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      alreadyFollowUser: this.alreadyFollow,
+    };
   },
   mounted() {
     // console.log(this.isWithinTenMinutes(this.lastPostTimeStamp));
   },
+  computed: {
+    // mapping to get current logged in user from store auth module
+    ...mapGetters({ currentUser: ["authentication/getCurrentUser"] }),
+  },
   methods: {
-    // what to do `follow` or `unfollow`
-    followActionDeterminer(action) {
-      console.log("The action to be done is to => ", action);
+    // function to follow user
+    async followThisUser() {
+      console.log("you wanna follow user", this.userId, this.userName);
+      // calling the follow function in module store
+      let response = await this.$store.dispatch("user/followUserAction", {
+        _vm: this,
+        follower_id: this.currentUser._id, // page number to fetch
+        following_id: this.userId,
+      });
+      console.log("follow response", response);
+      if (response.status == "Success") {
+        this.alreadyFollowUser = !this.alreadyFollowUser;
+        // notification
+        this.$toast.success(
+          "You followed @" + this.userName + " successfully",
+          {
+            position: "bottom",
+          }
+        );
+      } else {
+        console.log("was unable to follow user");
+      }
+    },
+    // function to unfollow user
+    async unFollowThisUser() {
+      console.log("you wanna unfollow user", this.userId, this.userName);
+      // calling the unfollow function in module store
+      let response = await this.$store.dispatch("user/unFollowUserAction", {
+        _vm: this,
+        follower_id: this.currentUser._id, // page number to fetch
+        following_id: this.userId,
+      });
+      console.log("unfollow response", response);
+      if (response.status == "Success") {
+        this.alreadyFollowUser = !this.alreadyFollowUser;
+        // notification
+        this.$toast.info("You just unfollowed @" + this.userName, {
+          position: "bottom",
+        });
+      } else {
+        console.log("was unable to follow user");
+      }
     },
     // calling function to know if user post is within 10 minutes from utils
     isWithinTenMinutes,

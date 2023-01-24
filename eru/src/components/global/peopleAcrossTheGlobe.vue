@@ -17,10 +17,11 @@
         <peopleGlobeCard
           v-for="person in people"
           :key="person._id"
-          :id="person._id"
+          :userId="person._id"
           :name="person.name"
           :userName="person.username"
           :profileImage="person.avatar"
+          :alreadyFollow="person.is_followed_by_current_screeler"
           :lastPostTimeStamp="
             person.latest_screel ? person.latest_screel.created_at : null
           "

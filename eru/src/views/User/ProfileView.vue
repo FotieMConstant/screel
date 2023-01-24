@@ -6,11 +6,16 @@
       <!-- if theUser object contain data -->
       <UserBannerProfile
         v-if="theUser"
+        :key="theUser.user._id"
         :userId="theUser.user._id"
         :name="theUser.user.name"
         :userName="theUser.user.username"
         :profileImage="theUser.user.avatar"
         :joinedDate="theUser.user.created_at"
+        :alreadyFollow="theUser.user.is_followed_by_current_screeler"
+        :alreadyFollowedByThatUser="theUser.user.is_following_current_screeler"
+        :followingsCount="theUser.user.followings_count"
+        :followersCount="theUser.user.followers_count"
       />
       <!--/ if theUser object contain data -->
       <!-- else display loader -->
