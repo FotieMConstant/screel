@@ -82,6 +82,8 @@
           @clicked="createScreelPost()"
           state="regular"
           text="Screel"
+          :classes="'shake-button'"
+          :id="'create-screel-btn'"
         />
       </div>
     </div>
@@ -129,6 +131,12 @@ export default {
   },
   mounted: function () {
     this.typingPlaceholder();
+    //Toggle class every 2 seconds
+    setInterval(function () {
+      document
+        .getElementById("create-screel-btn")
+        .classList.toggle("shake-button");
+    }, 2000);
   },
   computed: {
     // mapping to get current logged in user from store auth module
