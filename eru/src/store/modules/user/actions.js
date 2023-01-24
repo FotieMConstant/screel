@@ -1,5 +1,5 @@
 import axios from "@/axios"; //imported the custom axios `for request requiring access_token`
-import $axios from "axios"; // `$axios` is the default importation of the native axios
+// import $axios from "axios"; // `$axios` is the default importation of the native axios
 
 export default {
   // _vm is my view instance i am passing as arg to get the current route with
@@ -10,7 +10,7 @@ export default {
 
     console.log("posting this to the backend", payload);
     try {
-      let response = await $axios.get(
+      let response = await axios.get(
         this.getters.getAPI_DOMAIN + "/api/v1/auth/" + payload.data
       );
       // console.log("response user data from backend=> ", response.data);

@@ -1,5 +1,5 @@
 <template>
-  <!-- default layout for dashbord -->
+  <!-- default layout -->
   <DefaultLayout>
     <div class="h-screen overflow-y-scroll __hideScroller pt-6">
       <!-- user profile banner -->
@@ -111,7 +111,7 @@
       <!--/ body of tabs -->
     </div>
   </DefaultLayout>
-  <!--/ default layout dashbord-->
+  <!--/ default layout-->
 </template>
 
 <script>
