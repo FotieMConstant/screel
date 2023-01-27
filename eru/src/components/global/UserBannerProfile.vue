@@ -125,29 +125,39 @@
 
             <!-- followers counts -->
             <div class="flex space-x-3 mt-3">
-              <div class="flex space-x-1.5 cursor-pointer">
-                <div
-                  class="dark:text-gray-100 font-bold text-grayLightMode-400"
+              <div>
+                <router-link
+                  :to="`/u/` + userName + `/followers`"
+                  class="flex space-x-1.5 cursor-pointer"
                 >
-                  {{ totalFollowersCount }}
-                </div>
-                <div
-                  class="dark:text-gray-300 font-medium text-grayLightMode-300"
-                >
-                  {{ totalFollowersCount == 1 ? "follower" : "followers" }}
-                </div>
+                  <div
+                    class="dark:text-gray-100 font-bold text-grayLightMode-400"
+                  >
+                    {{ totalFollowersCount }}
+                  </div>
+                  <div
+                    class="dark:text-gray-300 font-medium text-grayLightMode-300"
+                  >
+                    {{ totalFollowersCount == 1 ? "follower" : "followers" }}
+                  </div>
+                </router-link>
               </div>
-              <div class="flex space-x-1.5 cursor-pointer">
-                <div
-                  class="dark:text-gray-100 font-bold text-grayLightMode-400"
+              <div>
+                <router-link
+                  :to="`/u/` + userName + `/following`"
+                  class="flex space-x-1.5 cursor-pointer"
                 >
-                  {{ followingsCount }}
-                </div>
-                <div
-                  class="dark:text-gray-300 font-medium text-grayLightMode-300"
-                >
-                  following
-                </div>
+                  <div
+                    class="dark:text-gray-100 font-bold text-grayLightMode-400"
+                  >
+                    {{ followingsCount }}
+                  </div>
+                  <div
+                    class="dark:text-gray-300 font-medium text-grayLightMode-300"
+                  >
+                    following
+                  </div>
+                </router-link>
               </div>
             </div>
             <!--/ followers counts -->
@@ -188,7 +198,7 @@
               <!--/ follow or unfollow button -->
             </div>
           </div>
-          <!-- the user is viewing their own profile, show them an edit button -->
+          <!-- if the user is viewing their own profile, show them an edit button -->
           <div v-else class="flex space-x-3">
             <div>
               <router-link to="/settings">

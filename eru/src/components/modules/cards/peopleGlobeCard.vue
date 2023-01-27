@@ -4,7 +4,7 @@
     <div class="flex justify-between">
       <div class="flex space-x-2">
         <div class="relative">
-          <router-link :to="`/user/` + userName">
+          <router-link :to="`/u/` + userName">
             <img
               :class="
                 isWithinTenMinutes(lastPostTimeStamp) ? '__blob_pulse' : null
@@ -51,12 +51,12 @@
         </div>
         <div class="text-left">
           <div class="dark:text-gray-100 text-grayLightMode-400 font-bold">
-            <router-link :to="`/user/` + userName">
+            <router-link :to="`/u/` + userName">
               {{ name ? truncateText(name, 11) : userName }}</router-link
             >
           </div>
           <div class="text-gray-300 text-sm">
-            <router-link :to="`/user/` + userName">
+            <router-link :to="`/u/` + userName">
               @{{ userName ? truncateText(userName, 12) : null }}
             </router-link>
           </div>

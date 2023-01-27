@@ -71,7 +71,7 @@
       >
         <div class="">
           <div class="dark:text-gray-100 font-bold text-grayLightMode-400">
-            0
+            {{ followersCount }}
           </div>
           <div class="dark:text-gray-300 font-medium text-grayLightMode-300">
             followers
@@ -82,7 +82,7 @@
         ></div>
         <div class="">
           <div class="dark:text-gray-100 font-bold text-grayLightMode-400">
-            0
+            {{ followingsCount }}
           </div>
           <div class="dark:text-gray-300 font-medium text-grayLightMode-300">
             following
@@ -90,7 +90,7 @@
         </div>
       </div>
       <div class="text-center font-bold text-blue-accent mt-4 cursor-pointer">
-        <router-link :to="`/user/` + userName"> My Profile</router-link>
+        <router-link :to="`/u/` + userName"> My Profile</router-link>
       </div>
     </div>
   </div>
@@ -118,6 +118,14 @@ export default {
     userName: {
       type: String,
       default: "null",
+    },
+    followersCount: {
+      type: Number,
+      default: 0,
+    },
+    followingsCount: {
+      type: Number,
+      default: 0,
     },
     isOnline: {
       type: String,

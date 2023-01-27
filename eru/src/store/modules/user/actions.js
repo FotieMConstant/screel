@@ -41,10 +41,10 @@ export default {
           "/api/v1/screelers?per_page=" +
           payload.pageNumber
       );
-      console.log(
-        "response Screelers across the globe data from backend=> ",
-        response.data
-      );
+      // console.log(
+      //   "response Screelers across the globe data from backend=> ",
+      //   response.data
+      // );
       payload._vm.$Progress.finish(); //finish the loader
 
       return response.data.data; // returning what we got from the backend
@@ -114,6 +114,68 @@ export default {
       payload._vm.$Progress.fail(); //fail the loader
       payload._vm.$toast.error(
         "Oh no, couldn't unfollow user: " + error.message,
+        {
+          position: "bottom",
+        }
+      );
+    }
+  },
+  // get user's followers
+  // eslint-disable-next-line no-unused-vars
+  async getUsersFollowers({ commit }, payload) {
+    payload._vm.$Progress.start(); //start loader
+
+    console.log("followers of user", payload);
+    try {
+      let response = await axios.get(
+        this.getters.getAPI_DOMAIN +
+          "/api/v1/screelers/followers/" +
+          payload.userName
+      );
+      // console.log("follow response => ", response.data);
+      payload._vm.$Progress.finish(); //finish the loader
+
+      return response.data; // returning what we got from the backend
+    } catch (error) {
+      // handle error
+      console.log(error);
+      payload._vm.$Progress.fail(); //fail the loader
+      payload._vm.$toast.error(
+        "Oh no, couldn't get " +
+          payload.userName +
+          "'s followers: " +
+          error.message,
+        {
+          position: "bottom",
+        }
+      );
+    }
+  },
+  // get user's followings
+  // eslint-disable-next-line no-unused-vars
+  async getUsersFollowerings({ commit }, payload) {
+    payload._vm.$Progress.start(); //start loader
+
+    console.log("followers of user", payload);
+    try {
+      let response = await axios.get(
+        this.getters.getAPI_DOMAIN +
+          "/api/v1/screelers/followings/" +
+          payload.userName
+      );
+      // console.log("follow response => ", response.data);
+      payload._vm.$Progress.finish(); //finish the loader
+
+      return response.data; // returning what we got from the backend
+    } catch (error) {
+      // handle error
+      console.log(error);
+      payload._vm.$Progress.fail(); //fail the loader
+      payload._vm.$toast.error(
+        "Oh no, couldn't get @" +
+          payload.userName +
+          "'s followings: " +
+          error.message,
         {
           position: "bottom",
         }

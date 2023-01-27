@@ -7,10 +7,10 @@
   >
     <div class="flex justify-between">
       <div class="flex space-x-2.5">
-        <router-link :to="`/user/` + userName">
+        <router-link :to="`/u/` + userName">
           <img class="h-8 rounded-full" :src="profileImage" alt="" />
         </router-link>
-        <router-link :to="`/user/` + userName">
+        <router-link :to="`/u/` + userName">
           <div class="flex space-x-1 my-auto">
             <div class="font-bold my-auto">{{ name }}</div>
             <div class="font-bold my-auto">·</div>
@@ -149,7 +149,7 @@ export default {
       for (var i = 0; i < words.length; i++) {
         if (words[i].startsWith("@")) {
           output +=
-            '<a class="text-blue-light font-bold" href="/user/' +
+            '<a class="text-blue-light font-bold" href="/u/' +
             words[i].substring(1) +
             '">' +
             words[i] +

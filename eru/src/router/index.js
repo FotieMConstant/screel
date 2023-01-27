@@ -12,6 +12,9 @@ import SecurityAndPrivacyView from "../views/Settings/SecurityAndPrivacyView.vue
 import AppearanceSettingsView from "../views/Settings/AppearanceSettingsView.vue";
 import NotificationsSettingsView from "../views/Settings/NotificationsSettingsView.vue";
 import AdditionalResourcesView from "../views/Settings/AdditionalResourcesView.vue";
+import DefaultProfileView from "../views/User/DefaultProfileView.vue"; // normal user profile view
+import FollowersView from "../views/User/FollowersView.vue"; //  users follwing a user view
+import FollowingView from "../views/User/FollowingView.vue"; // users a user is following view
 
 const routes = [
   {
@@ -33,20 +36,38 @@ const routes = [
     component: GrantAccessView,
   },
   {
-    path: "/user/:username", // we pass in the username here and it returns the user profile
-    name: "ProfileView",
-    component: ProfileView,
+    path: "/",
+    name: "DefaultProfileView",
+    redirect: { name: "ProfileView" }, // redirect to profile view
+    component: DefaultProfileView,
     meta: {
       auth: true,
     },
     children: [
       {
-        // UserEventsView will be rendered inside ProfileView's <router-view>
-        // when /user/:id/events is matched
-        // so will be the rest of the this route children
-        path: "events",
-        name: "UserEventsView",
-        component: UserEventsView,
+        path: "/u/:username",
+        name: "ProfileView",
+        component: ProfileView,
+        children: [
+          {
+            // UserEventsView will be rendered inside ProfileView's <router-view>
+            // when /u/:username/events is matched
+            // so will be the rest of the this route children
+            path: "events",
+            name: "UserEventsView",
+            component: UserEventsView,
+          },
+        ],
+      },
+      {
+        path: "/u/:username/followers",
+        name: "FollowersView",
+        component: FollowersView,
+      },
+      {
+        path: "/u/:username/following",
+        name: "FollowingView",
+        component: FollowingView,
       },
     ],
   },
