@@ -26,6 +26,9 @@
           :profileImage="follower.avatar"
           :alreadyFollow="follower.is_followed_by_current_screeler"
           :alreadyFollowedByThatUser="follower.is_following_current_screeler"
+          :theProfileWeOnUserName="
+            theUserDetails ? theUserDetails.user.username : null
+          "
           :loading="false"
         />
       </div>

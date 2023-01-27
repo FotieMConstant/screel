@@ -81,7 +81,15 @@
               v-if="alreadyFollowUser"
               @clicked="unFollowThisUser()"
             />
-            <followButton v-else @clicked="followThisUser()" />
+            <followButton
+              v-else
+              @clicked="followThisUser()"
+              :text="
+                currentUser.username == theProfileWeOnUserName
+                  ? `Follow back`
+                  : `Follow`
+              "
+            />
             <!--/ follow or unfollow button -->
           </div>
           <!-- menu button -->
@@ -148,6 +156,11 @@ export default {
     alreadyFollowedByThatUser: {
       type: Boolean,
       default: false,
+    },
+    // the user we are are currently on their profile username
+    theProfileWeOnUserName: {
+      type: String,
+      default: null,
     },
     // if the component is loading or not
     loading: {
