@@ -57,6 +57,7 @@ Please read [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for details on our code of 
 Contributors helping to review/merge pull requests:
 
 * [@fotiecodes](https://github.com/FotieMConstant)
+* [@viryl15](https://github.com/viryl15)
 
 ## License
 This project is licensed under the BSD 3-Clause License - see the [LICENSE.md](LICENSE.md) file for details  
