@@ -19,13 +19,14 @@
           <slot />
           <!--/ templete passed as slot  -->
         </main>
-        <aside class="w-3/12 overflow-y-auto pt-6 mt-16">
+        <aside
+          class="w-3/12 overflow-y-auto pt-6 mt-16 flex flex-col aside-right"
+        >
           <div class="mb-4">
             <smallAdsCard />
           </div>
-          <div>
-            <peopleAcrossTheGlobe />
-          </div>
+
+          <peopleAcrossTheGlobe />
         </aside>
       </div>
       <!-- end main container -->
@@ -58,3 +59,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.aside-right {
+  height: calc(100vh - 88px);
+}
+</style>
