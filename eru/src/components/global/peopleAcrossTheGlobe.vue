@@ -1,6 +1,6 @@
 <template>
   <div
-    class="dark:bg-gray-800 bg-grayLightMode-100 dark:text-sky-white text-grayLightMode-400 py-5 rounded-curl"
+    class="dark:bg-gray-800 bg-grayLightMode-100 dark:text-sky-white text-grayLightMode-400 py-5 rounded-curl flex flex-col flex-grow"
   >
     <div class="text-left px-5 __headerBgBlur">
       <div class="font-bold text-xl">Across the glob 🌍</div>
@@ -36,6 +36,7 @@
         <peopleGlobeCard v-for="n in 6" :key="n" :loading="true" />
       </div>
     </div>
+    <div class="flex-grow"></div>
     <div
       class="text-blue-light mt-4 text-left text-sm font-bold cursor-pointer select-none px-5"
     >
