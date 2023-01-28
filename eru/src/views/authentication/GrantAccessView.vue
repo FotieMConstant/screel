@@ -31,6 +31,9 @@ export default {
       } else if (authType == "google") {
         // passing `this` instance for later use in store
         this.$store.dispatch("authentication/googleAuthMeAction", this);
+      } else if (authType == "linkedin") {
+        // passing `this` instance for later use in store
+        this.$store.dispatch("authentication/linkedinAuthMeAction", this);
       } else if (authType == "twitter") {
         console.log("authentication/twitterAuthMeAction");
       } else {
