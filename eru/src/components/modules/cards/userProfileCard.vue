@@ -74,7 +74,9 @@
             {{ followersCount }}
           </div>
           <div class="dark:text-gray-300 font-medium text-grayLightMode-300">
-            followers
+            <router-link :to="`/u/` + userName + `/followers`"
+              >followers</router-link
+            >
           </div>
         </div>
         <div
@@ -85,7 +87,9 @@
             {{ followingsCount }}
           </div>
           <div class="dark:text-gray-300 font-medium text-grayLightMode-300">
-            following
+            <router-link :to="`/u/` + userName + `/following`"
+              >following</router-link
+            >
           </div>
         </div>
       </div>
