@@ -69,7 +69,7 @@
                 Follows you
               </div>
             </div>
-            <div>Istanbul, Turkey.</div>
+            <div>Yaoundé, Cameroon.</div>
           </div>
         </div>
 
