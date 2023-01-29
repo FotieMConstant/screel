@@ -5,31 +5,33 @@
       <!-- user profile banner -->
       <!-- if theUser object contain data -->
       <UserBannerProfile
-        v-if="theUser"
-        :key="theUser.user._id"
-        :userId="theUser.user._id"
-        :name="theUser.user.name"
-        :userName="theUser.user.username"
-        :profileImage="theUser.user.avatar"
-        :joinedDate="theUser.user.created_at"
-        :alreadyFollow="theUser.user.is_followed_by_current_screeler"
-        :alreadyFollowedByThatUser="theUser.user.is_following_current_screeler"
-        :followingsCount="theUser.user.followings_count"
-        :followersCount="theUser.user.followers_count"
+        v-if="userInView"
+        :key="userInView.user._id"
+        :userId="userInView.user._id"
+        :name="userInView.user.name"
+        :userName="userInView.user.username"
+        :profileImage="userInView.user.avatar"
+        :joinedDate="userInView.user.created_at"
+        :alreadyFollow="userInView.user.is_followed_by_current_screeler"
+        :alreadyFollowedByThatUser="
+          userInView.user.is_following_current_screeler
+        "
+        :followingsCount="userInView.user.followings_count"
+        :followersCount="userInView.user.followers_count"
       />
-      <!--/ if theUser object contain data -->
+      <!--/ if userInView object contain data -->
       <!-- else display loader -->
       <UserBannerProfile v-else :loading="true" />
       <!--/ else display loader -->
 
       <!--/ user profile banner -->
       <!-- switch tab -->
-      <!-- only show tab if there's theUser's data -->
-      <div v-if="theUser" class="flex font-bold mt-6 mb-4 space-x-20">
+      <!-- only show tab if there's userInView's data -->
+      <div v-if="userInView" class="flex font-bold mt-6 mb-4 space-x-20">
         <router-link
           :to="{
             name: 'ProfileView',
-            params: { username: theUser.user.username },
+            params: { username: userInView.user.username },
           }"
           class="relative"
         >
@@ -47,7 +49,7 @@
         <router-link
           :to="{
             name: 'UserEventsView',
-            params: { username: theUser.user.username },
+            params: { username: userInView.user.username },
           }"
           class="relative"
         >
@@ -69,9 +71,9 @@
       <!-- only how this tab if the user is on the ProfileView route -->
       <div v-if="whichRouteWeOn() === 'ProfileView'" class="pb-36">
         <!-- no screels found -->
-        <div v-if="theUser" class="mt-4 space-y-4">
+        <div v-if="userInView" class="mt-4 space-y-4">
           <div
-            v-if="theUser.screels.data.length == 0"
+            v-if="userInView.screels.data.length == 0"
             class="text-center py-3 px-20"
           >
             <div
@@ -80,25 +82,25 @@
               Nada, zip, zilch. No posts here!
             </div>
             <div class="text-sm text-gray-300">
-              @{{ theUser.user.username }}'s been too busy coding to post, it's
-              eerily quiet here!
+              @{{ userInView.user.username }}'s been too busy coding to post,
+              it's eerily quiet here!
             </div>
           </div>
           <!--/ no screels found -->
-          <!-- all theUser's screels -->
+          <!-- all userInView's screels -->
           <cardPost
             v-else
-            v-for="screel in theUser.screels.data"
+            v-for="screel in userInView.screels.data"
             :key="screel._id"
-            :profileImage="theUser.user.avatar"
-            :name="theUser.user.name"
-            :userName="theUser.user.username"
+            :profileImage="userInView.user.avatar"
+            :name="userInView.user.name"
+            :userName="userInView.user.username"
             :content="screel.content"
             :postedDate="screel.created_at"
             :tags="screel.tags"
             :loading="false"
           />
-          <!--/ all theUser's screels -->
+          <!--/ all userInView's screels -->
         </div>
         <div
           v-else
@@ -124,6 +126,7 @@
 import DefaultLayout from "@/components/Layout/DefaultLayout";
 import UserBannerProfile from "@/components/global/UserBannerProfile.vue";
 import cardPost from "@/components/modules/cards/cardPost.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "ProfileView",
@@ -143,8 +146,16 @@ export default {
     console.log(this.$route.params);
     this.getUserProfileToView(this.$route.params.username); //getting the username from the param url
   },
-  computed() {
-    this.getUserProfileToView(this.$route.params.username); //getting the username from the param url
+  computed: {
+    ...mapGetters({ userInView: ["user/getUserInView"] }),
+    // this.getUserProfileToView(this.$route.params.username); //getting the username from the param url
+  },
+
+  created() {
+    //clear previous userInView object
+    this.$store.commit("user/SET_USER_IN_VIEW_PROFILE", null, {
+      root: true,
+    });
   },
   // catching the route param changes and fetching the user data again
   beforeRouteUpdate(to, from, next) {
@@ -162,6 +173,12 @@ export default {
           data: userName,
         }
       );
+
+      this.$store.commit("user/SET_USER_IN_VIEW_PROFILE", responseProfileData, {
+        root: true,
+      }); // setting the user whose profile we want to view in the store
+
+      console.log(this.userInView.user);
       console.log("responseProfileData => ", responseProfileData);
       this.theUser = responseProfileData; //setting `theUser` we wanna view their profile
     },

@@ -393,6 +393,12 @@ export default {
       // console.log("Prop changed: ", newVal, " | was: ", oldVal);
       this.makeJoinedDateReadable();
     },
+
+    followersCount(newVal, oldVal) {
+      this.totalFollowersCount = newVal;
+
+      this.alreadyFollowUser = newVal > oldVal ? true : false;
+    },
   },
   computed: {
     // mapping to get current logged in user from store auth module

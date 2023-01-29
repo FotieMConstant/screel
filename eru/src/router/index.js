@@ -131,6 +131,7 @@ const router = createRouter({
   routes,
 });
 
+store.dispatch("authentication/getCurrentUser");
 const currentUser = store.getters["authentication/getCurrentUser"]; // getting current user
 console.log(currentUser);
 

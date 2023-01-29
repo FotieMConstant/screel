@@ -62,7 +62,7 @@ export default {
   },
   // follow user
   // eslint-disable-next-line no-unused-vars
-  async followUserAction({ commit }, payload) {
+  async followUserAction({ commit, state }, payload) {
     payload._vm.$Progress.start(); //start loader
 
     console.log("following user", payload);
@@ -74,7 +74,21 @@ export default {
           following_id: payload.following_id,
         }
       );
-      // console.log("follow response => ", response.data);
+
+      //increment followings count on user object
+
+      commit(
+        "authentication/SET_CURRENT_USER",
+        {
+          ...this.getters["authentication/getCurrentUser"],
+
+          followings_count:
+            this.getters["authentication/getCurrentUser"].followings_count + 1,
+        },
+        { root: true }
+      );
+
+      console.log("follow response => ", response.data);
       payload._vm.$Progress.finish(); //finish the loader
 
       return response.data; // returning what we got from the backend
@@ -103,6 +117,18 @@ export default {
           follower_id: payload.follower_id,
           following_id: payload.following_id,
         }
+      );
+
+      //reduce followings count on user object
+      commit(
+        "authentication/SET_CURRENT_USER",
+        {
+          ...this.getters["authentication/getCurrentUser"],
+
+          followings_count:
+            this.getters["authentication/getCurrentUser"].followings_count - 1,
+        },
+        { root: true }
       );
       // console.log("unfolllow response => ", response.data);
       payload._vm.$Progress.finish(); //finish the loader
