@@ -57,6 +57,10 @@ export default {
     // mapping to get current logged in user from store auth module
     ...mapGetters({ currentUser: ["authentication/getCurrentUser"] }),
   },
+
+  mounted() {
+    console.log("You have ", this.currentUser);
+  },
 };
 </script>
 
