@@ -135,15 +135,55 @@ export default {
     // function to follow user
     async followThisUser() {
       console.log("you wanna follow user", this.userId, this.userName);
+
+      console.log();
+
       // calling the follow function in module store
       let response = await this.$store.dispatch("user/followUserAction", {
         _vm: this,
         follower_id: this.currentUser._id, // page number to fetch
         following_id: this.userId,
       });
+
       console.log("follow response", response);
       if (response.status == "Success") {
         this.alreadyFollowUser = !this.alreadyFollowUser;
+
+        //if we are on the a user's profile view and the user is being followed,
+        // we update the followers count on his profile card
+
+        if (this.$route.name === "ProfileView") {
+          const currentUserInView = this.$store.getters["user/getUserInView"];
+          if (currentUserInView.user._id === this.currentUser._id) {
+            this.$store.commit(
+              "user/SET_USER_IN_VIEW_PROFILE",
+              {
+                ...currentUserInView,
+                user: {
+                  ...currentUserInView.user,
+                  followings_count: currentUserInView.user.followings_count + 1,
+                },
+              },
+              {
+                root: true,
+              }
+            );
+          } else if (currentUserInView.user._id == this.userId) {
+            this.$store.commit(
+              "user/SET_USER_IN_VIEW_PROFILE",
+              {
+                ...currentUserInView,
+                user: {
+                  ...currentUserInView.user,
+                  followers_count: currentUserInView.user.followers_count + 1,
+                },
+              },
+              {
+                root: true,
+              }
+            );
+          }
+        }
         // notification
         this.$toast.success(
           "You followed @" + this.userName + " successfully",
@@ -167,6 +207,42 @@ export default {
       console.log("unfollow response", response);
       if (response.status == "Success") {
         this.alreadyFollowUser = !this.alreadyFollowUser;
+
+        //if we are on the a user's profile view and the user is being unfollowed,
+        // we update the followers count on his profile card
+
+        if (this.$route.name === "ProfileView") {
+          const currentUserInView = this.$store.getters["user/getUserInView"];
+          if (currentUserInView.user._id === this.currentUser._id) {
+            this.$store.commit(
+              "user/SET_USER_IN_VIEW_PROFILE",
+              {
+                ...currentUserInView,
+                user: {
+                  ...currentUserInView.user,
+                  followings_count: currentUserInView.user.followings_count - 1,
+                },
+              },
+              {
+                root: true,
+              }
+            );
+          } else if (currentUserInView.user._id == this.userId) {
+            this.$store.commit(
+              "user/SET_USER_IN_VIEW_PROFILE",
+              {
+                ...currentUserInView,
+                user: {
+                  ...currentUserInView.user,
+                  followers_count: currentUserInView.user.followers_count - 1,
+                },
+              },
+              {
+                root: true,
+              }
+            );
+          }
+        }
         // notification
         this.$toast.info("You just unfollowed @" + this.userName, {
           position: "bottom",
