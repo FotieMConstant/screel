@@ -137,6 +137,27 @@ export default {
     // console.log("data from the actions module of auth=>", data);
   },
 
+  //action to get the current user data
+  async getCurrentUser({ commit } /*_vm*/) {
+    console.log("Getting current user!");
+
+    try {
+      let userData = await axios.get(
+        this.getters.getAPI_DOMAIN + "/api/v1/auth/me"
+      );
+      console.log("userData gotten=>", userData.data.data);
+
+      commit("SET_CURRENT_USER", userData.data.data); // setting logged in user to store
+
+      console.log("in state", store.getters["authentication/getCurrentUser"]);
+    } catch (err) {
+      console.log(err);
+      // _vm.$toast.error("Oh no, we are unable to get the current user", {
+      //   position: "bottom",
+      // });
+    }
+  },
+
   async logMeOut({ commit }, _vm) {
     console.log("logging user out");
 

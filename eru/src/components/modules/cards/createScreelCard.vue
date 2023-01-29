@@ -133,9 +133,9 @@ export default {
     this.typingPlaceholder();
     //Toggle class every 2 seconds
     setInterval(function () {
-      document
-        .getElementById("create-screel-btn")
-        .classList.toggle("shake-button");
+      const createScreelButton = document.getElementById("create-screel-btn");
+
+      createScreelButton && createScreelButton.classList.toggle("shake-button");
     }, 2000);
   },
   computed: {
