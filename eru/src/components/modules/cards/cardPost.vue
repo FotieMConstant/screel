@@ -71,6 +71,10 @@
     <div class="text-left dark:text-gray-300 px-10">
       <div v-html="addLinksToText(content)"></div>
       <div class="mt-2 text-left flex flex-wrap">
+        <!-- reactions button -->
+        <reactionsButton />
+        <!--/ reactions button -->
+
         <!-- <basicChip text="1k 😎" enableDropdownShadow /> -->
         <basicChip
           class="text-sm m-1"
@@ -89,10 +93,11 @@ import basicChip from "@/components/modules/chips/basicChip.vue";
 import cardPostLoading from "@/components/modules/skeleton-loaders/cardPostLoading.vue";
 import moment from "moment";
 import { formatDate, timeLeft } from "@/utils";
+import reactionsButton from "@/components/modules/buttons/reactionsButton.vue";
 
 export default {
   name: "cardPost",
-  components: { basicChip, cardPostLoading },
+  components: { basicChip, cardPostLoading, reactionsButton },
   props: {
     screelId: {
       type: String,
