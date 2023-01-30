@@ -41,3 +41,9 @@ export const isWithinTenMinutes = (dbTimestamp) => {
   const tenMinutesInMilliseconds = 10 * 60 * 1000; //the 10 is ten minutes
   return difference <= tenMinutesInMilliseconds;
 };
+
+let debounceTimer;
+export const debounce = (callback, time) => {
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(callback, time);
+};
