@@ -201,6 +201,8 @@ export default {
       }
       if (this.currentTag.length === 0) return; //don't search for empty strings
       let _vm = this;
+
+      // final request is made only 1.5s after user stops typing
       debounce(async () => {
         try {
           const result = await axios.get(
