@@ -36,7 +36,7 @@
     <div class="flex justify-between mt-3">
       <!-- for adding tags to post -->
       <div
-        class="flex flex-wrap space-x-1 ml-14 pl-1 py-1 w-full rounded-chip dark:bg-gray-700 bg-grayLightMode-100 dark:text-gray-300 text-grayLightMode-400 font-bold text-sm"
+        class="flex flex-wrap space-x-1 ml-14 pl-1 py-1 w-full rounded-chip dark:bg-gray-700 bg-grayLightMode-100 dark:text-gray-300 text-grayLightMode-400 font-bold text-sm relative"
       >
         <div
           v-for="(tag, index) in post.tags"
@@ -69,12 +69,31 @@
               : 'false'
           "
           class="dark:bg-gray-700 bg-grayLightMode-100 rounded-chip p-1 px-2.5 focus:outline-none dark:text-gray-200"
+          v-model="currentTag"
           @keydown.enter="addTag"
           @keydown.delete="removeLastTag"
           @keydown.space.prevent
-          onkeypress="return /[0-9a-zA-Z]/i.test(event.key)"
+          @input="displayTagSuggestions"
           :disabled="post.tags.length == maxAcceptedTags ? true : false"
         />
+
+        <!-- Tags suggestions dropdown -->
+
+        <transition name="fade">
+          <ul
+            v-if="currentTag && matchingTags.length > 0"
+            class="absolute top-[95%] -left-[3.5px] w-full p-2 z-10 shadow rounded-sm mx-auto max-h-72 overflow-auto dark:bg-gray-700 bg-grayLightMode-100"
+          >
+            <li
+              v-for="tag in matchingTags"
+              :key="`stag${tag._id}`"
+              class="text-left px-2 py-1 mb-2 border-b border-gray-700 cursor-pointer hover:bg-gray-600"
+              @click="chooseTag(tag.title)"
+            >
+              {{ tag.title }}
+            </li>
+          </ul>
+        </transition>
       </div>
       <!--/ for adding tags to post -->
       <div class="ml-2">
@@ -93,6 +112,8 @@
 <script>
 import regularButton from "@/components/modules/buttons/regularButton.vue";
 import { mapGetters } from "vuex";
+import axios from "@/axios";
+import { debounce } from "@/utils";
 
 export default {
   name: "createScreelCard",
@@ -126,7 +147,10 @@ export default {
       tagMessageStatus: "add a tag",
       maxAcceptedTags: 4, //maximum tags allowed
       maxAcceptedPostMessage: 200,
+      currentTag: "",
       post: { message: null, tags: [] }, //the post to be sent to the backedn
+
+      matchingTags: [],
     };
   },
   mounted: function () {
@@ -167,6 +191,32 @@ export default {
         });
       }
     },
+
+    async displayTagSuggestions(e) {
+      //allow only numbers and letters
+      if (!/[0-9a-zA-Z]/i.test(e.data)) {
+        e.preventDefault();
+        this.currentTag = this.currentTag.replace(e.data, "");
+        return;
+      }
+      if (this.currentTag.length === 0) return; //don't search for empty strings
+      let _vm = this;
+
+      // final request is made only 1.5s after user stops typing
+      debounce(async () => {
+        try {
+          const result = await axios.get(
+            _vm.$store.getters.getAPI_DOMAIN +
+              `/api/v1/tags/${_vm.currentTag}?per_page=50`
+          );
+          _vm.matchingTags = result.data.data.data;
+        } catch (err) {
+          this.$toast.error("Oh no, we are unable to load tags at the moment", {
+            position: "bottom",
+          });
+        }
+      }, 1500);
+    },
     addTag(event) {
       event.preventDefault();
       let val = event.target.value.trim().toLowerCase(); //making it lowercase aswell
@@ -180,10 +230,18 @@ export default {
         }
         this.post.tags.push("#" + val);
         event.target.value = "";
-        console.log(this.post.tags);
 
         this.checkTagsStatus();
+        this.currentTag = "";
+        this.matchingTags = [];
       }
+    },
+
+    chooseTag(tag) {
+      this.post.tags.push(tag.toLocaleLowerCase());
+      this.checkTagsStatus();
+      this.currentTag = "";
+      this.matchingTags = [];
     },
     removeTag(index) {
       this.post.tags.splice(index, 1);
