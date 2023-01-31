@@ -1,10 +1,10 @@
 <template>
   <div
-    class="rounded-curl dark:bg-gray-800 bg-grayLightMode-100 px-5 pb-5 mb-10"
+    class="rounded-curl dark:bg-gray-800 bg-grayLightMode-100 px-5 pb-14 mb-10"
   >
     <div class="text-left py-4">
       <p
-        class="text-gray-400 px-8 dark:text-grayLightMode-100 font-bold text-xl"
+        class="whitespace-nowrap text-gray-400 px-8 dark:text-grayLightMode-100 font-bold sm:text-lg lg:text-xl"
       >
         Cover and Profile Photo
       </p>
@@ -117,8 +117,10 @@
         Public Profile
       </p>
       <form class="w-full dark:text-gray-300 text-gray-400">
-        <div class="w-full mb-8 flex justify-between items-center">
-          <span class="w-1/2 mr-3">
+        <div
+          class="w-full mb-8 flex justify-between items-center lg:flex-nowrap sm:flex-wrap"
+        >
+          <span class="lg:w-1/2 mr-3 sm:w-full">
             <label for="name" class="ml-1">Display Name</label><br />
             <input
               id="name"
@@ -127,7 +129,7 @@
               class="w-full text-gray-300 dark:text-white focus:outline-0 dark:placeholder-gray-100 placeholder-gray-300 px-6 py-2 mt-4 rounded-curl bg-grayLightMode-50 dark:bg-gray-700"
             />
           </span>
-          <span class="w-1/2">
+          <span class="lg:w-1/2 sm:w-full">
             <label for="username" class="ml-1">Username</label><br />
             <input
               type="username"
@@ -144,8 +146,10 @@
         >
 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa, facere.</textarea
         >
-        <div class="w-full mb-8 flex justify-between items-center">
-          <span class="w-1/2">
+        <div
+          class="w-full mb-8 flex justify-between items-center lg:flex-nowrap sm:flex-wrap"
+        >
+          <span class="lg:w-1/2 sm:w-full">
             <label for="name" class="ml-1">Website</label><br />
             <input
               class="w-full text-gray-300 dark:text-white focus:outline-0 dark:placeholder-gray-100 placeholder-gray-300 px-6 py-2 mt-4 rounded-curl bg-grayLightMode-50 dark:bg-gray-700"
@@ -154,7 +158,7 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa, facere.</textar
               placeholder="Enter your link"
             />
           </span>
-          <span class="w-1/2 ml-3 flex flex-col">
+          <span class="lg:w-1/2 sm:w-full ml-3 flex flex-col">
             <label for="username" class="flex ml-2"
               >Flair :
               <svg
@@ -209,9 +213,11 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa, facere.</textar
           </h2>
           <p>Connect to other websites you want to share in your profile</p>
           <!-- social media buttons -->
-          <div class="flex justify-start align-center my-3">
+          <div
+            class="flex xl:justify-start sm:justify-center align-center xl:flex-nowrap flex-wrap my-3"
+          >
             <button
-              class="flex align-center py-2 px-6 mr-4 text-center bg-slate-300 rounded-curl text-gray-800 font-bold text-sm"
+              class="mt-2 flex align-center py-2 px-6 mr-4 text-center bg-slate-300 rounded-curl text-gray-800 font-bold text-sm"
             >
               <svg
                 aria-hidden="true"
@@ -229,7 +235,7 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa, facere.</textar
               <span class="ml-2">GitHub</span>
             </button>
             <button
-              class="flex align-center py-2 px-6 mr-4 text-center dark:bg-gray-700 bg-slate-200 rounded-curl dark:text-gray-300 text-sm font-bold"
+              class="mt-2 flex align-center py-2 px-6 mr-4 text-center dark:bg-gray-700 bg-slate-200 rounded-curl dark:text-gray-300 text-sm font-bold"
             >
               <svg
                 width="20"
@@ -248,7 +254,7 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa, facere.</textar
               <span class="ml-2">Twitter</span>
             </button>
             <button
-              class="flex align-center py-2 px-6 mr-4 text-center dark:bg-gray-700 bg-slate-200 rounded-curl dark:text-gray-300 text-sm font-bold"
+              class="mt-2 flex align-center py-2 px-6 mr-4 text-center dark:bg-gray-700 bg-slate-200 rounded-curl dark:text-gray-300 text-sm font-bold"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -265,7 +271,7 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa, facere.</textar
               <span class="ml-2">Discord</span>
             </button>
             <button
-              class="flex align-center py-2 px-6 mr-4 text-center dark:bg-gray-700 bg-slate-200 rounded-curl dark:text-gray-300 text-sm font-bold"
+              class="mt-2 flex align-center py-2 px-6 mr-4 text-center dark:bg-gray-700 bg-slate-200 rounded-curl dark:text-gray-300 text-sm font-bold"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
