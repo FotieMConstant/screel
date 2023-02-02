@@ -11,6 +11,22 @@
         "switchToDarkMode": "Switch Dark",
         "switchToLightMode": "Switch Light",
         "logOut": "Log out"
+      },
+      "ProfileSettingsView":{
+        "heading":"Cover and Profile Photo",
+        "displayName":"Display Name",
+        "edit":"Edit Cover",
+        "userName":"username",
+        "cancel":"cancel",
+        "linkedAccounts":"Linked Accounts",
+        "linkText":"Connect to other websites you want to share in your profile",
+        "website":"Website",
+        "save":"Save Changes",
+        "publicProfile":"Public Profile",
+        "link":"Enter your website link",
+      "placeholderUserName":"Enter your username",
+      "displayname":"Enter your name"
+
       }
     }
 }
