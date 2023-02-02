@@ -68,8 +68,9 @@
               ? 'placeholder-red-600'
               : 'false'
           "
-          class="dark:bg-gray-700 bg-grayLightMode-100 rounded-chip p-1 px-2.5 focus:outline-none dark:text-gray-200"
+          class="dark:bg-gray-700 bg-grayLightMode-100 rounded-chip p-1 px-2.5 focus:outline-none dark:text-gray-200 flex-grow"
           v-model="currentTag"
+          @click.stop="() => {}"
           @keydown.enter="addTag"
           @keydown.delete="removeLastTag"
           @keydown.space.prevent
@@ -82,7 +83,8 @@
         <transition name="fade">
           <ul
             v-if="currentTag && matchingTags.length > 0"
-            class="absolute top-[95%] -left-[3.5px] w-full p-2 z-10 shadow rounded-sm mx-auto max-h-72 overflow-auto dark:bg-gray-700 bg-grayLightMode-100"
+            @click.stop="() => {}"
+            class="tags-list absolute top-[95%] -left-[3.5px] w-full p-2 z-10 shadow rounded-sm mx-auto max-h-72 overflow-auto dark:bg-gray-700 bg-grayLightMode-100"
           >
             <li
               v-for="tag in matchingTags"
@@ -161,6 +163,13 @@ export default {
 
       createScreelButton && createScreelButton.classList.toggle("shake-button");
     }, 2000);
+
+    // if tags suggestion is open, close it when we click on the page
+    window.addEventListener("click", () => {
+      if (this.matchingTags.length > 0) {
+        this.matchingTags.length = [];
+      }
+    });
   },
   computed: {
     // mapping to get current logged in user from store auth module
@@ -215,7 +224,7 @@ export default {
             position: "bottom",
           });
         }
-      }, 1500);
+      }, 1200);
     },
     addTag(event) {
       event.preventDefault();
@@ -298,5 +307,22 @@ export default {
 /* to show lowercase while typing */
 #__tag {
   text-transform: lowercase;
+}
+
+.tags-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+.tags-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  /* border-radius: 5px; */
+}
+
+.tags-list::-webkit-scrollbar-thumb {
+  background: #888;
+  /* border-radius: 5px; */
+}
+.tags-list::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 </style>
