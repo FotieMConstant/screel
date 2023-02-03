@@ -6,7 +6,7 @@
       <p
         class="whitespace-nowrap text-gray-400 px-8 dark:text-grayLightMode-100 font-bold sm:text-lg lg:text-xl"
       >
-        Cover and Profile Photo
+        {{ $t("appBar.ProfileSettingsView.heading") }}
       </p>
     </div>
     <div
@@ -72,11 +72,36 @@
         <div
           class="text-white absolute text-left left-full w-full ml-6 -bottom-3"
         >
-          <div
-            class="dark:text-gray-100 text-2xl font whitespace-nowrap text-grayLightMode-400 font-bold"
-          >
-            {{ currentUser.name }}
-            <basicChip class="mt-1 text-xs" text="SS" />
+          <div class="flex justify-between items-end w-40 h-8">
+            <span
+              class="mr-2 dark:text-gray-100 text-2xl font whitespace-nowrap text-grayLightMode-400 font-bold"
+              >{{ currentUser.name }}</span
+            >
+
+            <svg
+              class="my-auto"
+              width="13"
+              height="13"
+              viewBox="0 0 11 11"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clip-path="url(#clip0_19620_1092)">
+                <path
+                  d="M0 3C0 1.34315 1.34315 0 3 0H8C9.65685 0 11 1.34315 11 3V8C11 9.65685 9.65685 11 8 11H3C1.34315 11 0 9.65685 0 8V3Z"
+                  fill="#F7DF1E"
+                ></path>
+                <path
+                  d="M2.89238 9.19241L3.73413 8.68297C3.89656 8.9709 4.04428 9.21454 4.39865 9.21454C4.73831 9.21454 4.95251 9.08168 4.95251 8.56485V5.05009H5.98621V8.57946C5.98621 9.65011 5.35861 10.1375 4.44295 10.1375C3.61601 10.1375 3.13605 9.70928 2.89238 9.19241ZM6.54769 9.08163L7.38936 8.59433C7.61095 8.95617 7.89892 9.22197 8.40836 9.22197C8.83672 9.22197 9.10983 9.00781 9.10983 8.71245C9.10983 8.35804 8.82924 8.23249 8.35667 8.02581L8.0983 7.91495C7.35249 7.59754 6.85779 7.19879 6.85779 6.35703C6.85779 5.5817 7.44848 4.99097 8.37149 4.99097C9.02866 4.99097 9.50123 5.2199 9.84085 5.81799L9.03596 6.3349C8.85872 6.0174 8.66682 5.89189 8.37145 5.89189C8.06869 5.89189 7.87671 6.08388 7.87671 6.3349C7.87671 6.64501 8.06869 6.7706 8.5117 6.96259L8.77011 7.07332C9.64883 7.44994 10.1435 7.83387 10.1435 8.69771C10.1435 9.62815 9.41254 10.1376 8.43049 10.1376C7.47061 10.1376 6.8504 9.67976 6.54769 9.08163Z"
+                  fill="black"
+                ></path>
+              </g>
+              <defs>
+                <clipPath id="clip0_19620_1092">
+                  <rect width="11" height="11" fill="white"></rect>
+                </clipPath>
+              </defs>
+            </svg>
           </div>
           <div class="text-gray-300 text-sm font">
             @{{ currentUser.username }}
@@ -84,25 +109,31 @@
         </div>
       </div>
       <!-- edit cover -->
-      <div class="flex w-full absolute px-10 left-3/4 bottom-3">
-        <input type="file" id="file" class="hidden" />
+      <div
+        class="flex justify-end items-end h-full w-full absolute -top-3 right-5"
+      >
+        <div>
+          <input type="file" id="file" class="hidden" />
 
-        <label
-          for="file"
-          class="bg-black/30 text-xs leading-5 h-5 text-center left-1/2 text-grayLightMode-100 flex row justify-center align-center"
-          ><svg
-            class="my-auto h-4"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M19.3 8.925L15.05 4.725L16.45 3.325C16.8333 2.94167 17.3043 2.75 17.863 2.75C18.421 2.75 18.8917 2.94167 19.275 3.325L20.675 4.725C21.0583 5.10833 21.2583 5.571 21.275 6.113C21.2917 6.65433 21.1083 7.11667 20.725 7.5L19.3 8.925ZM4 21C3.71667 21 3.47933 20.904 3.288 20.712C3.096 20.5207 3 20.2833 3 20V17.175C3 17.0417 3.025 16.9127 3.075 16.788C3.125 16.6627 3.2 16.55 3.3 16.45L13.6 6.15L17.85 10.4L7.55 20.7C7.45 20.8 7.33767 20.875 7.213 20.925C7.08767 20.975 6.95833 21 6.825 21H4Z"
-              fill="white"
-            />
-          </svg>
-          <span class="ml-1 text-xs pr-2">Edit Cover</span>
-        </label>
+          <label
+            for="file"
+            class="edit bg-black/30 text-xs leading-5 text-center left-1/2 text-grayLightMode-100 flex justify-center items-center"
+            ><svg
+              class="svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M19.3 8.925L15.05 4.725L16.45 3.325C16.8333 2.94167 17.3043 2.75 17.863 2.75C18.421 2.75 18.8917 2.94167 19.275 3.325L20.675 4.725C21.0583 5.10833 21.2583 5.571 21.275 6.113C21.2917 6.65433 21.1083 7.11667 20.725 7.5L19.3 8.925ZM4 21C3.71667 21 3.47933 20.904 3.288 20.712C3.096 20.5207 3 20.2833 3 20V17.175C3 17.0417 3.025 16.9127 3.075 16.788C3.125 16.6627 3.2 16.55 3.3 16.45L13.6 6.15L17.85 10.4L7.55 20.7C7.45 20.8 7.33767 20.875 7.213 20.925C7.08767 20.975 6.95833 21 6.825 21H4Z"
+                fill="white"
+              />
+            </svg>
+            <span class="ml-1 text-xs pr-2 whitespace-nowrap">{{
+              $t("appBar.ProfileSettingsView.edit")
+            }}</span>
+          </label>
+        </div>
       </div>
     </div>
 
@@ -112,29 +143,37 @@
     >
       <!-- <div class="text-left dark:text-grayLightMode-100 text-gray-800"> -->
       <p
-        class="text-xl ml-2 font-bold mb-5 dark:text-grayLightMode-100 text-gray-400"
+        class="text-xl ml-1 font-bold mb-5 dark:text-grayLightMode-100 text-gray-400"
       >
-        Public Profile
+        {{ $t("appBar.ProfileSettingsView.publicProfile") }}
       </p>
       <form class="w-full dark:text-gray-300 text-gray-400">
         <div
           class="w-full mb-8 flex justify-between items-center lg:flex-nowrap sm:flex-wrap"
         >
           <span class="lg:w-1/2 mr-3 sm:w-full">
-            <label for="name" class="ml-1">Display Name</label><br />
+            <label for="name" class="ml-1">{{
+              $t("appBar.ProfileSettingsView.displayName")
+            }}</label
+            ><br />
             <input
               id="name"
               type="text"
-              placeholder="Enter your name"
-              class="w-full text-gray-300 dark:text-white focus:outline-0 dark:placeholder-gray-100 placeholder-gray-300 px-6 py-2 mt-4 rounded-curl bg-grayLightMode-50 dark:bg-gray-700"
+              :placeholder="$t('appBar.ProfileSettingsView.displayname')"
+              class="w-full text-gray-300 dark:text-white focus:outline-0 dark:placeholder-gray-500 placeholder-gray-200 px-6 py-2 mt-4 rounded-curl bg-grayLightMode-50 dark:bg-gray-700"
             />
           </span>
           <span class="lg:w-1/2 sm:w-full">
-            <label for="username" class="ml-1">Username</label><br />
+            <label for="username" class="ml-1">{{
+              $t("appBar.ProfileSettingsView.userName")
+            }}</label
+            ><br />
             <input
               type="username"
-              placeholder="Enter your username"
-              class="w-full text-gray-300 dark:text-white dark:placeholder-gray-100 placeholder-gray-300 px-6 focus:outline-0 py-2 mt-4 rounded-curl bg-grayLightMode-50 dark:bg-gray-700"
+              :placeholder="
+                $t('appBar.ProfileSettingsView.placeholderUserName')
+              "
+              class="w-full text-gray-300 dark:text-white dark:placeholder-gray-500 placeholder-gray-200 px-6 focus:outline-0 py-2 mt-4 rounded-curl bg-grayLightMode-50 dark:bg-gray-700"
             />
           </span>
         </div>
@@ -142,7 +181,7 @@
         <textarea
           cols="10"
           rows="3"
-          class="outline-none dark:text-gray-100 text-gray-300 w-full rounded-curl mt-3 mb-4 bg-grayLightMode-50 dark:bg-gray-700 p-4"
+          class="outline-none dark:text-gray-100 text-gray-300 w-full rounded-curl mt-3 mb-4 bg-grayLightMode-50 dark:bg-gray-700 px-4 py-1 align-top"
         >
 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa, facere.</textarea
         >
@@ -150,57 +189,128 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa, facere.</textar
           class="w-full mb-8 flex justify-between items-center lg:flex-nowrap sm:flex-wrap"
         >
           <span class="lg:w-1/2 sm:w-full">
-            <label for="name" class="ml-1">Website</label><br />
+            <label for="name" class="ml-1">{{
+              $t("appBar.ProfileSettingsView.website")
+            }}</label
+            ><br />
             <input
-              class="w-full text-gray-300 dark:text-white focus:outline-0 dark:placeholder-gray-100 placeholder-gray-300 px-6 py-2 mt-4 rounded-curl bg-grayLightMode-50 dark:bg-gray-700"
+              class="w-full text-gray-300 dark:text-white focus:outline-0 dark:placeholder-gray-500 placeholder-gray-200 px-6 py-2 mt-4 rounded-curl bg-grayLightMode-50 dark:bg-gray-700"
               id="name"
               type="url"
-              placeholder="Enter your link"
+              :placeholder="$t('appBar.ProfileSettingsView.link')"
             />
           </span>
-          <span class="lg:w-1/2 sm:w-full ml-3 flex flex-col">
-            <label for="username" class="flex ml-2"
-              >Flair :
-              <svg
-                class="my-auto"
-                width="11"
-                height="11"
-                viewBox="0 0 11 11"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+          <span class="relative lg:w-1/2 sm:w-full sm:mt-2 ml-3 flex flex-col">
+            <div class="flex items-center ml-1 sm:ml-0">
+              <label class="w-16 h-7 flex justify-center items-center">
+                <span class="mb-9">Flair :</span>
+                <svg
+                  class="mb-9"
+                  width="11"
+                  height="11"
+                  viewBox="0 0 11 11"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_19620_1092)">
+                    <path
+                      d="M0 3C0 1.34315 1.34315 0 3 0H8C9.65685 0 11 1.34315 11 3V8C11 9.65685 9.65685 11 8 11H3C1.34315 11 0 9.65685 0 8V3Z"
+                      fill="#F7DF1E"
+                    ></path>
+                    <path
+                      d="M2.89238 9.19241L3.73413 8.68297C3.89656 8.9709 4.04428 9.21454 4.39865 9.21454C4.73831 9.21454 4.95251 9.08168 4.95251 8.56485V5.05009H5.98621V8.57946C5.98621 9.65011 5.35861 10.1375 4.44295 10.1375C3.61601 10.1375 3.13605 9.70928 2.89238 9.19241ZM6.54769 9.08163L7.38936 8.59433C7.61095 8.95617 7.89892 9.22197 8.40836 9.22197C8.83672 9.22197 9.10983 9.00781 9.10983 8.71245C9.10983 8.35804 8.82924 8.23249 8.35667 8.02581L8.0983 7.91495C7.35249 7.59754 6.85779 7.19879 6.85779 6.35703C6.85779 5.5817 7.44848 4.99097 8.37149 4.99097C9.02866 4.99097 9.50123 5.2199 9.84085 5.81799L9.03596 6.3349C8.85872 6.0174 8.66682 5.89189 8.37145 5.89189C8.06869 5.89189 7.87671 6.08388 7.87671 6.3349C7.87671 6.64501 8.06869 6.7706 8.5117 6.96259L8.77011 7.07332C9.64883 7.44994 10.1435 7.83387 10.1435 8.69771C10.1435 9.62815 9.41254 10.1376 8.43049 10.1376C7.47061 10.1376 6.8504 9.67976 6.54769 9.08163Z"
+                      fill="black"
+                    ></path>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_19620_1092">
+                      <rect width="11" height="11" fill="white"></rect>
+                    </clipPath>
+                  </defs></svg
+              ></label>
+            </div>
+            <br />
+            <!-- the select box -->
+            <div class="flex flex-col w-full absolute mt-6">
+              <div
+                class="relative scro order-1 max-h-0 opacity-0 bg-grayLightMode-50 dark:bg-gray-700 text-gray-300 dark:text-gray-300 w-full transition-all rounded-curl overflow-hidden"
               >
-                <g clip-path="url(#clip0_19620_1092)">
-                  <path
-                    d="M0 3C0 1.34315 1.34315 0 3 0H8C9.65685 0 11 1.34315 11 3V8C11 9.65685 9.65685 11 8 11H3C1.34315 11 0 9.65685 0 8V3Z"
-                    fill="#F7DF1E"
-                  ></path>
-                  <path
-                    d="M2.89238 9.19241L3.73413 8.68297C3.89656 8.9709 4.04428 9.21454 4.39865 9.21454C4.73831 9.21454 4.95251 9.08168 4.95251 8.56485V5.05009H5.98621V8.57946C5.98621 9.65011 5.35861 10.1375 4.44295 10.1375C3.61601 10.1375 3.13605 9.70928 2.89238 9.19241ZM6.54769 9.08163L7.38936 8.59433C7.61095 8.95617 7.89892 9.22197 8.40836 9.22197C8.83672 9.22197 9.10983 9.00781 9.10983 8.71245C9.10983 8.35804 8.82924 8.23249 8.35667 8.02581L8.0983 7.91495C7.35249 7.59754 6.85779 7.19879 6.85779 6.35703C6.85779 5.5817 7.44848 4.99097 8.37149 4.99097C9.02866 4.99097 9.50123 5.2199 9.84085 5.81799L9.03596 6.3349C8.85872 6.0174 8.66682 5.89189 8.37145 5.89189C8.06869 5.89189 7.87671 6.08388 7.87671 6.3349C7.87671 6.64501 8.06869 6.7706 8.5117 6.96259L8.77011 7.07332C9.64883 7.44994 10.1435 7.83387 10.1435 8.69771C10.1435 9.62815 9.41254 10.1376 8.43049 10.1376C7.47061 10.1376 6.8504 9.67976 6.54769 9.08163Z"
-                    fill="black"
-                  ></path>
-                </g>
-                <defs>
-                  <clipPath id="clip0_19620_1092">
-                    <rect width="11" height="11" fill="white"></rect>
-                  </clipPath>
-                </defs></svg></label
-            ><br />
-            <select
-              class="focus:outline-0 text-gray-300 dark:text-white placeholder-gray-100 px-6 rounded-curl w-full py-3 bg-grayLightMode-50 dark:bg-gray-700"
-            >
-              <option value="javascript" class="color">javascript</option>
-              <option value="javascript" class="color">typescript</option>
-              <option value="javascript" class="color">python</option>
-            </select>
+                <div
+                  class="option text-sm transition-all py-2 px-6 cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    id="javascript"
+                    name="langauges"
+                    class="hidden"
+                  />
+                  <label class="cursor-pointer" for="javascript"
+                    >Javascript</label
+                  >
+                </div>
+                <div
+                  class="option text-sm transition-all py-2 px-6 cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    id="python"
+                    name="langauges"
+                    class="hidden"
+                  />
+                  <label class="cursor-pointer" for="python">Python</label>
+                </div>
+                <div
+                  class="option text-sm transition-all py-2 px-6 cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    id="java"
+                    name="langauges"
+                    class="hidden"
+                  />
+                  <label class="cursor-pointer" for="java">Java</label>
+                </div>
+                <div
+                  class="option text-sm transition-all py-2 px-6 cursor-pointer"
+                >
+                  <input type="radio" id="c#" name="langauges" class="hidden" />
+                  <label class="cursor-pointer" for="C#">C#</label>
+                </div>
+                <div class="option transition-all py-2 px-6 cursor-pointer">
+                  <input type="radio" id="c++" name="c++" class="hidden" />
+                  <label class="cursor-pointer" for="c++">C++</label>
+                </div>
+                <div
+                  class="option text-sm transition-all py-2 px-6 cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    id="haskell"
+                    name="haskell"
+                    class="hidden"
+                  />
+                  <label class="cursor-pointer" for="haskell">Haskell</label>
+                </div>
+              </div>
+              <div
+                @click="activateDropdown"
+                class="text-gray-300 cursor-pointer dark:text-gray-300 px-4 py-2 selected rounded-curl mb-2 relative bg-white dark:bg-gray-700"
+              >
+                Javascript
+              </div>
+            </div>
           </span>
         </div>
         <div class="mb-4">
-          <regular-button text="Save Changes" state="regular"></regular-button>
+          <regular-button
+            :text="$t('appBar.ProfileSettingsView.save')"
+            state="regular"
+          ></regular-button>
           <a
             href="#"
-            class="dark:text-grayLightMode-200 text-gray-400 text-sm underline ml-10 transition ease-out duration-300 hover:text-blue-700"
+            class="cancel dark:text-grayLightMode-200 text-gray-800 text-sm underline ml-10 transition ease-out duration-300"
           >
-            Cancel</a
+            {{ $t("appBar.ProfileSettingsView.cancel") }}</a
           >
         </div>
       </form>
@@ -209,9 +319,9 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa, facere.</textar
         <h2
           class="text-xl font-bold dark:text-grayLightMode-100 text-gray-700 mb-2"
         >
-          Linked Accounts
+          {{ $t("appBar.ProfileSettingsView.linkedAccounts") }}
         </h2>
-        <p>Connect to other websites you want to share in your profile</p>
+        <p>{{ $t("appBar.ProfileSettingsView.linkText") }}</p>
         <!-- social media buttons -->
         <div
           class="flex xl:justify-start sm:justify-center align-center xl:flex-nowrap flex-wrap my-3"
@@ -235,7 +345,7 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa, facere.</textar
             <span class="ml-2">GitHub</span>
           </button>
           <button
-            class="mt-2 flex align-center py-2 px-6 mr-4 text-center dark:bg-gray-700 bg-slate-200 rounded-curl dark:text-gray-300 text-sm font-bold"
+            class="btn mt-2 flex align-center py-2 px-6 mr-4 text-center dark:bg-gray-700 bg-gray-200 rounded-curl dark:text-gray-300 text-sm font-bold"
           >
             <svg
               width="20"
@@ -254,7 +364,7 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa, facere.</textar
             <span class="ml-2">Twitter</span>
           </button>
           <button
-            class="mt-2 flex align-center py-2 px-6 mr-4 text-center dark:bg-gray-700 bg-slate-200 rounded-curl dark:text-gray-300 text-sm font-bold"
+            class="btn mt-2 flex align-center py-2 px-6 mr-4 text-center dark:bg-gray-700 bg-gray-200 rounded-curl dark:text-gray-300 text-sm font-bold"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -271,7 +381,7 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa, facere.</textar
             <span class="ml-2">Discord</span>
           </button>
           <button
-            class="mt-2 flex align-center py-2 px-6 mr-4 text-center dark:bg-gray-700 bg-slate-200 rounded-curl dark:text-gray-300 text-sm font-bold"
+            class="btn mt-2 flex align-center py-2 px-6 mr-4 text-center dark:bg-gray-700 bg-gray-200 rounded-curl dark:text-gray-300 text-sm font-bold"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -323,25 +433,77 @@ export default {
     // mapping to get current logged in user from store auth module
     ...mapGetters({ currentUser: ["authentication/getCurrentUser"] }),
   },
+  methods: {
+    activateDropdown() {
+      const optionContainer = this.$el.querySelector(".scro");
+      const option = this.$el.querySelectorAll(".option");
+      const selected = this.$el.querySelector(".selected");
+
+      optionContainer.classList.toggle("active");
+      option.forEach((element) => {
+        element.addEventListener("click", () => {
+          selected.innerHTML = element.querySelector("label").innerHTML;
+          optionContainer.classList.remove("active");
+        });
+      });
+    },
+  },
 };
 </script>
 
 <style scoped>
-select * {
-  border-radius: 15px;
-  padding: 10px;
-  color: #fff;
+.option:hover {
+  background: #aaabac;
+  color: #36383a;
 }
-.color {
-  color: gray;
-  font-weight: 500;
-  line-height: 10px;
+.scro.active {
+  max-height: 150px;
+  opacity: 1;
+  overflow-y: scroll;
 }
-button {
+.scro::-webkit-scrollbar {
+  width: 6px;
+  background: #474747;
+  border-radius: 0 8px 8px 0;
+}
+.scro::-webkit-scrollbar-thumb {
+  background: #767777;
+  border-radius: 8px 8px 8px 8px;
+}
+.selected::after {
+  content: "";
+  background: url(../../../public/img/icons/arrow-drop.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  height: 100%;
+  width: 32px;
+  right: 10px;
+  top: 5px;
+  transition: all 0.4s;
+}
+.scro.active + .selected::after {
+  transform: rotateX(180deg);
+  top: -6px;
+}
+.btn {
   transition: 0.5s;
 }
-button:hover {
-  background: rgba(255, 255, 255, 0.7);
+.btn:hover {
+  color: rgba(255, 255, 255);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.edit {
+  width: auto;
+  height: 28px;
+  border-radius: 7px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+.svg {
+  height: 13px;
+}
+.cancel:hover {
+  color: rgb(85, 85, 248);
 }
 </style>
