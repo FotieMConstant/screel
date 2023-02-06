@@ -227,7 +227,7 @@ export default {
             position: "bottom",
           });
         }
-      }, 1200);
+      }, 800);
     },
     addTag(event) {
       event.preventDefault();
