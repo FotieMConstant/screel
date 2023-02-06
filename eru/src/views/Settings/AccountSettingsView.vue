@@ -77,7 +77,7 @@
       </p>
       <RegularButton
         state="regular"
-        classes="bg-red-500 dark:bg-red-500 rounded-chip"
+        classes="bg-red-500 dark:bg-red-500 hover:bg-red-400 dark:hover:bg-red-400 transition-colors rounded-chip"
         text="Delete your account"
       ></RegularButton>
     </div>
