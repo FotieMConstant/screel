@@ -1,8 +1,8 @@
 <template>
   <!-- Component for radio button-based settings item -->
   <li
-    class="bg-gray-900 rounded-curl p-5 flex items-start mb-3"
-    :class="{ 'text-gray-300': !isSelected }"
+    class="bg-grayLightMode-200 dark:bg-gray-900 rounded-curl p-5 flex items-start mb-3"
+    :class="{ ' text-gray-300': !isSelected }"
   >
     <slot name="leading"></slot>
     <div>

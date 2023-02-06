@@ -1,5 +1,7 @@
 <template>
-  <main class="rounded-curl bg-[#151A21] p-6 text-black dark:text-gray-100">
+  <main
+    class="rounded-curl dark:bg-[#151A21] bg-grayLightMode-100 p-6 text-gray-400 dark:text-gray-100"
+  >
     <h1 class="font-bold text-left mb-4">Status</h1>
 
     <ul class="mb-10">
@@ -66,14 +68,16 @@
     </ul>
 
     <h1 class="font-bold text-left mb-4">Delete Account</h1>
-    <div class="bg-gray-900 rounded-curl p-5 items-start mb-3 flex flex-col">
+    <div
+      class="bg-grayLightMode-200 dark:bg-gray-900 rounded-curl p-5 items-start mb-3 flex flex-col"
+    >
       <p class="mb-4 text-left">
         This is a one way operation, once you delete your account there is no
         going back. Please be certain.
       </p>
       <RegularButton
         state="regular"
-        classes="bg-blue-accent rounded-chip"
+        classes="bg-red-500 dark:bg-red-500 rounded-chip"
         text="Delete your account"
       ></RegularButton>
     </div>
@@ -109,18 +113,4 @@ export default {
 };
 </script>
 
-<style>
-.t-radio {
-  @apply w-6 h-6 appearance-none bg-transparent m-0 border-2 border-blue-accent rounded-full;
-  @apply relative place-content-center cursor-pointer;
-}
-.t-radio::before {
-  content: "";
-  @apply absolute w-3 h-3 block rounded-full bg-blue-light;
-  @apply left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 scale-0 transition-transform;
-}
-
-.t-radio:checked::before {
-  @apply left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 scale-100;
-}
-</style>
+<style></style>
