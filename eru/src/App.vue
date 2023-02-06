@@ -92,6 +92,13 @@ export default {
       // Here the actual reload of the page occurs
       window.location.reload();
     });
+
+    // window.Echo.private("testchannel").listen(".UserEvent", (e) => {
+    //   console.log("test successful ", e);
+    // });
+    window.Echo.channel("testchannel").listen(".UserEvent", (e) => {
+      console.log("test successful ", e);
+    });
   },
   methods: {
     //updateAvailable function

@@ -35,6 +35,12 @@ export default {
       } else {
         window.location.href = "/";
       }
+      _vm.$echo
+        .private(`user.${userData.data.data._id}`)
+        .notification((notification) => {
+          console.log("notification ==>> ", notification);
+          // this.handleNotification(notification);
+        });
       sessionStorage.clear(); //clear sessionStorage after redirecting
     } catch (error) {
       // handle error
