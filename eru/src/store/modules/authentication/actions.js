@@ -168,6 +168,7 @@ export default {
         console.log(response);
 
         commit("SET_CURRENT_USER", null); // setting user to null in user to store
+        commit("SET_ACCESSTOKEN", null); // setting the access token to null in the store
         // redirect user to login after cleaning store
         window.location.href = "/login";
 
