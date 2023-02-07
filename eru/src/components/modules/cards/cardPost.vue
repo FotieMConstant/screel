@@ -70,15 +70,21 @@
     </div>
     <div class="text-left dark:text-gray-300 px-10">
       <div v-html="addLinksToText(content)"></div>
-      <div class="mt-2 text-left flex flex-wrap">
-        <!-- <basicChip text="1k 😎" enableDropdownShadow /> -->
+    </div>
+    <div class="mt-4 pl-10 dark:text-gray-300 text-left flex justify-between">
+      <div>
+        <!-- reactions button -->
+        <reactionsButton />
+        <!--/ reactions button -->
+      </div>
+
+      <div class="text-left flex flex-wrap">
         <basicChip
           class="text-sm m-1"
           v-for="tag in tags"
           :key="tag"
           :text="tag.title"
         />
-        <!-- the dropdownShadowColor should be a valide tailwind color palette -->
       </div>
     </div>
   </div>
@@ -89,10 +95,11 @@ import basicChip from "@/components/modules/chips/basicChip.vue";
 import cardPostLoading from "@/components/modules/skeleton-loaders/cardPostLoading.vue";
 import moment from "moment";
 import { formatDate, timeLeft } from "@/utils";
+import reactionsButton from "@/components/modules/buttons/reactionsButton.vue";
 
 export default {
   name: "cardPost",
-  components: { basicChip, cardPostLoading },
+  components: { basicChip, cardPostLoading, reactionsButton },
   props: {
     screelId: {
       type: String,
