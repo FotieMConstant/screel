@@ -41,3 +41,11 @@ export const isWithinTenMinutes = (dbTimestamp) => {
   const tenMinutesInMilliseconds = 10 * 60 * 1000; //the 10 is ten minutes
   return difference <= tenMinutesInMilliseconds;
 };
+
+//debounce function permits us to call a function only after a specified timeout no matter
+// how many times it is called in the code
+let debounceTimer;
+export const debounce = (callback, time) => {
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(callback, time);
+};
