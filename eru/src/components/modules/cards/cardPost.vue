@@ -74,7 +74,11 @@
     <div class="mt-4 pl-10 dark:text-gray-300 text-left flex justify-between">
       <div>
         <!-- reactions button -->
-        <reactionsButton />
+        <reactionsButton
+          :screelReactions="screelReactions"
+          :screelId="screelId"
+          @reactOnScreel="reactOnScreel1"
+        />
         <!--/ reactions button -->
       </div>
 
@@ -136,6 +140,12 @@ export default {
       type: Boolean,
       default: true,
     },
+    screelReactions: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
   },
   data() {
     return {
@@ -166,6 +176,9 @@ export default {
         }
       }
       return output;
+    },
+    reactOnScreel1(payload) {
+      this.$emit("reactOnScreelFinal", payload);
     },
   },
 };

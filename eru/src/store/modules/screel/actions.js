@@ -48,10 +48,10 @@ export default {
   async getUserFeedsAction({ commit }, payload) {
     payload._vm.$Progress.start(); //start loader
 
-    console.log("getting feeds from backend $this object=> ", payload);
-    const currentUser = store.getters["authentication/getCurrentUser"];
-    console.log("user_id", currentUser._id);
-    console.log("page number to fetch is=> ", payload.pageNumber);
+    // console.log("getting feeds from backend $this object=> ", payload);
+    // const currentUser = store.getters["authentication/getCurrentUser"];
+    // console.log("user_id", currentUser._id);
+    // console.log("page number to fetch is=> ", payload.pageNumber);
 
     try {
       let response = await axios.get(
@@ -61,7 +61,65 @@ export default {
       );
       payload._vm.$Progress.finish(); //finish the loader
       // displaying toast of success
-      console.log("response from backend=> ", response.data.data);
+
+      return response.data.data; // returning response
+    } catch (error) {
+      // handle error
+      console.log(error);
+      payload._vm.$Progress.fail(); //fail the loader
+      payload._vm.$toast.error(
+        "Oh no, an error has occurred: " + error.message,
+        {
+          position: "bottom",
+        }
+      );
+    }
+  },
+  async getAvailableReactionsAction({ commit }, payload) {
+    payload._vm.$Progress.start(); //start loader
+
+    try {
+      let response = await axios.get(
+        this.getters.getAPI_DOMAIN + "/api/v1/reactions"
+      );
+      payload._vm.$Progress.finish(); //finish the loader
+      // displaying toast of success
+
+      //UPDATE availableReactions
+      commit("screel/SET_AVAILABLE_REACTIONS", response.data.data, {
+        root: true,
+      });
+      return response.data.data; // returning response
+    } catch (error) {
+      // handle error
+      console.log(error);
+      payload._vm.$Progress.fail(); //fail the loader
+      payload._vm.$toast.error(
+        "Oh no, an error has occurred: " + error.message,
+        {
+          position: "bottom",
+        }
+      );
+    }
+  },
+  // eslint-disable-next-line no-unused-vars
+  async reacOnScreelAction({ commit }, payload) {
+    payload._vm.$Progress.start(); //start loader
+
+    try {
+      let response = await axios.post(
+        this.getters.getAPI_DOMAIN + "/api/v1/screel/react",
+        {
+          screel_id: payload.screel_id,
+          reaction_id: payload.reaction_id,
+        }
+      );
+      payload._vm.$Progress.finish(); //finish the loader
+      // displaying toast of success
+      //UPDATE HIT SCREEL
+      // commit("screel/UPDATE_HIT_SCEEL", response.data.data, {
+      //   root: true,
+      // });
       return response.data.data; // returning response
     } catch (error) {
       // handle error

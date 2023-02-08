@@ -38,6 +38,7 @@
           <cardPost
             v-for="feed in allFeed"
             :key="feed._id"
+            :screel-id="feed._id"
             :profileImage="feed.owner.avatar"
             :name="feed.owner.name"
             :userName="feed.owner.username"
@@ -45,6 +46,8 @@
             :postedDate="feed.created_at"
             :tags="feed.tags"
             :loading="false"
+            :screel-reactions="feed.screel_reactions"
+            @reactOnScreelFinal="reactOnScreelFinal"
           />
           <!--/ allFeed contains data -->
         </div>
@@ -55,7 +58,7 @@
           class="mt-4 space-y-4"
         >
           <!-- allFeed contains no data -->
-          <cardPost :loading="true" />
+          <cardPost :loading="true" @reactOnScreelFinal="reactOnScreelFinal" />
           <!--/ allFeed contains no data -->
         </div>
       </div>
@@ -107,6 +110,9 @@ export default {
   },
   mounted() {
     this.myFeed(this.defaultNumberToFetch);
+    this.$store.dispatch("screel/getAvailableReactionsAction", {
+      _vm: this, //send context to the store
+    });
   },
   methods: {
     // function to call for the action from store to fetch for feeds from the backend
@@ -140,6 +146,18 @@ export default {
             );
           }
         }
+      }
+    },
+    async reactOnScreelFinal(payload) {
+      Object.assign(payload, { _vm: this });
+      const res = await this.$store.dispatch(
+        "screel/reacOnScreelAction",
+        payload
+      );
+
+      const idx = this.allFeed.findIndex((screel) => screel._id === res._id);
+      if (idx >= 0) {
+        this.allFeed.splice(idx, 1, res);
       }
     },
   },

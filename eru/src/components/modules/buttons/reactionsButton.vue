@@ -43,13 +43,13 @@
             >
               <div
                 @click="addEmojiToActiveList(emoj)"
-                v-for="emoj in emojisList"
-                :key="emoj.id"
+                v-for="emoj in availableReactions"
+                :key="emoj._id"
                 class="my-auto mt-1 wiggle"
               >
                 <img
                   class="h-6 transform transition duration-500 hover:scale-150"
-                  :src="emoj.animatedEmoj"
+                  :src="emoj.external_link"
                   alt=""
                   srcset=""
                 />
@@ -62,15 +62,20 @@
 
       <!-- selected emojis listing -->
       <Transition>
-        <div v-if="activeEmojiList.length != 0" class="flex space-x-1">
+        <div v-if="screelReactions.length != 0" class="flex space-x-1">
           <div
-            v-for="activeEmoji in activeEmojiList"
-            :key="activeEmoji.id"
+            v-for="activeEmoji in screelReactions"
+            :key="activeEmoji._id"
             @click="reactToAlreadyExisting(activeEmoji)"
             class="flex space-x-1 dark:bg-gray-700 border dark:border-gray-600 bg-grayLightMode-200 dark:text-gray-300 text-grayLightMode-400 px-2 py-1 my-auto rounded-curl font-bold select-none cursor-pointer text-sm m-1"
           >
             <!-- if the user has selected his prefered emoji -->
-            <img class="h-5" :src="activeEmoji.animatedEmoj" alt="" srcset="" />
+            <img
+              class="h-5"
+              :src="activeEmoji.reaction.external_link"
+              alt=""
+              srcset=""
+            />
             <div class="my-auto">{{ activeEmoji.count }}</div>
           </div>
         </div>
@@ -81,8 +86,22 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "reactionsButton",
+  props: {
+    screelId: {
+      type: String,
+      default: null,
+    },
+    screelReactions: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
+  },
   data() {
     return {
       activeEmojiList: [],
@@ -119,43 +138,61 @@ export default {
       ],
     };
   },
+  computed: {
+    // mapping to get available Reactions from store screel module
+    ...mapGetters({ availableReactions: ["screel/getAvailableReactions"] }),
+  },
   methods: {
     addEmojiToActiveList(emojToAdd) {
-      this.toggleShowEmojiList = !this.toggleShowEmojiList;
-
-      console.log("addEmojiToActiveList=> ", emojToAdd);
-      // check if not already existing in the active emojis
-
-      let alreadyUsed = false; // if item is already used
-      for (let i = 0; i < this.activeEmojiList.length; i++) {
-        console.log(emojToAdd.id, ",", this.activeEmojiList[i].id);
-        if (emojToAdd.id === this.activeEmojiList[i].id) {
-          alreadyUsed = true;
-          break;
-        }
-      }
-
-      console.log("already used this emoji? => ", alreadyUsed);
-      if (alreadyUsed) {
-        console.log("you already used this emoji");
-      } else {
-        emojToAdd.count++; // increasing the counter at ui level
-        this.activeEmojiList.push(emojToAdd);
-      }
+      this.$emit("reactOnScreel", {
+        screel_id: this.screelId,
+        reaction_id: emojToAdd._id,
+      });
+      // this.toggleShowEmojiList = !this.toggleShowEmojiList;
+      //
+      // console.log("addEmojiToActiveList=> ", emojToAdd);
+      // // check if not already existing in the active emojis
+      //
+      // let alreadyUsed = false; // if item is already used
+      // for (let i = 0; i < this.activeEmojiList.length; i++) {
+      //   console.log(emojToAdd.id, ",", this.activeEmojiList[i].id);
+      //   if (emojToAdd.id === this.activeEmojiList[i].id) {
+      //     alreadyUsed = true;
+      //     break;
+      //   }
+      // }
+      //
+      // console.log("already used this emoji? => ", alreadyUsed);
+      // if (alreadyUsed) {
+      //   console.log("you already used this emoji");
+      // } else {
+      //   emojToAdd.count++; // increasing the counter at ui level
+      //   this.activeEmojiList.push(emojToAdd);
+      // }
       // console.log("after adding: ", this.activeEmojiList);
     },
     reactToAlreadyExisting(emojToReact) {
-      this.activeEmojiList.map((item, index) => {
-        // when we find the id we remove it
-        if (item.id === emojToReact.id) {
-          console.log("removeing item with id", item.id);
-          emojToReact.count--; // reducing the counter at ui level
-          // only remove it from the ui if the counter is 0
-          if (emojToReact.count === 0) {
-            this.activeEmojiList.splice(index, 1);
-          }
-        }
+      // this.$store.dispatch("screel/reacToScreelAction", {
+      //   screel_id: this.screelId,
+      //   reaction_id: emojToReact.reaction._id,
+      //   _vm: this, //send context to the store
+      // });
+
+      this.$emit("reactOnScreel", {
+        screel_id: this.screelId,
+        reaction_id: emojToReact.reaction._id,
       });
+      // this.activeEmojiList.map((item, index) => {
+      //   // when we find the id we remove it
+      //   if (item.id === emojToReact.id) {
+      //     console.log("removeing item with id", item.id);
+      //     emojToReact.count--; // reducing the counter at ui level
+      //     // only remove it from the ui if the counter is 0
+      //     if (emojToReact.count === 0) {
+      //       this.activeEmojiList.splice(index, 1);
+      //     }
+      //   }
+      // });
     },
   },
 };
