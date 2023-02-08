@@ -77,7 +77,7 @@
       </p>
       <RegularButton
         state="regular"
-        classes="bg-red-500 dark:bg-red-500 hover:bg-red-400 dark:hover:bg-red-400 transition-colors rounded-chip"
+        classes="delete-account-but transition-colors rounded-chip"
         text="Delete your account"
       ></RegularButton>
     </div>
@@ -107,4 +107,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.delete-account-but {
+  @apply bg-red-500 dark:bg-red-500 hover:bg-red-400 dark:hover:bg-red-400 !important;
+}
+</style>
