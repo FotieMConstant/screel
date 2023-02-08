@@ -1,6 +1,6 @@
 <template>
   <main
-    class="rounded-curl dark:bg-[#151A21] bg-grayLightMode-100 p-6 text-gray-400 dark:text-gray-100"
+    class="rounded-curl dark:bg-[#151A21] bg-grayLightMode-100 p-6 text-gray-400 dark:text-gray-100 mb-4"
   >
     <h1 class="font-bold text-left mb-4">Status</h1>
 
@@ -98,12 +98,6 @@ export default {
     return {
       statusValue: "online",
     };
-  },
-
-  watch: {
-    statusValue(newVal) {
-      console.log(newVal);
-    },
   },
 
   components: {
