@@ -8,7 +8,7 @@ export default {
   async getSpecificUserAction({ commit }, payload) {
     payload._vm.$Progress.start(); //start loader
 
-    console.log("posting this to the backend", payload);
+    // console.log("posting this to the backend", payload);
     try {
       let response = await axios.get(
         this.getters.getAPI_DOMAIN + "/api/v1/auth/" + payload.data
@@ -34,7 +34,7 @@ export default {
   async getUsersAcrossTheGlobeAction({ commit }, payload) {
     payload._vm.$Progress.start(); //start loader
 
-    console.log("getting all users across the globe", payload);
+    // console.log("getting all users across the globe", payload);
     try {
       let response = await axios.get(
         this.getters.getAPI_DOMAIN +
@@ -65,7 +65,7 @@ export default {
   async followUserAction({ commit, state }, payload) {
     payload._vm.$Progress.start(); //start loader
 
-    console.log("following user", payload);
+    // console.log("following user", payload);
     try {
       let response = await axios.post(
         this.getters.getAPI_DOMAIN + "/api/v1/screelers/follow",
@@ -88,7 +88,7 @@ export default {
         { root: true }
       );
 
-      console.log("follow response => ", response.data);
+      // console.log("follow response => ", response.data);
       payload._vm.$Progress.finish(); //finish the loader
 
       return response.data; // returning what we got from the backend
@@ -109,7 +109,7 @@ export default {
   async unFollowUserAction({ commit }, payload) {
     payload._vm.$Progress.start(); //start loader
 
-    console.log("following user", payload);
+    // console.log("following user", payload);
     try {
       let response = await axios.post(
         this.getters.getAPI_DOMAIN + "/api/v1/screelers/unfollow",
@@ -151,7 +151,7 @@ export default {
   async getUsersFollowers({ commit }, payload) {
     payload._vm.$Progress.start(); //start loader
 
-    console.log("followers of user", payload);
+    // console.log("followers of user", payload);
     try {
       let response = await axios.get(
         this.getters.getAPI_DOMAIN +
@@ -182,7 +182,7 @@ export default {
   async getUsersFollowerings({ commit }, payload) {
     payload._vm.$Progress.start(); //start loader
 
-    console.log("followers of user", payload);
+    // console.log("followers of user", payload);
     try {
       let response = await axios.get(
         this.getters.getAPI_DOMAIN +
