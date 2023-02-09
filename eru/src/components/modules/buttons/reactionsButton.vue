@@ -76,10 +76,10 @@
             :key="activeEmoji._id"
             @click="reactToAlreadyExisting(activeEmoji)"
             :class="
-              'flex space-x-1 border dark:border-gray-600 bg-grayLightMode-200 dark:text-gray-300 text-grayLightMode-400 px-2 py-1 my-auto rounded-curl font-bold select-none cursor-pointer text-sm m-1 ' +
+              'flex space-x-1 bg-grayLightMode-200 dark:text-gray-300 text-grayLightMode-400 px-2 py-1 my-auto rounded-curl font-bold select-none cursor-pointer text-sm m-1 ' +
               (activeEmoji.screeler_ids &&
               activeEmoji.screeler_ids.includes(currentUser._id)
-                ? 'dark:bg-blue-300'
+                ? 'dark:bg-gray-600 bg-gray-200'
                 : 'dark:bg-gray-700')
             "
           >
