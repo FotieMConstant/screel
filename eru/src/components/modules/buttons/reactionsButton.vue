@@ -4,12 +4,12 @@
       <!-- default emojis -->
       <div class="relative">
         <div
-          v-if="activeEmojiList.length !== 4"
+          v-if="screelReactions.length < availableReactions.length"
           @click="toggleShowEmojiList = !toggleShowEmojiList"
           class="flex space-x-1 mr-2 dark:bg-gray-700 border dark:border-gray-600 bg-grayLightMode-200 dark:text-gray-300 text-grayLightMode-400 px-2 py-1 my-auto rounded-curl font-bold select-none cursor-pointer text-sm m-1"
         >
           <div>
-            <!-- defailt icon -->
+            <!-- default icon -->
             <svg
               class="h-5"
               viewBox="0 0 17 17"
@@ -37,12 +37,20 @@
         </div>
         <!-- all emoji list overlay -->
         <Transition name="bounce">
-          <div v-show="toggleShowEmojiList" class="absolute -top-10 -right-14">
+          <div
+            v-show="
+              toggleShowEmojiList &&
+              screelReactions.length < availableReactions.length
+            "
+            class="absolute -top-10 -right-14"
+          >
             <div
               class="flex space-x-3 w-max dark:bg-gray-700 border dark:border-gray-600 bg-grayLightMode-200 dark:text-gray-300 text-grayLightMode-400 px-3 py-1 my-auto rounded-curl font-bold select-none cursor-pointer text-sm h-10"
             >
               <div
-                @click="addEmojiToActiveList(emoj)"
+                @click="
+                  (toggleShowEmojiList = false), addEmojiToActiveList(emoj)
+                "
                 v-for="emoj in availableReactions"
                 :key="emoj._id"
                 class="my-auto mt-1 wiggle"

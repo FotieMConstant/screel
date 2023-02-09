@@ -139,7 +139,7 @@ export default {
 
   //action to get the current user data
   async getCurrentUser({ commit } /*_vm*/) {
-    console.log("Getting current user!");
+    // console.log("Getting current user!");
 
     try {
       let userData = await axios.get(
