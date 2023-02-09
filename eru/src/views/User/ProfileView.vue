@@ -196,12 +196,7 @@ export default {
         payload
       );
 
-      const idx = this.userInView.screels.findIndex(
-        (screel) => screel._id === res._id
-      );
-      if (idx >= 0) {
-        this.userInView.screels.splice(idx, 1, res);
-      }
+      this.$store.commit("user/UPDATE_USER_IN_VIEW_SCREEL", res);
     },
   },
 };
