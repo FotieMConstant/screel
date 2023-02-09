@@ -2,7 +2,7 @@
   <!-- Component for radio button-based settings item -->
   <li
     class="bg-grayLightMode-200 dark:bg-gray-900 rounded-curl p-5 flex items-start mb-3 text-sm"
-    :class="{ ' text-gray-300': !isSelected }"
+    :class="{ ' text-gray-300': !isSelected, [`${classes}`]: true }"
   >
     <slot name="leading"></slot>
     <div>
@@ -10,23 +10,32 @@
       <div>{{ description }}</div>
     </div>
     <span class="flex-grow"></span>
-    <label class="self-center">
-      <input
-        class="t-radio"
-        type="radio"
-        :name="`_${group}`"
-        :value="modelValue"
-        :checked="isSelected"
-        @change="$emit('change', $event.target.value)"
-      />
-    </label>
+    <slot name="trailing">
+      <label class="self-center">
+        <input
+          class="t-radio"
+          type="radio"
+          :name="`_${group}`"
+          :value="modelValue"
+          :checked="isSelected"
+          @change="$emit('change', $event.target.value)"
+        />
+      </label>
+    </slot>
   </li>
 </template>
 
 <script>
 export default {
   name: "SettingsItemCard",
-  props: ["name", "description", "group", "isSelected", "modelValue"],
+  props: [
+    "name",
+    "description",
+    "group",
+    "isSelected",
+    "modelValue",
+    "classes",
+  ],
   emits: ["change"],
 };
 </script>
