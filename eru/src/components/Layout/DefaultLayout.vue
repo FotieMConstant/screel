@@ -19,14 +19,14 @@
           <slot />
           <!--/ templete passed as slot  -->
         </main>
-        <aside
-          class="w-3/12 overflow-y-auto pt-6 mt-16 flex flex-col aside-right"
-        >
+        <aside class="w-3/12 pt-6 mt-16 flex flex-col aside-right h-screen">
           <div class="mb-4">
             <smallAdsCard />
           </div>
 
-          <peopleAcrossTheGlobe />
+          <div style="height: calc(100vh - 320px)">
+            <peopleAcrossTheGlobe />
+          </div>
         </aside>
       </div>
       <!-- end main container -->

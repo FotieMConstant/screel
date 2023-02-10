@@ -1,6 +1,6 @@
 <template>
   <div
-    class="dark:bg-gray-800 bg-grayLightMode-100 dark:text-sky-white text-grayLightMode-400 py-5 rounded-curl flex flex-col flex-grow"
+    class="dark:bg-gray-800 bg-grayLightMode-100 dark:text-sky-white text-grayLightMode-400 py-5 rounded-curl flex flex-col h-full"
   >
     <div class="text-left px-5 __headerBgBlur">
       <div class="font-bold text-xl">Across the glob 🌍</div>
@@ -8,12 +8,9 @@
         ONLINE ({{ people ? people.length : 0 }})
       </div>
     </div>
-    <div class="mt-2">
+    <div class="custom-scroll mt-2 flex-grow overflow-y-auto">
       <!-- if people contain data -->
-      <div
-        v-if="people"
-        class="space-y-2 h-72 overflow-y-auto __hideScroller px-5 pt-2"
-      >
+      <div v-if="people" class="space-y-2 h-full px-5 pt-2">
         <peopleGlobeCard
           v-for="person in people"
           :key="person._id"
@@ -31,14 +28,14 @@
       <!--  else show loading -->
       <div
         v-else
-        class="space-y-2 h-72 overflow-y-auto __hideScroller px-5 pt-2"
+        class="space-y-2 h-full overflow-y-auto __hideScroller px-5 pt-2"
       >
         <peopleGlobeCard v-for="n in 6" :key="n" :loading="true" />
       </div>
     </div>
-    <div class="flex-grow"></div>
+    <div class="justify-self-end"></div>
     <div
-      class="text-blue-light mt-4 text-left text-sm font-bold cursor-pointer select-none px-5"
+      class="text-blue-light mt-4 text-left text-sm font-bold cursor-pointer select-none px-5 justify-self-end"
     >
       Show More
     </div>
@@ -141,4 +138,24 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped></style>
+<style>
+.custom-scroll::-webkit-scrollbar {
+  width: 10px;
+  margin-right: 15px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  /* border-radius: 5px; */
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: #888;
+  cursor: pointer;
+
+  /* border-radius: 5px; */
+}
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+</style>
