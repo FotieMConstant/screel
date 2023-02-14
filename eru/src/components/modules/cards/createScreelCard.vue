@@ -102,7 +102,7 @@
           <div class="ml-2">
             <regularButton
               @clicked="createScreelPost()"
-              state="regular"
+              :state="!ispostingScreel ? 'regular' : 'disabled'"
               text="Screel"
               :classes="'shake-button'"
               :id="'create-screel-btn'"
@@ -156,6 +156,7 @@ export default {
       post: { message: null, tags: [] }, //the post to be sent to the backedn
 
       matchingTags: [],
+      ispostingScreel: false,
     };
   },
   mounted: function () {
@@ -180,8 +181,9 @@ export default {
   },
   methods: {
     async createScreelPost() {
-      console.log("creating post", this.post.message, this.post.tags);
+      // console.log("creating post", this.post.message, this.post.tags);
       if (this.post.message) {
+        this.ispostingScreel = true;
         // calling action in screel store module and wait for response
         let responsePost = await this.$store.dispatch(
           "screel/postScreelAction",
@@ -190,9 +192,10 @@ export default {
             data: this.post,
           }
         );
-        console.log("post of screel successful? => ", responsePost);
+        // console.log("post of screel successful? => ", responsePost);
         // if user posted a screel successfully emit an event to parent component
         if (responsePost) {
+          this.ispostingScreel = false;
           this.$emit("userPosted");
         } else {
           console.log("posted was not successfully made");
