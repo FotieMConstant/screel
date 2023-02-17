@@ -57,11 +57,6 @@ export default {
     // mapping to get current logged in user from store auth module
     ...mapGetters({ currentUser: ["authentication/getCurrentUser"] }),
   },
-  mounted() {
-    // window.Echo.channel("user-channel").listen(".UserEvent", (data) => {
-    //   console.log("notif data ", data);
-    // });
-  },
 };
 </script>
 
