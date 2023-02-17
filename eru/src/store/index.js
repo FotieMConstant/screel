@@ -30,7 +30,7 @@ export default createStore({
     // toggle mutation
     setToggleDark(state, payload) {
       state.isDark = payload;
-      console.log("isDark on => " + state.isDark);
+      // console.log("isDark on => " + state.isDark);
     },
   },
   actions: {

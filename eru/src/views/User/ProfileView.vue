@@ -92,6 +92,7 @@
             v-else
             v-for="screel in userInView.screels.data"
             :key="screel._id"
+            :screel-id="screel._id"
             :profileImage="userInView.user.avatar"
             :name="userInView.user.name"
             :userName="userInView.user.username"
@@ -99,6 +100,8 @@
             :postedDate="screel.created_at"
             :tags="screel.tags"
             :loading="false"
+            :screel-reactions="screel.screel_reactions"
+            @reactOnScreelFinal="reactOnScreelFinal"
           />
           <!--/ all userInView's screels -->
         </div>
@@ -143,7 +146,7 @@ export default {
     };
   },
   mounted() {
-    console.log(this.$route.params);
+    // console.log(this.$route.params);
     this.getUserProfileToView(this.$route.params.username); //getting the username from the param url
   },
   computed: {
@@ -159,7 +162,7 @@ export default {
   },
   // catching the route param changes and fetching the user data again
   beforeRouteUpdate(to, from, next) {
-    console.log(to.params);
+    // console.log(to.params);
     next();
     this.getUserProfileToView(to.params.username);
   },
@@ -178,13 +181,22 @@ export default {
         root: true,
       }); // setting the user whose profile we want to view in the store
 
-      console.log(this.userInView.user);
-      console.log("responseProfileData => ", responseProfileData);
+      // console.log(this.userInView.user);
+      // console.log("responseProfileData => ", responseProfileData);
       this.theUser = responseProfileData; //setting `theUser` we wanna view their profile
     },
     // returns information about the route
     whichRouteWeOn() {
       return this.$route.name;
+    },
+    async reactOnScreelFinal(payload) {
+      Object.assign(payload, { _vm: this });
+      const res = await this.$store.dispatch(
+        "screel/reacOnScreelAction",
+        payload
+      );
+
+      this.$store.commit("user/UPDATE_USER_IN_VIEW_SCREEL", res);
     },
   },
 };

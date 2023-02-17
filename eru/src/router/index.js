@@ -133,7 +133,7 @@ const router = createRouter({
 
 store.dispatch("authentication/getCurrentUser");
 const currentUser = store.getters["authentication/getCurrentUser"]; // getting current user
-console.log(currentUser);
+// console.log(currentUser);
 
 // navigation guard
 router.beforeEach((to, from, next) => {
