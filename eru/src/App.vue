@@ -92,37 +92,6 @@ export default {
       // Here the actual reload of the page occurs
       window.location.reload();
     });
-
-    // window.Echo.private("testchannel").listen(".UserEvent", (e) => {
-    //   console.log("test successful ", e);
-    // });
-
-    if (!("Notification" in window)) {
-      alert("Web Notification is not supported");
-      return;
-    }
-
-    Notification.requestPermission((permission) => {
-      console.log("permission ==>> ", permission);
-    });
-
-    if (this.$store.getters["authentication/getCurrentUser"]) {
-      window.Echo.channel("testchannel").listen(".UserEvent", (e) => {
-        console.log("test successful ", e);
-        const audio = new Audio("/audio/notification-sound.mp3");
-        audio.play();
-        let notification = new Notification("New Screel", {
-          body: e.title,
-          icon: "https://pusher.com/static_logos/320x320.png", // optional image url
-        });
-
-        // new Audio("/audio/notification-sound.mp3").play();
-        // link to page on clicking the notification
-        notification.onclick = () => {
-          window.open(window.location.href);
-        };
-      });
-    }
   },
   methods: {
     //updateAvailable function
