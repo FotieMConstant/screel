@@ -49,6 +49,7 @@
 <script>
 export default {
   name: "regularButton",
+  emits: ["clicked"],
   props: {
     text: {
       trype: String,
