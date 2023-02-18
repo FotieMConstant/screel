@@ -41,10 +41,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21becc39-f323-44ed-b3b9-aecc18acdee7" name="Default Changelist" comment="start init Laravel project">
-      <change beforePath="$PROJECT_DIR$/.idea/screel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/screel.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/okok/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/okok/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/okok/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/okok/config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eru/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/eru/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eru/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/eru/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eru/src/components/Layout/DefaultLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/eru/src/components/Layout/DefaultLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eru/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/eru/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eru/src/store/modules/authentication/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/eru/src/store/modules/authentication/actions.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,6 +216,7 @@
       <workItem from="1673030429100" duration="561000" />
       <workItem from="1673031016992" duration="3157000" />
       <workItem from="1673036309364" duration="1628000" />
+      <workItem from="1675172480946" duration="9000" />
     </task>
     <servers />
   </component>
