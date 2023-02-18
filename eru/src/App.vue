@@ -16,7 +16,7 @@
         <NotificationPopupCard
           v-if="showNotifPopup"
           @approved="requestNotificationPermission"
-          @denied="showNotifPopup = false"
+          @denied="requestNotificationPermission"
         />
       </transition>
       <!-- End Notification Permission popup -->
