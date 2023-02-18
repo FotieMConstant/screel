@@ -10,6 +10,17 @@
         <vue-progress-bar></vue-progress-bar>
       </div>
       <!--/ main view -->
+
+      <!--Notification Permission popup-->
+      <transition name="fade">
+        <NotificationPopupCard
+          v-if="showNotifPopup"
+          @approved="requestNotificationPermission"
+          @denied="showNotifPopup = false"
+        />
+      </transition>
+      <!-- End Notification Permission popup -->
+
       <!-- software update notifications -->
       <transition name="slide-fade">
         <div v-show="updateExists" class="absolute bottom-6 right-6 z-10">
@@ -53,16 +64,20 @@
 <script>
 // import LocalLang from "@/components/LocalLang.vue";
 // import AppBar from "@/components/global/AppBar.vue";
+
+import NotificationPopupCard from "@/components/modules/cards/notificationPopupCard.vue";
 export default {
   components: {
     // LocalLang,
     // AppBar,
+    NotificationPopupCard,
   },
   data() {
     return {
       isDark: this.$store.getters.getIsDark,
       registration: null,
       updateExists: false, //if there is an update or not
+      showNotifPopup: false,
     };
   },
   watch: {
@@ -97,14 +112,14 @@ export default {
     //   console.log("test successful ", e);
     // });
 
-    if (!("Notification" in window)) {
-      alert("Web Notification is not supported");
-      return;
-    }
+    // if notification permission is not granted show request popup
+    if ("Notification" in window && Notification.permission == "default") {
+      //Show the notification permission popup
 
-    Notification.requestPermission((permission) => {
-      console.log("permission ==>> ", permission);
-    });
+      setTimeout(() => {
+        this.showNotifPopup = true;
+      }, 3000);
+    }
 
     if (this.$store.getters["authentication/getCurrentUser"]) {
       window.Echo.channel("testchannel").listen(".UserEvent", (e) => {
@@ -166,6 +181,14 @@ export default {
       this.$router.afterEach((to, from) => {
         //  finish the progress bar
         this.$Progress.finish();
+      });
+    },
+
+    //Method to request permissions to display notifications
+    requestNotificationPermission() {
+      Notification.requestPermission((permission) => {
+        console.log("permission ==>> ", permission);
+        this.showNotifPopup = false;
       });
     },
   },
