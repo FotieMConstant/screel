@@ -11,6 +11,8 @@
         :name="userInView.user.name"
         :userName="userInView.user.username"
         :biography="userInView.user.biography"
+        :website="userInView.user.website"
+        :location="userInView.user.location"
         :profileImage="userInView.user.avatar"
         :joinedDate="userInView.user.created_at"
         :alreadyFollow="userInView.user.is_followed_by_current_screeler"

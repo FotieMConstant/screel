@@ -17,6 +17,17 @@ export default {
     };
   },
 
+  props: {
+    defaultValue: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
+  created() {
+    this.value = this.defaultValue;
+  },
+
   methods: {
     onToggle() {
       this.$emit("onToggle", this.value);

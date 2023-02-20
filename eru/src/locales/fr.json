@@ -2,32 +2,33 @@
   "appBar": {
     "searchPlaceholder": "Recherche d'utilisateurs ou de tags",
     "home": "Accueil",
-    "overlayProfileSettings":{
+    "overlayProfileSettings": {
       "profile": "Profil",
       "settings": "Paramètres",
-      "language":"Langue",        
+      "language": "Langue",
       "help": "Aide",
       "reportABug": "Signaler un bug",
       "switchToDarkMode": "Passez à Dark",
       "switchToLightMode": "Passer à Light",
       "logOut": "Déconnexion"
-
     },
-    "ProfileSettingsView":{
-      "heading":"Photo de couverture et de profil",
-      "displayName":"Afficher un nom",
-      "edit":"Modifier la couverture",
-      "userName":"Nom d'utilisateur",
-      "cancel":"annuler",
-      "linkedAccounts":"Comptes liés",
-      "linkText":"Connectez-vous à d'autres sites Web que vous souhaitez partager dans votre profil",
-      "website":"Site Web",
-      "save":"Sauvegarder les modifications",
-      "publicProfile":"profil public",
-      "link":"Entrez votre lien",
-      "placeholderUserName":"Entrez votre nom d'utilisateur",
-      "displayname":"Entrez votre nom"
+    "ProfileSettingsView": {
+      "heading": "Photo de couverture et de profil",
+      "displayName": "Afficher un nom",
+      "edit": "Modifier la couverture",
+      "userName": "Nom d'utilisateur",
+      "cancel": "annuler",
+      "linkedAccounts": "Comptes liés",
+      "linkText": "Connectez-vous à d'autres sites Web que vous souhaitez partager dans votre profil",
+      "website": "Site Web",
+      "save": "Sauvegarder les modifications",
+      "publicProfile": "profil public",
+      "link": "Entrez votre lien",
+      "placeholderUserName": "Entrez votre nom d'utilisateur",
+      "placeholderLocation": "Entrez votre emplaçement",
 
+      "displayname": "Entrez votre nom",
+      "location": "Emplaçement"
     }
   }
 }

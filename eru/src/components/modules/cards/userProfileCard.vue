@@ -64,8 +64,9 @@
       </div>
       <div class="my-2.5 text-gray-300">
         {{
-          biography ??
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit..dolor sit amet,co... ⚡️"
+          biography
+            ? truncateText(biography, 70)
+            : "Lorem ipsum dolor sit amet, consectetur adipiscing elit..dolor sit amet,co... ⚡️"
         }}
       </div>
       <div
@@ -104,10 +105,14 @@
 
 <script>
 import basicChip from "@/components/modules/chips/basicChip.vue";
+import { truncateText } from "@/utils";
 
 export default {
   name: "userProfileCard",
   components: { basicChip },
+  methods: {
+    truncateText,
+  },
   props: {
     coverImage: {
       type: String,

@@ -13,7 +13,12 @@
         :isSelected="receiveDesktopNotifications"
       >
         <template #trailing>
-          <SwitchButton @onToggle="(val) => setDesktopNotifications(val)" />
+          <SwitchButton
+            :default-value="
+              isNotificationPermissionGranted && receiveDesktopNotifications
+            "
+            @onToggle="(val) => setDesktopNotifications(val)"
+          />
         </template>
       </SettingsItemCard>
     </ul>
@@ -50,14 +55,34 @@ export default {
     };
   },
 
+  computed: {
+    isNotificationPermissionGranted() {
+      return "Notification" in window && Notification.permission == "granted";
+    },
+  },
+
   methods: {
     setMarketingNotifications(val) {
       console.log(val);
       this.receiveMarketingNotifications = val;
     },
     setDesktopNotifications(val) {
-      console.log(val);
-      this.receiveDesktopNotifications = val;
+      console.log(Notification.permission);
+      //if we switch on notifications request for notifications permission
+      if (
+        "Notification" in window &&
+        Notification.permission == "default" &&
+        val
+      ) {
+        Notification.requestPermission((permission) => {
+          console.log("permission ==>> ", permission);
+
+          if (permission == "granted") this.receiveDesktopNotifications = true;
+          else this.receiveDesktopNotifications = false;
+        });
+      } else {
+        this.receiveDesktopNotifications = val;
+      }
     },
   },
 
