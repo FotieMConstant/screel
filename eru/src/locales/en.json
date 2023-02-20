@@ -1,32 +1,33 @@
 {
-    "appBar": {
-      "searchPlaceholder": "Search for users or tags",
-      "home": "Home",
-      "overlayProfileSettings":{
-        "profile": "Profile",
-        "settings": "Settings",
-        "language":"Language",        
-        "help": "Help",
-        "reportABug": "Report a bug",
-        "switchToDarkMode": "Switch Dark",
-        "switchToLightMode": "Switch Light",
-        "logOut": "Log out"
-      },
-      "ProfileSettingsView":{
-        "heading":"Cover and Profile Photo",
-        "displayName":"Display Name",
-        "edit":"Edit Cover",
-        "userName":"username",
-        "cancel":"cancel",
-        "linkedAccounts":"Linked Accounts",
-        "linkText":"Connect to other websites you want to share in your profile",
-        "website":"Website",
-        "save":"Save Changes",
-        "publicProfile":"Public Profile",
-        "link":"Enter your website link",
-      "placeholderUserName":"Enter your username",
-      "displayname":"Enter your name"
-
-      }
+  "appBar": {
+    "searchPlaceholder": "Search for users or tags",
+    "home": "Home",
+    "overlayProfileSettings": {
+      "profile": "Profile",
+      "settings": "Settings",
+      "language": "Language",
+      "help": "Help",
+      "reportABug": "Report a bug",
+      "switchToDarkMode": "Switch Dark",
+      "switchToLightMode": "Switch Light",
+      "logOut": "Log out"
+    },
+    "ProfileSettingsView": {
+      "heading": "Cover and Profile Photo",
+      "displayName": "Display Name",
+      "edit": "Edit Cover",
+      "userName": "username",
+      "cancel": "cancel",
+      "linkedAccounts": "Linked Accounts",
+      "linkText": "Connect to other websites you want to share in your profile",
+      "website": "Website",
+      "save": "Save Changes",
+      "publicProfile": "Public Profile",
+      "link": "Enter your website link",
+      "location": "Location",
+      "placeholderUserName": "Enter your username",
+      "placeholderLocation": "Enter your location",
+      "displayname": "Enter your name"
     }
+  }
 }

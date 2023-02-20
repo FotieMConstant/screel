@@ -231,13 +231,25 @@
     <!-- about section -->
     <div class="px-6 pb-6">
       <div class="text-left dark:text-gray-200 text-grayLightMode-300">
-        {{
-          biography ??
-          `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis nunc sit
+        <span>
+          {{
+            biography
+              ? showMoreBio
+                ? biography
+                : truncateText(biography, bioMaxLength)
+              : `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis nunc sit
         pulvinar ut tellus sit tincidunt faucibus sapien. ipsum dolor sit amet,
         consectetur adipiscing elit. Quis nunc sit pulvinar ut tellus sit
         tincidunt faucibus sapien. ⚡️`
-        }}
+          }}</span
+        >
+        <button
+          v-if="biography && biography.length > bioMaxLength"
+          @click="showMoreBio = !showMoreBio"
+          class="underline ml-1 focus:outline-none"
+        >
+          {{ showMoreBio ? "less" : "read more" }}
+        </button>
       </div>
       <div class="flex space-x-3 mt-4 font-bold text-blue-light">
         <div class="flex space-x-1">
@@ -255,9 +267,13 @@
             />
           </svg>
 
-          <div>Istanbul, Turkey</div>
+          <div>{{ location ?? "Istanbul, Turkey" }}</div>
         </div>
-        <a href="#" target="_BLANK" class="flex space-x-1">
+        <a
+          :href="website ? website : '#'"
+          target="_BLANK"
+          class="flex space-x-1"
+        >
           <svg
             class="my-auto"
             width="16"
@@ -272,7 +288,7 @@
             />
           </svg>
 
-          <div>loremipsum.com</div>
+          <div>{{ website ?? "loremipsum.com" }}</div>
         </a>
       </div>
       <div class="flex space-x-1 mt-2">
@@ -349,6 +365,14 @@ export default {
       type: String,
       default: null,
     },
+    website: {
+      type: String,
+      default: null,
+    },
+    location: {
+      type: String,
+      default: null,
+    },
     joinedDate: {
       type: String,
       default: null,
@@ -391,6 +415,8 @@ export default {
       memeberSince: null,
       alreadyFollowUser: this.alreadyFollow,
       totalFollowersCount: this.followersCount,
+      showMoreBio: false,
+      bioMaxLength: 200,
     };
   },
   // each time the `joinedDate` changes re-run the function to makeJoinedDateReadable
@@ -414,6 +440,12 @@ export default {
   mounted() {
     // run function on mounted
     this.makeJoinedDateReadable();
+
+    //if biography is less than 250 characters show all, else hide part
+
+    if (this.biography && this.biography.length <= this.bioMaxLength) {
+      this.showMoreBio = true;
+    }
   },
   methods: {
     // function to follow user

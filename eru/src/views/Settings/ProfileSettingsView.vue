@@ -190,7 +190,7 @@
           class="outline-none dark:text-gray-100 text-gray-300 w-full rounded-curl mt-3 mb-4 bg-grayLightMode-50 dark:bg-gray-700 px-4 py-1 align-top"
         ></textarea>
         <div
-          class="w-full mb-8 flex justify-between items-center lg:flex-nowrap sm:flex-wrap"
+          class="w-full mb-6 flex justify-between items-center lg:flex-nowrap sm:flex-wrap"
         >
           <span class="lg:w-1/2 sm:w-full">
             <label for="name" class="ml-1">{{
@@ -306,10 +306,27 @@
             </div>
           </span>
         </div>
+        <div class="mb-8">
+          <!--Location input-->
+          <span class="lg:w-1/2 sm:w-full">
+            <label for="location" class="ml-1">{{
+              $t("appBar.ProfileSettingsView.location")
+            }}</label
+            ><br />
+            <input
+              type="text"
+              v-model="profile.location"
+              :placeholder="
+                $t('appBar.ProfileSettingsView.placeholderLocation')
+              "
+              class="w-full text-gray-300 dark:text-white dark:placeholder-gray-500 placeholder-gray-200 px-6 focus:outline-0 py-2 mt-4 rounded-curl bg-grayLightMode-50 dark:bg-gray-700"
+            />
+          </span>
+        </div>
         <div class="mb-4">
           <regular-button
             :text="$t('appBar.ProfileSettingsView.save')"
-            state="regular"
+            :state="isLoading ? 'disabled' : 'regular'"
             @clicked="saveProfile"
           ></regular-button>
           <router-link
@@ -433,7 +450,10 @@ export default {
 
         website: "",
         flair: "",
+        location: "",
       },
+
+      isLoading: false,
     };
   },
   components: {
@@ -462,6 +482,7 @@ export default {
     this.profile.name = this.currentUser.name;
     this.profile.website = this.currentUser.website ?? "";
     this.profile.flair = this.currentUser.flair ?? "";
+    this.profile.location = this.currentUser.location ?? "";
   },
   methods: {
     activateDropdown() {
@@ -481,12 +502,15 @@ export default {
 
     //This method saves fields which have been changed in the profile
     async saveProfile() {
+      this.isLoading = true;
+
       const profile = {
         name: this.profile.name,
         username: this.profile.username,
         biography: this.profile.biography,
         website: this.profile.website,
         flair: this.profile.flair,
+        location: this.profile.location,
       };
 
       //Allow only fields which have been modified
@@ -513,6 +537,10 @@ export default {
         delete profile.flair;
       }
 
+      if (profile.location === this.currentUser.location || !profile.location) {
+        delete profile.location;
+      }
+
       //if there is any field which is different, we update the field
 
       if (Object.keys(profile).length > 0) {
@@ -525,6 +553,8 @@ export default {
           position: "bottom",
         });
       }
+
+      this.isLoading = false;
     },
   },
 };
