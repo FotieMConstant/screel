@@ -6,7 +6,7 @@
         <div class="flex space-x-2">
           <div class="relative">
             <router-link :to="`/u/` + userName">
-              <img class="h-12 rounded-full" :src="profileImage" />
+              <img class="h-12 w-12 rounded-full" :src="profileImage" />
 
               <!-- user is online -->
               <div

@@ -8,7 +8,9 @@
           :name="theUserDetails.user.name"
           :userName="theUserDetails.user.username"
           :userId="theUserDetails.user._id"
-          :profileImage="theUserDetails.user.avatar"
+          :profileImage="
+            theUserDetails.user.profile_pic ?? theUserDetails.user.avatar
+          "
           :alreadyFollowedByThatUser="
             theUserDetails.user.is_following_current_screeler
           "
@@ -23,7 +25,7 @@
           :key="follower._id"
           :name="follower.name"
           :userName="follower.username"
-          :profileImage="follower.avatar"
+          :profileImage="follower.profile_pic ?? follower.avatar"
           :alreadyFollow="follower.is_followed_by_current_screeler"
           :alreadyFollowedByThatUser="follower.is_following_current_screeler"
           :theProfileWeOnUserName="
