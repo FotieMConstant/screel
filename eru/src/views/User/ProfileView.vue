@@ -1,7 +1,7 @@
 <template>
   <!-- default layout -->
   <DefaultLayout>
-    <div class="h-screen overflow-y-scroll __hideScroller pt-6">
+    <div class="h-screen overflow-y-scroll __hideScroller pt-6 no-scrollbar">
       <!-- user profile banner -->
       <!-- if theUser object contain data -->
       <UserBannerProfile
