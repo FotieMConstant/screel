@@ -15,7 +15,7 @@
     <div class="p-5 -mt-16 text-center">
       <div class="space-y-1">
         <div class="relative w-20 mx-auto">
-          <img class="h-20 rounded-full" :src="profileImage" alt="" />
+          <img class="h-20 w-20 rounded-full" :src="profileImage" alt="" />
           <!-- user is online -->
           <div
             v-if="isOnline === 'online'"
