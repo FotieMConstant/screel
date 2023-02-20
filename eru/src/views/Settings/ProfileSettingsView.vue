@@ -17,11 +17,9 @@
     >
       <div class="absolute -bottom-12 left-7">
         <div class="relative w-20 mx-auto">
-          <div
-            class="h-20 w-full rounded-full absolute bottom-0 overflow-hidden"
-          >
+          <div class="h-20 w-20 rounded-full absolute bottom-0 overflow-hidden">
             <img
-              class="overflow-hidden h-20 rounded-full border-4 dark:border-gray-800 border-grayLightMode-100"
+              class="overflow-hidden h-20 w-20 rounded-full border-4 dark:border-gray-800 border-grayLightMode-100"
               :src="currentProfilePic"
               alt="user profile picture"
             />
