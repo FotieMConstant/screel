@@ -33,7 +33,6 @@ export default {
   //This function updates the user profile
   async updateUserProfileAction({ commit }, { _vm, profile }) {
     try {
-      console.log(profile);
       _vm.$Progress.start();
       const res = await axios.post(
         this.getters.getAPI_DOMAIN + "/api/v1/auth/profile",
