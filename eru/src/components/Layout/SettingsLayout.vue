@@ -8,13 +8,13 @@
           <UserSettingsMenuLeft />
         </div>
         <main
-          class="w-6/12 h-screen pb-16 pt-6 mt-16 overflow-y-scroll __hideScroller"
+          class="w-6/12 h-screen pb-16 pt-6 mt-16 overflow-y-scroll __hideScroller no-scrollbar"
         >
           <!-- templete passed as slot  -->
           <slot />
           <!--/ templete passed as slot  -->
         </main>
-        <aside class="w-3/12 overflow-y-auto pt-6 mt-16">
+        <aside class="w-3/12 overflow-y-auto pt-6 mt-16 no-scrollbar">
           <div class="mb-4">
             <smallAdsCard />
           </div>

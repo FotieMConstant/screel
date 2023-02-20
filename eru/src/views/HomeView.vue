@@ -3,7 +3,7 @@
   <DefaultLayout>
     <div
       @scroll="onScroll"
-      class="h-screen pb-40 overflow-y-scroll __hideScroller pt-6"
+      class="h-screen pb-40 overflow-y-scroll __hideScroller pt-6 no-scrollbar"
     >
       <!-- post screel -->
       <!-- run the myFeed function when user post a screel successfully -->

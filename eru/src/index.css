@@ -22,3 +22,9 @@
     animation-duration: 2s;
     /* animation-delay: 2s; */
   }
+  @layer utilities {
+    .no-scrollbar {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+  }
+  }

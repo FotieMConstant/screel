@@ -28,7 +28,7 @@
       <!--  else show loading -->
       <div
         v-else
-        class="space-y-2 h-full overflow-y-auto __hideScroller px-5 pt-2"
+        class="space-y-2 h-full overflow-y-auto __hideScroller px-5 pt-2 no-scrollbar"
       >
         <peopleGlobeCard v-for="n in 6" :key="n" :loading="true" />
       </div>
