@@ -14,7 +14,10 @@
         :website="userInView.user.website"
         :location="userInView.user.location"
         :profileImage="userInView.user.profile_pic ?? userInView.user.avatar"
-        :cover-image="userInView.user.cover_pic"
+        :cover-image="
+          userInView.user.cover_pic ??
+          'https://images.unsplash.com/photo-1506765515384-028b60a970df'
+        "
         :joinedDate="userInView.user.created_at"
         :alreadyFollow="userInView.user.is_followed_by_current_screeler"
         :alreadyFollowedByThatUser="
