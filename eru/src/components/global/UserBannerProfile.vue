@@ -231,10 +231,13 @@
     <!-- about section -->
     <div class="px-6 pb-6">
       <div class="text-left dark:text-gray-200 text-grayLightMode-300">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis nunc sit
+        {{
+          biography ??
+          `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis nunc sit
         pulvinar ut tellus sit tincidunt faucibus sapien. ipsum dolor sit amet,
         consectetur adipiscing elit. Quis nunc sit pulvinar ut tellus sit
-        tincidunt faucibus sapien. ⚡️
+        tincidunt faucibus sapien. ⚡️`
+        }}
       </div>
       <div class="flex space-x-3 mt-4 font-bold text-blue-light">
         <div class="flex space-x-1">
@@ -341,6 +344,10 @@ export default {
     userName: {
       type: String,
       default: "username",
+    },
+    biography: {
+      type: String,
+      default: null,
     },
     joinedDate: {
       type: String,

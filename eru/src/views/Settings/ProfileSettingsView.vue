@@ -158,7 +158,9 @@
             ><br />
             <input
               id="name"
+              required
               type="text"
+              v-model="profile.name"
               :placeholder="$t('appBar.ProfileSettingsView.displayname')"
               class="w-full text-gray-300 dark:text-white focus:outline-0 dark:placeholder-gray-500 placeholder-gray-200 px-6 py-2 mt-4 rounded-curl bg-grayLightMode-50 dark:bg-gray-700"
             />
@@ -170,6 +172,8 @@
             ><br />
             <input
               type="username"
+              required
+              v-model="profile.username"
               :placeholder="
                 $t('appBar.ProfileSettingsView.placeholderUserName')
               "
@@ -181,10 +185,10 @@
         <textarea
           cols="10"
           rows="3"
+          v-model="profile.biography"
+          placeholder="Tell us more about yourself"
           class="outline-none dark:text-gray-100 text-gray-300 w-full rounded-curl mt-3 mb-4 bg-grayLightMode-50 dark:bg-gray-700 px-4 py-1 align-top"
-        >
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa, facere.</textarea
-        >
+        ></textarea>
         <div
           class="w-full mb-8 flex justify-between items-center lg:flex-nowrap sm:flex-wrap"
         >
@@ -195,7 +199,8 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa, facere.</textar
             ><br />
             <input
               class="w-full text-gray-300 dark:text-white focus:outline-0 dark:placeholder-gray-500 placeholder-gray-200 px-6 py-2 mt-4 rounded-curl bg-grayLightMode-50 dark:bg-gray-700"
-              id="name"
+              id="website"
+              v-model="profile.website"
               type="url"
               :placeholder="$t('appBar.ProfileSettingsView.link')"
             />
@@ -296,7 +301,7 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa, facere.</textar
                 @click="activateDropdown"
                 class="text-gray-300 cursor-pointer dark:text-gray-300 px-4 py-2 selected rounded-curl mb-2 relative bg-white dark:bg-gray-700"
               >
-                Javascript
+                {{ profile.flair ?? "Javascript" }}
               </div>
             </div>
           </span>
@@ -305,12 +310,14 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa, facere.</textar
           <regular-button
             :text="$t('appBar.ProfileSettingsView.save')"
             state="regular"
+            @clicked="saveProfile"
           ></regular-button>
-          <a
-            href="#"
+          <router-link
             class="cancel dark:text-grayLightMode-200 text-gray-800 text-sm underline ml-10 transition ease-out duration-300"
+            :to="`/u/${currentUser.username}`"
+            replace
           >
-            {{ $t("appBar.ProfileSettingsView.cancel") }}</a
+            {{ $t("appBar.ProfileSettingsView.cancel") }}</router-link
           >
         </div>
       </form>
@@ -414,6 +421,21 @@ import regularButton from "@/components/modules/buttons/regularButton.vue";
 import { mapGetters } from "vuex";
 export default {
   name: "ProfileSettingsView",
+
+  data() {
+    return {
+      profile: {
+        name: "",
+
+        username: "",
+
+        biography: "",
+
+        website: "",
+        flair: "",
+      },
+    };
+  },
   components: {
     // SettingsLayout,
     regularButton,
@@ -433,6 +455,14 @@ export default {
     // mapping to get current logged in user from store auth module
     ...mapGetters({ currentUser: ["authentication/getCurrentUser"] }),
   },
+
+  created() {
+    this.profile.username = this.currentUser.username;
+    this.profile.biography = this.currentUser.biography ?? "";
+    this.profile.name = this.currentUser.name;
+    this.profile.website = this.currentUser.website ?? "";
+    this.profile.flair = this.currentUser.flair ?? "";
+  },
   methods: {
     activateDropdown() {
       const optionContainer = this.$el.querySelector(".scro");
@@ -443,9 +473,58 @@ export default {
       option.forEach((element) => {
         element.addEventListener("click", () => {
           selected.innerHTML = element.querySelector("label").innerHTML;
+          this.profile.flair = selected.innerText;
           optionContainer.classList.remove("active");
         });
       });
+    },
+
+    //This method saves fields which have been changed in the profile
+    async saveProfile() {
+      const profile = {
+        name: this.profile.name,
+        username: this.profile.username,
+        biography: this.profile.biography,
+        website: this.profile.website,
+        flair: this.profile.flair,
+      };
+
+      //Allow only fields which have been modified
+      if (profile.username === this.currentUser.username) {
+        delete profile.username;
+      }
+
+      if (profile.name === this.currentUser.name || !profile.name) {
+        delete profile.name;
+      }
+
+      if (
+        profile.biography === this.currentUser.biography ||
+        !profile.biography
+      ) {
+        delete profile.biography;
+      }
+
+      if (profile.website === this.currentUser.website || !profile.website) {
+        delete profile.website;
+      }
+
+      if (profile.flair === this.currentUser.flair || !profile.flair) {
+        delete profile.flair;
+      }
+
+      //if there is any field which is different, we update the field
+
+      if (Object.keys(profile).length > 0) {
+        await this.$store.dispatch("user/updateUserProfileAction", {
+          _vm: this,
+          profile: profile,
+        });
+      } else {
+        this.$toast.info("No fields were changed", {
+          position: "bottom",
+        });
+      }
     },
   },
 };

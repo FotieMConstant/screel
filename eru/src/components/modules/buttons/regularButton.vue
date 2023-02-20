@@ -5,7 +5,7 @@
     class="font-bold dark:bg-blue-light dark:hover:bg-blue-accent bg-blue-light hover:bg-blue-accent text-sky-white rounded-curl px-4 py-1 h-9"
     :class="classes"
     :id="id"
-    @click="clickEvent()"
+    @click.prevent="clickEvent()"
   >
     {{ text }}
   </button>
