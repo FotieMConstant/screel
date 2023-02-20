@@ -246,7 +246,7 @@
         <button
           v-if="biography && biography.length > bioMaxLength"
           @click="showMoreBio = !showMoreBio"
-          class="underline ml-1 focus:outline-none"
+          class="underline ml-1 focus:outline-none text-blue-light"
         >
           {{ showMoreBio ? "less" : "read more" }}
         </button>

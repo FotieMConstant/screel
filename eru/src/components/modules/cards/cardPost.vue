@@ -8,7 +8,11 @@
     <div class="flex justify-between">
       <div class="flex space-x-2.5">
         <router-link :to="`/u/` + userName">
-          <img class="h-8 rounded-full" :src="profileImage" alt="" />
+          <img
+            class="h-8 w-8 flex-shrink-0 rounded-full"
+            :src="profileImage"
+            alt=""
+          />
         </router-link>
         <router-link :to="`/u/` + userName">
           <div class="flex space-x-1 my-auto">
