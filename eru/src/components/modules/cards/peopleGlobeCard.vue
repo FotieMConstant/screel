@@ -9,7 +9,7 @@
               :class="
                 isWithinTenMinutes(lastPostTimeStamp) ? '__blob_pulse' : null
               "
-              class="h-10 rounded-full"
+              class="h-10 w-10 rounded-full"
               :src="profileImage"
             />
 
