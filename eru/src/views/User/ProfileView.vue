@@ -14,7 +14,7 @@
         :website="userInView.user.website"
         :location="userInView.user.location"
         :profileImage="userInView.user.profile_pic ?? userInView.user.avatar"
-        :cover-image="userInView.user.cover_pic ?? userInView.user.avatar"
+        :cover-image="userInView.user.cover_pic"
         :joinedDate="userInView.user.created_at"
         :alreadyFollow="userInView.user.is_followed_by_current_screeler"
         :alreadyFollowedByThatUser="
