@@ -1,7 +1,11 @@
 <template>
   <div class="dark:bg-gray-800 bg-grayLightMode-100 p-5 rounded-curl">
     <div class="flex space-x-3">
-      <img class="h-12 rounded-full" :src="currentUser.avatar" alt="" />
+      <img
+        class="h-12 w-12 flex-shrink-0 rounded-full"
+        :src="currentUser.profile_pic ?? currentUser.avatar"
+        alt=""
+      />
       <div class="flex flex-col items-stretch flex-grow">
         <div class="w-full relative">
           <textarea

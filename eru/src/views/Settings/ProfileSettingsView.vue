@@ -12,7 +12,7 @@
     <div
       class="bg-cover bg-center w-full h-40 rounded-t-curl relative"
       :style="{
-        'background-image': 'url(' + coverImage + ')',
+        'background-image': 'url(' + currentCoverPic + ')',
       }"
     >
       <div class="absolute -bottom-12 left-7">
@@ -22,13 +22,19 @@
           >
             <img
               class="overflow-hidden h-20 rounded-full border-4 dark:border-gray-800 border-grayLightMode-100"
-              :src="currentUser.avatar"
-              alt=""
+              :src="currentProfilePic"
+              alt="user profile picture"
             />
-            <input type="file" id="file" class="hidden" />
+            <input
+              type="file"
+              id="profile_pic"
+              accept="image/*"
+              @change="selectProfilePic"
+              class="hidden cursor-pointer"
+            />
             <label
-              for="file"
-              class="absolute bottom-0 bg-black/70 text-xs leading-5 h-5 w-full -translate-x-2/4 text-center left-1/2 text-grayLightMode-100"
+              for="profile_pic"
+              class="absolute bottom-0 cursor-pointer bg-black/70 text-xs leading-5 h-5 w-full -translate-x-2/4 text-center left-1/2 text-grayLightMode-100"
               >Edit</label
             >
           </div>
@@ -112,12 +118,18 @@
       <div
         class="flex justify-end items-end h-full w-full absolute -top-3 right-5"
       >
-        <div>
-          <input type="file" id="file" class="hidden" />
+        <div class="">
+          <input
+            type="file"
+            id="cover_pic"
+            accept="image/*"
+            @change="selectCoverPic"
+            class="hidden"
+          />
 
           <label
-            for="file"
-            class="edit bg-black/30 text-xs leading-5 text-center left-1/2 text-grayLightMode-100 flex justify-center items-center"
+            for="cover_pic"
+            class="edit cursor-pointer bg-black/30 text-xs leading-5 text-center left-1/2 text-grayLightMode-100 flex justify-center items-center"
             ><svg
               class="svg"
               viewBox="0 0 24 24"
@@ -182,13 +194,23 @@
           </span>
         </div>
         <label class="ml-1">Bio <br /></label>
-        <textarea
-          cols="10"
-          rows="3"
-          v-model="profile.biography"
-          placeholder="Tell us more about yourself"
-          class="outline-none dark:text-gray-100 text-gray-300 w-full rounded-curl mt-3 mb-4 bg-grayLightMode-50 dark:bg-gray-700 px-4 py-1 align-top"
-        ></textarea>
+        <div class="relative mt-3 mb-4">
+          <textarea
+            cols="10"
+            rows="4"
+            v-model="profile.biography"
+            placeholder="Tell us more about yourself"
+            maxlength="255"
+            class="outline-none dark:text-gray-100 text-gray-300 w-full rounded-curl bg-grayLightMode-50 dark:bg-gray-700 px-4 py-1 align-top"
+          ></textarea>
+
+          <div
+            class="text-xs font-bold absolute right-3 bottom-3 text-green-500"
+            :class="{ 'text-yellow-500': profile.biography.length > 239 }"
+          >
+            {{ 255 - profile.biography.length }}
+          </div>
+        </div>
         <div
           class="w-full mb-6 flex justify-between items-center lg:flex-nowrap sm:flex-wrap"
         >
@@ -451,6 +473,8 @@ export default {
         website: "",
         flair: "",
         location: "",
+        profile_pic: null,
+        cover_pic: null,
       },
 
       isLoading: false,
@@ -474,6 +498,33 @@ export default {
   computed: {
     // mapping to get current logged in user from store auth module
     ...mapGetters({ currentUser: ["authentication/getCurrentUser"] }),
+
+    // If no new image has been selected return current profile image, else return selected image
+    currentCoverPic() {
+      console.log(typeof this.profile.cover_pic);
+      if (
+        !this.profile.cover_pic ||
+        typeof this.profile.cover_pic == "string"
+      ) {
+        return this.profile.cover_pic ?? this.coverImage;
+      } else {
+        // if picture is file create an object url and use it as image source
+        return URL.createObjectURL(this.profile.cover_pic);
+      }
+    },
+
+    // If no new image has been selected return current profile image, else return selected image
+    currentProfilePic() {
+      if (
+        !this.profile.profile_pic ||
+        typeof this.profile.profile_pic == "string"
+      ) {
+        return this.profile.profile_pic ?? this.currentUser.avatar;
+      } else {
+        // if picture is file create an object url and use it as image source
+        return URL.createObjectURL(this.profile.profile_pic);
+      }
+    },
   },
 
   created() {
@@ -483,6 +534,8 @@ export default {
     this.profile.website = this.currentUser.website ?? "";
     this.profile.flair = this.currentUser.flair ?? "";
     this.profile.location = this.currentUser.location ?? "";
+    this.profile.profile_pic = this.currentUser.profile_pic ?? null;
+    this.profile.cover_pic = this.currentUser.cover_pic ?? null;
   },
   methods: {
     activateDropdown() {
@@ -500,6 +553,15 @@ export default {
       });
     },
 
+    selectProfilePic(e) {
+      this.profile.profile_pic = e.target.files[0];
+    },
+
+    selectCoverPic(e) {
+      console.log(e.target.files[0]);
+      this.profile.cover_pic = e.target.files[0];
+    },
+
     //This method saves fields which have been changed in the profile
     async saveProfile() {
       this.isLoading = true;
@@ -511,6 +573,8 @@ export default {
         website: this.profile.website,
         flair: this.profile.flair,
         location: this.profile.location,
+        profile_pic: this.profile.profile_pic,
+        cover_pic: this.profile.cover_pic,
       };
 
       //Allow only fields which have been modified
@@ -541,12 +605,35 @@ export default {
         delete profile.location;
       }
 
+      if (
+        profile.profile_pic === this.currentUser.profile_pic ||
+        !profile.profile_pic
+      ) {
+        delete profile.profile_pic;
+      }
+
+      if (
+        profile.cover_pic === this.currentUser.cover_pic ||
+        !profile.cover_pic
+      ) {
+        delete profile.cover_pic;
+      }
+
       //if there is any field which is different, we update the field
 
       if (Object.keys(profile).length > 0) {
+        const formData = new FormData();
+
+        console.log(profile);
+
+        //append each changed key and corresponding value to the form data
+        Object.keys(profile).forEach((key) => {
+          formData.append(key, profile[key]);
+        });
+
         await this.$store.dispatch("user/updateUserProfileAction", {
           _vm: this,
-          profile: profile,
+          profile: formData,
         });
       } else {
         this.$toast.info("No fields were changed", {

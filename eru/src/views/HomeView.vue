@@ -39,7 +39,7 @@
             v-for="feed in allFeed"
             :key="feed._id"
             :screel-id="feed._id"
-            :profileImage="feed.owner.avatar"
+            :profileImage="feed.owner.profile_pic ?? feed.owner.avatar"
             :name="feed.owner.name"
             :userName="feed.owner.username"
             :content="feed.content"

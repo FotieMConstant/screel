@@ -36,7 +36,13 @@ export default {
       _vm.$Progress.start();
       const res = await axios.post(
         this.getters.getAPI_DOMAIN + "/api/v1/auth/profile",
-        profile
+        profile,
+        {
+          headers: {
+            ...axios.defaults.headers,
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       _vm.$Progress.finish();
 
@@ -55,9 +61,20 @@ export default {
     } catch (err) {
       //show an error message if profile update fails
       _vm.$Progress.fail();
-      _vm.$toast.error("Oh no, We were unable to update your profile ", {
-        position: "bottom",
-      });
+
+      const errorData = err.response.data.data;
+      //if there are messages for the errors we display them
+      if (errorData) {
+        for (let errorKey of Object.keys(errorData)) {
+          _vm.$toast.error(errorData[errorKey][0], {
+            position: "bottom",
+          });
+        }
+      } else {
+        _vm.$toast.error("Oh no, We were unable to update your profile ", {
+          position: "bottom",
+        });
+      }
     }
   },
   // this function gets all users accross the globe

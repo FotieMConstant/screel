@@ -155,8 +155,8 @@
         >
           <div class="flex space-x-2">
             <img
-              class="rounded-full h-8 my-auto"
-              :src="currentUser.avatar"
+              class="rounded-full flex-grow-0 flex-shrink-0 h-8 w-8 my-auto"
+              :src="currentUser.profile_pic ?? currentUser.avatar"
               alt=""
             />
             <div

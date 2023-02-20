@@ -9,7 +9,8 @@
             :name="currentUser.name"
             :userName="currentUser.username"
             :biography="currentUser.biography"
-            :profileImage="currentUser.avatar"
+            :profileImage="currentUser.profile_pic ?? currentUser.avatar"
+            :coverImage="currentUser.cover_pic ?? currentUser.avatar"
             :followingsCount="currentUser.followings_count"
             :followersCount="currentUser.followers_count"
           />
