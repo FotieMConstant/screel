@@ -10,7 +10,10 @@
             :userName="currentUser.username"
             :biography="currentUser.biography"
             :profileImage="currentUser.profile_pic ?? currentUser.avatar"
-            :coverImage="currentUser.cover_pic"
+            :coverImage="
+              currentUser.cover_pic ??
+              'https://images.unsplash.com/photo-1506765515384-028b60a970df'
+            "
             :followingsCount="currentUser.followings_count"
             :followersCount="currentUser.followers_count"
           />
