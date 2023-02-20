@@ -131,6 +131,9 @@ const router = createRouter({
   routes,
 });
 
+// TODO: remove this when app is stable
+store.state.API_DOMAIN = "https://screel-v1-api.youpi.cm"; // we manually update the api domain here to override the value in the localstorage
+
 store.dispatch("authentication/getCurrentUser");
 const currentUser = store.getters["authentication/getCurrentUser"]; // getting current user
 // console.log(currentUser);

@@ -29,6 +29,37 @@ export default {
       );
     }
   },
+
+  //This function updates the user profile
+  async updateUserProfileAction({ commit }, { _vm, profile }) {
+    try {
+      _vm.$Progress.start();
+      const res = await axios.post(
+        this.getters.getAPI_DOMAIN + "/api/v1/auth/profile",
+        profile
+      );
+      _vm.$Progress.finish();
+
+      commit(
+        "authentication/SET_CURRENT_USER",
+        {
+          ...this.getters["authentication/getCurrentUser"],
+
+          ...res.data.data,
+        },
+        { root: true }
+      );
+      _vm.$toast.success("Profile updated successfully!", {
+        position: "bottom",
+      });
+    } catch (err) {
+      //show an error message if profile update fails
+      _vm.$Progress.fail();
+      _vm.$toast.error("Oh no, We were unable to update your profile ", {
+        position: "bottom",
+      });
+    }
+  },
   // this function gets all users accross the globe
   // eslint-disable-next-line no-unused-vars
   async getUsersAcrossTheGlobeAction({ commit }, payload) {

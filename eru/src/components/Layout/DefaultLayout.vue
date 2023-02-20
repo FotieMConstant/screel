@@ -8,6 +8,7 @@
           <userProfileCard
             :name="currentUser.name"
             :userName="currentUser.username"
+            :biography="currentUser.biography"
             :profileImage="currentUser.avatar"
             :followingsCount="currentUser.followings_count"
             :followersCount="currentUser.followers_count"

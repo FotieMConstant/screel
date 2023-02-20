@@ -63,8 +63,10 @@
         </div>
       </div>
       <div class="my-2.5 text-gray-300">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit..dolor sit amet,
-        co... ⚡️
+        {{
+          biography ??
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit..dolor sit amet,co... ⚡️"
+        }}
       </div>
       <div
         class="border-y dark:border-gray-700 border-grayLightMode-200 flex justify-between px-10 py-3"
@@ -122,6 +124,10 @@ export default {
     userName: {
       type: String,
       default: "null",
+    },
+    biography: {
+      type: String,
+      default: null,
     },
     followersCount: {
       type: Number,
