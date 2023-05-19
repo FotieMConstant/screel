@@ -41,11 +41,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21becc39-f323-44ed-b3b9-aecc18acdee7" name="Default Changelist" comment="start init Laravel project">
-      <change beforePath="$PROJECT_DIR$/eru/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/eru/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eru/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/eru/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eru/src/components/Layout/DefaultLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/eru/src/components/Layout/DefaultLayout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eru/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/eru/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eru/src/store/modules/authentication/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/eru/src/store/modules/authentication/actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eru/src/components/global/peopleAcrossTheGlobe.vue" beforeDir="false" afterPath="$PROJECT_DIR$/eru/src/components/global/peopleAcrossTheGlobe.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eru/src/store/modules/user/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/eru/src/store/modules/user/actions.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,6 +203,34 @@
       <recent name="C:\Users\loic\code\Open-source\screel\okok" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="serve" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/eru/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="serve" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.serve" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -217,6 +243,10 @@
       <workItem from="1673031016992" duration="3157000" />
       <workItem from="1673036309364" duration="1628000" />
       <workItem from="1675172480946" duration="9000" />
+      <workItem from="1680188718490" duration="1218000" />
+      <workItem from="1680603504805" duration="230000" />
+      <workItem from="1684502400860" duration="1107000" />
+      <workItem from="1684503548289" duration="1738000" />
     </task>
     <servers />
   </component>
