@@ -204,7 +204,8 @@ export default {
       let response = await axios.get(
         this.getters.getAPI_DOMAIN +
           "/api/v1/screelers/followers/" +
-          payload.userName
+          payload.userName +
+          "?per_page=20"
       );
       // console.log("follow response => ", response.data);
       payload._vm.$Progress.finish(); //finish the loader
@@ -235,7 +236,8 @@ export default {
       let response = await axios.get(
         this.getters.getAPI_DOMAIN +
           "/api/v1/screelers/followings/" +
-          payload.userName
+          payload.userName +
+          "?per_page=20"
       );
       // console.log("follow response => ", response.data);
       payload._vm.$Progress.finish(); //finish the loader

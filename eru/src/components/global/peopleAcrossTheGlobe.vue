@@ -131,7 +131,19 @@ export default {
           pageNumber: 20, // page number to fetch
         }
       ); //
-      this.people = responseScreelers.data; // setting the screelers to people
+      const premiumUsernames = [
+        "viryl15",
+        "FotieMConstant",
+        "micheduc25",
+        "mankaa_che",
+      ];
+      const premiumScreelers = responseScreelers.data.filter((screeler) =>
+        premiumUsernames.includes(screeler.username)
+      );
+      const simpleScreelers = responseScreelers.data.filter(
+        (screeler) => !premiumUsernames.includes(screeler.username)
+      );
+      this.people = [...premiumScreelers, ...simpleScreelers]; // setting the screelers to people
 
       // console.log("responseScreelers across the globe => ", this.people);
     },
